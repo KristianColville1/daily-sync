@@ -32,17 +32,20 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
   <div class="nav-bg">
-    <nav class="container navbar navbar-expand-lg">
+    <nav class="container navbar navbar-expand-lg sticky-top gy-0 py-0">
       <div class="container-fluid">
         <a class="navbar-brand fst-italic" href="#">
           <i class="fa-solid fa-share-nodes"></i> Daily Sync</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button  id="menu-toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon">
+            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-x d-none"></i>
+          </span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarScroll">
+        <div class="collapse navbar-collapse my-3" id="navbarScroll">
           <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success rounded-pill" type="submit">Search</button>
           </form>
           <ul class="navbar-nav mx-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
             <li class="nav-item">
@@ -88,5 +91,6 @@
   </script>
   {% comment %} jquery CDN {% endcomment %}
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="{% static 'js/menu.js' %}"></script>
 </body>
 </html>

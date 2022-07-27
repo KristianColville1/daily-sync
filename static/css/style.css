@@ -36,3 +36,17 @@ body {
   font-size: 1.4rem;
   font-family: 'Lato', sans-serif;
 }
+
+.navbar-toggler-icon {
+  background-image: none;
+}
+
+#menu-toggle {
+  border: 1px solid var(--turquoise);
+}
+
+#menu-toggle i {
+  color: var(--turquoise);
+  font-size: 24px;
+  transition: all 0.3s ease-in-out;
+}
