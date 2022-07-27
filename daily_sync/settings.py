@@ -9,13 +9,15 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+from pathlib import Path
 import os
 import dj_database_url
-from pathlib import Path
 
 if os.path.isfile("env.py"):
-    import env
+   import env
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 development = os.environ.get('DEVELOPMENT', False)
@@ -29,7 +31,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = development
 
-ALLOWED_HOSTS = ["PROJ_NAME.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["daily-sync123.herokuapp.com/", "127.0.0.1"]
 
 
 # Application definition
@@ -90,7 +92,7 @@ if development:
     }
 
 DATABASES = {
-   'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 
