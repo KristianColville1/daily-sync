@@ -72,6 +72,7 @@ footer a i:hover {
 
 /**********************************************forms */
 
+.content-box,
 .form-box {
   background-color: white;
   width: fit-content;
