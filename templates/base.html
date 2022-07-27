@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <title>Daily sync</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
   <div class="nav-bg">
     <nav class="container navbar navbar-expand-lg">
       <div class="container-fluid">
@@ -73,6 +73,10 @@
   {% block content %}
   {% endblock %}
 
+  {% if user.is_authenticated %}
+  {% else %}
+  {% include "footer.html"%}
+  {% endif %}
   {% comment %} Font Awesome Icons {% endcomment %}
   <script src="https://kit.fontawesome.com/0d880835d2.js" crossorigin="anonymous"></script>
   {% comment %} Bootstrap javascript files {% endcomment %}
