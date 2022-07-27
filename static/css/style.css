@@ -1,7 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Oswald&display=swap');
+
 :root {
   --turquoise: #48e5c2ff;
   --isabelline: #f8f4f1ff;
   --french-violet: #7f2ccbff;
   --independence: #414361ff;
   --space-cadet: #2a2d43ff; 
+}
+
+body {
+  overflow-x: hidden;
+  background-color: whitesmoke;
+}
+
+.nav-bg {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.nav-bg,
+.navbar {
+  background-color: var(--space-cadet);
+}
+
+.nav-link {
+  color: var(--turquoise);
+}
+
+.nav-link:hover {
+  color: var(--french-violet);
+  text-shadow: 1px 1px 1px var(--independence);
+}
+
+.navbar-brand {
+  color: var(--turquoise);
+  font-size: 1.4rem;
+  font-family: 'Lato', sans-serif;
 }
