@@ -49,8 +49,14 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
-    'feed'
+    'home',
+    'feed',
+    'posts'
 ]
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/feed/'
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
