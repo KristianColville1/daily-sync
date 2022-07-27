@@ -20,14 +20,15 @@ body {
 .nav-bg,
 .navbar {
   background-color: var(--space-cadet);
+  height: fit-content;
 }
 
 .nav-link {
-  color: var(--turquoise);
+  color: var(--isabelline);
 }
 
 .nav-link:hover {
-  color: var(--french-violet);
+  color: var(--turquoise);
   text-shadow: 1px 1px 1px var(--independence);
 }
 
@@ -49,4 +50,41 @@ body {
   color: var(--turquoise);
   font-size: 24px;
   transition: all 0.3s ease-in-out;
+}
+
+/**********************************************Footer */
+footer {
+  color: var(--isabelline);
+  background-color: var(--independence);
+}
+
+footer a {
+  color: var(--isabelline);
+}
+
+footer a i {
+  font-size: 24px;
+}
+
+footer a i:hover {
+  color: var(--turquoise);
+}
+
+/**********************************************forms */
+
+.form-box {
+  background-color: white;
+  width: fit-content;
+  border: 2px solid white;
+}
+
+form {
+  font-family: 'Oswald', sans-serif;
+}
+
+.abs-center {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
