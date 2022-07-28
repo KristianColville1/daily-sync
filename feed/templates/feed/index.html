@@ -13,20 +13,33 @@
         Create Post
       </div>
 
-      {% for event in events %}
-      <div class="content-box post-box w-100 shadow rounded-3 mt-4 boxes">
-        <div class="author-post d-flex flex-row">
-          <div>
-            <img class="profile-image-post rounded-circle shadow-sm" src="{% static 'img/default-profile-image.png' %}" alt="profile image of author">
-            <p class="mx-3">{{event.author}}</p>
-          </div>
-          
-          <h5 class="w-100 text-center">{{event.title}}</h5>
+      {% if events %}
+      {% for post in events %}
+      {% if post.type == "post" %}
+      
+      <div class="content-box post-box w-100 shadow rounded-3 mt-4 py-2 boxes postition-relative">
+        <div class="post-options dropdown text-end position-relative">
+            <button class="btn dropdown-toggle rounded-circle position-relative mx-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Edit</a></li>
+              <li><a class="dropdown-item" href="#">Delete</a></li>
+              <li><a class="dropdown-item" href="#">Report</a></li>
+            </ul>
         </div>
-        
-        <p class="mx-auto">{{event.content}}</p>
+        <div class="author-post d-flex flex-row">
+          <div class="w-100">
+            <img class="profile-image-post rounded-circle shadow-sm mx-3" src="{% static 'img/default-profile-image.png' %}" alt="profile image of author">
+            <p class="mx-3 w-100 fs-6">{{post.author}}, <span class="small-and-light">{{post.created_on}}</span></p>
+          </div>
+        </div>
+        <h5 class="w-100 text-center">{{post.title}}</h5>
+        <p class="text-center">{{post.content}}</p>
       </div>
+      {% endif%}
       {% endfor %}
+      {% endif %}
     </div>
     <div class="col-sm-12 col-md-3 col-lg-4">
       <div class="content-box w-100 shadow rounded-3 py-2 boxes">

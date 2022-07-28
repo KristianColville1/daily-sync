@@ -95,3 +95,30 @@ form {
 .profile-image-post {
   height: 40px;
 }
+
+/********************posts */
+
+.small-and-light {
+  font-size: .8rem;
+}
+
+.post-options > button {
+  width: 30px;
+  height: 30px;
+}
+
+.post-options > button:hover {
+  width: 30px;
+  height: 30px;
+  background-color: var(--french-violet);
+}
+
+.post-options > button:after{
+  background-color: none;
+  border-color: transparent;
+}
+
+.dropdown-item:hover {
+  background-color: var(--turquoise);
+  color: var(--space-cadet);
+}
