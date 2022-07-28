@@ -89,3 +89,9 @@ form {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+/********************profile images */
+
+.profile-image-post {
+  height: 40px;
+}
