@@ -21,6 +21,7 @@ class Post(models.Model):
                                    blank=True)
     status = models.IntegerField(choices=STATUS, default=0)
     slug = models.SlugField()
+    type = "post"
 
     class Meta:
         ordering = ['-created_on']
