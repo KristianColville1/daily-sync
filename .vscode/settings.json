@@ -4,7 +4,7 @@
    "python.linting.pep8Enabled": false,
    "python.linting.flake8Enabled": true,
    "python.terminal.activateEnvironment": false,
-   "python.formatting.autopep8Path": "/home/gitpod/.pyenv/shims/autopep8",
+   "python.formatting.autopep8Path": "/home/kristian/OneDrive/GitHub/daily-sync/.venv/lib/python3.9/site-packages/autopep8",
    "python.linting.flake8Path": "/home/gitpod/.pyenv/shims/flake8",
    "cornflakes.linter.executablePath": "/home/gitpod/.pyenv/shims/flake8",
    "files.exclude": {
@@ -23,5 +23,13 @@
    "files.autoSave": "afterDelay",
    "workbench.colorTheme": "Visual Studio 2019 Dark",
    "terminal.integrated.gpuAcceleration": "canvas",
-   "editor.defaultFormatter": "HookyQR.beautify"
+   "editor.defaultFormatter": "HookyQR.beautify",
+   "[python]": {
+      "editor.formatOnPaste": true,
+      "editor.formatOnSave": true
+   },
+   "python.formatting.provider": "yapf",
+   "editor.codeActionsOnSave": {
+   
+   }
 }
