@@ -10,7 +10,10 @@
 
 body {
   overflow-x: hidden;
+  background: url('../img/background/18410.jpg') repeat center center;
   background-color: whitesmoke;
+  background-size: cover;
+  background-blend-mode: darken;
 }
 
 .nav-bg {
@@ -72,10 +75,12 @@ footer a i:hover {
 
 /**********************************************forms */
 
+.boxes,
 .content-box,
 .form-box {
   background-color: white;
   width: fit-content;
+  height: fit-content;
   border: 2px solid white;
 }
 
@@ -88,6 +93,32 @@ form {
   top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.log-op-btn {
+  color: var(--turquoise);
+  background-color: var(--french-violet);
+  font-size: 24px;
+}
+
+.log-op-btn:hover {
+  color: var(--french-violet);
+  background-color: var(--turquoise);
+}
+
+.form-head {
+  color: var(--french-violet);
+  text-shadow: 1px 1px 1px var(--independence);
+}
+
+.search-btn {
+  color: var(--turquoise);
+  background-color: var(--french-violet);
+}
+
+.search-btn:hover {
+  color: var(--french-violet);
+  background-color: var(--turquoise);
 }
 
 /********************profile images */
@@ -111,6 +142,7 @@ form {
   width: 30px;
   height: 30px;
   background-color: var(--french-violet);
+  color: white;
 }
 
 .post-options > button:after{
