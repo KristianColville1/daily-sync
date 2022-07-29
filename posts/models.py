@@ -20,7 +20,7 @@ class Post(models.Model):
                                    related_name='liked_posts',
                                    blank=True)
     status = models.IntegerField(choices=STATUS, default=0)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     type = "post"
 
     class Meta:
