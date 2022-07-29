@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% load crispy_forms_tags %}
+
 {% block content %}
 <div class="container">
   <div class="row my-4">
@@ -21,10 +24,7 @@
         </div>
       </div>
 
-      {% if events %}
-      {% for post in events %}
-      {% if post.type == "post" %}
-
+      {% for post in posts %}
       <div class="content-box w-100 shadow rounded-3 mt-4 py-2 boxes postition-relative">
         <div class="post-options dropdown text-end position-relative">
           <button class="btn dropdown-toggle rounded-circle position-relative mx-3" type="button"
@@ -47,9 +47,7 @@
         <h5 class="w-100 text-center">{{post.title}}</h5>
         <p class="text-center">{{post.content}}</p>
       </div>
-      {% endif%}
       {% endfor %}
-      {% endif %}
     </div>
     <div class="col-sm-12 col-md-3 col-lg-4">
       <div class="content-box w-100 shadow rounded-3 py-2 boxes">
@@ -74,11 +72,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <form method="POST" action="/feed/">
+          {{ form | crispy }}
+          {% csrf_token %}
+          
+          <button type="Submit" class="btn btn-primary">Post</button>
+        </form>
       </div>
     </div>
   </div>
