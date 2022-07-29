@@ -10,7 +10,7 @@ class Post(models.Model):
   """
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
-                               related_name="user_posts")
+                               related_name="user_posts", null=True)
     title = models.TextField(max_length=200, unique=True)
     content = models.TextField(max_length=500)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -20,8 +20,7 @@ class Post(models.Model):
                                    related_name='liked_posts',
                                    blank=True)
     status = models.IntegerField(choices=STATUS, default=0)
-    slug = models.SlugField(unique=True)
-    type = "post"
+    slug = models.SlugField(max_length=200)
 
     class Meta:
         ordering = ['-created_on']
