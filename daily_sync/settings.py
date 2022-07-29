@@ -31,6 +31,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = development
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
 ALLOWED_HOSTS = ["daily-sync123.herokuapp.com", "127.0.0.1"]
 
 # Application definition
@@ -40,13 +42,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes', 'django.contrib.sessions',
     'django.contrib.messages', 'django.contrib.sites', 'allauth',
     'allauth.account', 'allauth.socialaccount', 'cloudinary_storage',
-    'django.contrib.staticfiles', 'cloudinary', 'django_summernote', 'home',
-    'feed', 'posts'
+    'django.contrib.staticfiles', 'cloudinary', 'django_summernote',
+    'crispy_forms', 'home', 'feed', 'posts'
 ]
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/feed/'
 LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
