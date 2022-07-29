@@ -129,6 +129,18 @@ form {
 
 /********************posts */
 
+.post-box {
+  height: fit-content;
+}
+
+.create-post-btn {
+  border: 2px solid whitesmoke;
+}
+
+.create-post-btn:hover {
+  background-color: whitesmoke;
+}
+
 .small-and-light {
   font-size: .8rem;
 }
