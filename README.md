@@ -1,4 +1,4 @@
-# Dev Share
+# Daily Sync
 
 ## Table of Contents
 * [About](#about)
