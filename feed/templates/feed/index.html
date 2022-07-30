@@ -19,7 +19,8 @@
               src="{% static 'img/default-profile-image.png' %}" alt="profile image of author"></div>
           <div class="col-10">
             <button class="btn create-post-btn w-100 rounded-pill text-start mx-3" type="button"
-              aria-label="Click here to create a post" data-bs-toggle="modal" data-bs-target="#feed-create-post">Create a
+              aria-label="Click here to create a post" data-bs-toggle="modal" data-bs-target="#feed-create-post">Create
+              a
               post</button></div>
         </div>
       </div>
@@ -46,6 +47,23 @@
         </div>
         <h5 class="w-100 text-center">{{post.title}}</h5>
         <p class="text-center">{{post.content}}</p>
+        <div class="w-100">
+          <p class="text-start">{{post.count_likes}}</p>
+          <p class="text-end"></p>
+        </div>
+        <hr class="m-1">
+        <div class="row py-1">
+          <div class="col-4"><button class="btn w-100 p-0">
+              <i class="fa-solid fa-thumbs-up"></i> Like
+            </button></div>
+          <div class="col-4"><button class="btn w-100 p-0">
+              <i class="fa-solid fa-comment"></i> Comment
+            </button></div>
+          <div class="col-4"><button class="btn w-100 p-0">
+              <i class="fa-solid fa-share-nodes"></i> Share
+            </button></div>
+        </div>
+
       </div>
       {% endfor %}
     </div>
@@ -75,7 +93,7 @@
         <form method="POST" action="/feed/">
           {{ form | crispy }}
           {% csrf_token %}
-          
+
           <button type="Submit" class="btn btn-primary">Post</button>
         </form>
       </div>

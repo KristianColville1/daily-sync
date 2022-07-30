@@ -28,17 +28,15 @@ class Post(models.Model):
         return self.title
 
     def count_likes(self):
-        return self.likes
+        return self.likes.count()
 
 
 class Comment(models.Model):
     """
     Comment model class
     """
-    author = models.ForeignKey(User,
-                               on_delete=models.CASCADE,
-                               related_name="user_comments",
-                               null=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    name = models.CharField(max_length=100)
     comment = models.TextField(max_length=300)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now_add=True)
