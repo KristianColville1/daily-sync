@@ -40,7 +40,7 @@
 
 #### Models
 
-In no particular order these are the following models created for the DevShare web app.
+In no particular order these are the following models created for the Daily Sync web app.
 
 1. Posts
 
@@ -76,8 +76,7 @@ In no particular order these are the following models created for the DevShare w
 
 | Issue ID | Bug | Fix |
 |---|---|---|
-| [#13](https://github.com/KristianColville1/daily-sync/issues/13)|'auth.User.none' showing in place of where the number of likes should be.
-Should be blank if not a number | Added count() to function call on count likes in post model to display a number |
+| [#13](https://github.com/KristianColville1/daily-sync/issues/13) |'auth.User.none' showing in place of where the number of likes should be Should be blank if not a number | Added count() to function call on count likes in post model to display a number |
 ||||
 ||||
 ||||
