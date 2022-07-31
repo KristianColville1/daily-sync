@@ -43,14 +43,14 @@ class FeedViewPost(View):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
         form = PostForm()
-        context = {'posts': post, 'form': form}
+        context = {'post': post, 'form': form}
         return render(request, 'posts/view_post.html', context)
 
     def post(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
         form = PostForm()
-        context = {'posts': post, 'form': form}
+        context = {'post': post, 'form': form}
 
         post_form = PostForm(data=request.POST)
 
