@@ -8,7 +8,7 @@ class Post(models.Model):
     """
     Post model
     """
-    slug = models.SlugField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, auto_created=True)
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
                                related_name="user_posts",
@@ -48,10 +48,12 @@ class Comment(models.Model):
                                    blank=True)
 
     class Meta:
-        ordering = ['-created_on']
+        ordering = ['created_on']
 
     def __str__(self):
         return self.comment
 
     def count_likes(self):
-        return self.likes
+        if self.likes.count() > 0:
+            return self.likes.count()
+        return ''
