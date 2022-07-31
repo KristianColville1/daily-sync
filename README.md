@@ -77,7 +77,7 @@ In no particular order these are the following models created for the Daily Sync
 | Issue ID | Bug | Fix |
 |---|---|---|
 | [#13](https://github.com/KristianColville1/daily-sync/issues/13) |'auth.User.none' showing in place of where the number of likes should be Should be blank if not a number | Added count() to function call on count likes in post model to display a number |
-||||
+| [#14](https://github.com/KristianColville1/daily-sync/issues/14) | An issue with migrating the comment model in posts/models.py. Planned to migrate new changes and it's refusing to do so because of the name field not having a default. My observation and knowledge tell me this is incorrect as I should not need a default on the name field | I found a simple fix from stack overflow suggesting deleting all migrations as this is a common issue encountered when working with django and to not delete the folder or instantiation file and it solved the issue |
 ||||
 ||||
 ||||
