@@ -28,7 +28,9 @@ class Post(models.Model):
         return self.title
 
     def count_likes(self):
-        return self.likes.count()
+        if self.likes.count() > 0:
+            return self.likes.count()
+        return ''
 
 
 class Comment(models.Model):
