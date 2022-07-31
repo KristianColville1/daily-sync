@@ -42,10 +42,13 @@
           <div class="w-100">
             <img class="profile-image-post rounded-circle shadow-sm mx-3"
               src="{% static 'img/default-profile-image.png' %}" alt="profile image of author">
-            <p class="mx-3 w-100 fs-6">{{post.author}}, <span class="small-and-light">{{post.created_on}}</span></p>
+            <p class="mx-3 w-100 fs-6">{{post.author}},<span class="small-and-light">{{post.created_on}}</span></p>
           </div>
         </div>
-        <h5 class="w-100 text-center">{{post.title}}</h5>
+        <a href="{% url 'view_post' post.slug %}">
+          <h5 class="w-100 text-center">{{post.title}}</h5>
+        </a>
+          
         <p class="text-center">{{post.content}}</p>
         <div class="w-100">
           <p class="text-start">{{post.count_likes}}</p>
@@ -86,7 +89,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create a post</h5>
+        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Create a post</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -94,7 +97,7 @@
           {{ form | crispy }}
           {% csrf_token %}
 
-          <button type="Submit" class="btn btn-primary">Post</button>
+          <button type="Submit" class="btn post-btn w-100 my-2 text-uppercase">Post</button>
         </form>
       </div>
     </div>
