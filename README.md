@@ -31,7 +31,39 @@
 * [Credits](#credits)
 * [Acknowledgements](#acknowledgements)
 
+## About
+## Project Goals
+### User Goals
+### Site Owners Goals
+## User Experience
+### Target Audience
+### User Requirements and Expectations
+### User Stories
 
+| Issue ID | User Story |
+|---|---|
+|[#1](https://github.com/KristianColville1/daily-sync/issues/1)| As a user I can navigate around the website when I am logged in so that I find what I am looking for within the website |
+|[#2](https://github.com/KristianColville1/daily-sync/issues/2)| As a new user I can identify the purpose of this website so that I can choose whether I want to sign up for this website if it interests me |
+|[#3](https://github.com/KristianColville1/daily-sync/issues/3)| As a user I can create a post so that I can notify my network of my activity and share experiences |
+|[#4](https://github.com/KristianColville1/daily-sync/issues/4) | As a new user I can create an account so that I can save my personal information and share it with my network |
+|[#5](https://github.com/KristianColville1/daily-sync/issues/5)|As a returning user I can log in and access my account so that I can keep an account on this website|
+|[#6](https://github.com/KristianColville1/daily-sync/issues/6)|As a user I can click on a post in order to view it differently so that I can expand the post and see additional information such as all the comments/ conversations within a post|
+|[#7](https://github.com/KristianColville1/daily-sync/issues/7)|As a user I can create a comment on a post so that I can express myself and interact with my network|
+|[#8](https://github.com/KristianColville1/daily-sync/issues/8)|As a user I can like or unlike a post so that I can share my opinion and appreciation for content on the website created by my network that I like|
+|[#9](https://github.com/KristianColville1/daily-sync/issues/9)|As a registered user I can I can create my own profile so that I can share my personal information with my network and help others to identify me within the social media website|
+|[#10](https://github.com/KristianColville1/daily-sync/issues/10)|As a registered user I can use a search mechanism so that I can find things like people or groups|
+|[#11](https://github.com/KristianColville1/daily-sync/issues/11)|As a registered user I can add my friends so that I can contact them, and view their profiles and posts|
+|[#12](https://github.com/KristianColville1/daily-sync/issues/12)|As a registered user I can quickly identify that I have new notifications so that I can act accordingly and respond to notifications like comments on a post, people liking my posts or messages from friends|
+|||
+|||
+|||
+
+## Technologies & Tools
+## Design
+### Color Scheme
+### Typography
+### Structure
+#### Wireframes
 ## Information Architecture
 
 ### Database
@@ -77,7 +109,7 @@ In no particular order these are the following models created for the Daily Sync
 | Issue ID | Bug | Fix |
 |---|---|---|
 | [#13](https://github.com/KristianColville1/daily-sync/issues/13) |'auth.User.none' showing in place of where the number of likes should be Should be blank if not a number | Added count() to function call on count likes in post model to display a number |
-| [#14](https://github.com/KristianColville1/daily-sync/issues/14) | An issue with migrating the comment model in posts/models.py. Planned to migrate new changes and it's refusing to do so because of the name field not having a default. My observation and knowledge tell me this is incorrect as I should not need a default on the name field | I found a simple fix from stack overflow suggesting deleting all migrations as this is a common issue encountered when working with django and to not delete the folder or instantiation file and it solved the issue |
+| [#14](https://github.com/KristianColville1/daily-sync/issues/14) | An issue with migrating the comment model in posts/models.py. Planned to migrate new changes and it's refusing to do so because of the name field not having a default. My observation and knowledge tell me this is incorrect as I should not need a default on the name field | I found a simple fix from stack overflow suggesting deleting all migrations as this is a common issue encountered when working with django and to not delete the folder or __init__.py file and it solved the issue |
 ||||
 ||||
 ||||
