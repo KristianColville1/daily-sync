@@ -166,3 +166,17 @@ form {
   background-color: var(--turquoise);
   color: var(--space-cadet);
 }
+
+.post-btn {
+  color: var(--french-violet);
+  background-color: var(--turquoise);
+}
+
+.post-btn:hover {
+  color: var(--turquoise);
+  background-color: var(--french-violet);
+}
+
+.max-600 {
+  max-width: 600px;
+}
