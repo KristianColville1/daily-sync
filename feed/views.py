@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.views import View, generic
+from django.contrib import messages
 from posts.models import Post
 from posts.forms import PostForm
 
@@ -12,19 +13,13 @@ class FeedViewIndex(View):
     def get(self, request, *args, **kwargs):
         post = Post.objects.filter(status=1).order_by("-created_on")
         form = PostForm()
-        context = {
-            'posts': post,
-            'form': form
-        }
+        context = {'posts': post, 'form': form}
         return render(request, 'feed/index.html', context)
 
     def post(self, request, *args, **kwargs):
         post = Post.objects.filter(status=1).order_by("-created_on")
         form = PostForm()
-        context = {
-            'posts': post,
-            'form': form
-        }
+        context = {'posts': post, 'form': form}
 
         post_form = PostForm(data=request.POST)
 
@@ -32,7 +27,14 @@ class FeedViewIndex(View):
             post_form.instance.author = request.user
             post_form.instance.status = 1
             post_form.save()
+            messages.add_message(request, messages.SUCCESS,
+                                  'Your post has successfully submitted')
+        else:
+            messages.add_message(
+                request, messages.ERROR,
+                'Oops something has went wrong, please try again!')
         return render(request, 'feed/index.html', context)
+
 
 class FeedViewPost(View):
     """
