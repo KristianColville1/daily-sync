@@ -1,5 +1,5 @@
-from django.shortcuts import get_object_or_404, render
-from django.views import View, generic
+from django.shortcuts import get_object_or_404, render, redirect
+from django.views import View
 from django.contrib import messages
 from posts.models import Post
 from posts.forms import PostForm
@@ -20,15 +20,13 @@ class FeedViewIndex(View):
         post = Post.objects.filter(status=1).order_by("-created_on")
         form = PostForm()
         context = {'posts': post, 'form': form}
-
         post_form = PostForm(data=request.POST)
-
         if post_form.is_valid():
             post_form.instance.author = request.user
             post_form.instance.status = 1
             post_form.save()
             messages.add_message(request, messages.SUCCESS,
-                                  'Your post has successfully submitted')
+                                 'Your post has successfully submitted')
         else:
             messages.add_message(
                 request, messages.ERROR,

@@ -35,7 +35,7 @@
           <ul class="dropdown-menu">
             {% if post.author == user %}
             <li><a class="dropdown-item" href="#">Edit</a></li>
-            <li><a class="dropdown-item" href="#">Delete</a></li>
+            <li><a class="dropdown-item" href="/posts/delete/{{post.id}}">Delete</a></li>
             {% endif %}
             <li><a class="dropdown-item" href="#">Report</a></li>
           </ul>

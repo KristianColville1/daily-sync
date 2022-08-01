@@ -1,6 +1,6 @@
 from django.urls import path
+from requests import request
 from . import views
-from .views import FeedViewIndex, FeedViewPost
 
 urlpatterns = [
     path('', views.FeedViewIndex.as_view(), name='feed'),
