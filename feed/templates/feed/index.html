@@ -33,8 +33,10 @@
             <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
           </button>
           <ul class="dropdown-menu">
+            {% if post.author == user %}
             <li><a class="dropdown-item" href="#">Edit</a></li>
             <li><a class="dropdown-item" href="#">Delete</a></li>
+            {% endif %}
             <li><a class="dropdown-item" href="#">Report</a></li>
           </ul>
         </div>
