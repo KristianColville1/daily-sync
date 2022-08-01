@@ -11,9 +11,9 @@
 body {
   overflow-x: hidden;
   background: url('../img/background/18410.jpg') repeat center center;
-  background-color: whitesmoke;
+  background-color: var(--independence);
   background-size: cover;
-  background-blend-mode: darken;
+  background-blend-mode: soft-light;
 }
 
 .nav-bg {
@@ -81,7 +81,6 @@ footer a i:hover {
   background-color: white;
   width: fit-content;
   height: fit-content;
-  border: 2px solid white;
 }
 
 form {
@@ -180,3 +179,17 @@ form {
 .max-600 {
   max-width: 600px;
 }
+
+.post-link:hover,
+.post-link {
+  color: var(--independence);
+  cursor: pointer;
+}
+
+/***************************************************Alert messages*/
+
+.alert {
+  background-color: var(--isabelline);
+  color: var(--independence);
+}
+
