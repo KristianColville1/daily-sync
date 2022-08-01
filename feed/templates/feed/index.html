@@ -7,12 +7,12 @@
 <div class="container">
   <div class="row my-4">
     <div class="col-sm-12 col-md-3 col-lg-2">
-      <div class="content-box w-100 shadow rounded-3 py-2 boxes">
+      <div class="content-box w-100 shadow rounded p-2 boxes">
         Profile
       </div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-6">
-      <div class="content-box post-box w-100 shadow rounded-3 py-2 boxes">
+      <div class="content-box post-box w-100 shadow rounded-3 p-2 boxes">
         <div class="row">
           <div class="col-1">
             <img class="profile-image-post rounded-circle shadow-sm mx-3"
@@ -26,7 +26,7 @@
       </div>
 
       {% for post in posts %}
-      <div class="content-box w-100 shadow rounded-3 mt-4 py-2 boxes postition-relative">
+      <div class="content-box w-100 shadow rounded mt-4 p-2 boxes postition-relative">
         <div class="post-options dropdown text-end position-relative">
           <button class="btn dropdown-toggle rounded-circle position-relative mx-3" type="button"
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,22 +38,21 @@
             <li><a class="dropdown-item" href="#">Report</a></li>
           </ul>
         </div>
-        <div class="author-post d-flex flex-row">
-          <div class="w-100">
-            <img class="profile-image-post rounded-circle shadow-sm mx-3"
-              src="{% static 'img/default-profile-image.png' %}" alt="profile image of author">
-            <p class="mx-3 w-100 fs-6">{{post.author}},<span class="small-and-light">{{post.created_on}}</span></p>
+        <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
+          <div class="author-post d-flex flex-row">
+            <div class="w-100">
+              <img class="profile-image-post rounded-circle shadow-sm mx-3"
+                src="{% static 'img/default-profile-image.png' %}" alt="profile image of author">
+              <p class="mx-3 w-100 fs-6">{{post.author}},<span class="small-and-light">{{post.created_on}}</span></p>
+            </div>
           </div>
-        </div>
-        <a href="{% url 'view_post' post.slug %}">
           <h5 class="w-100 text-center">{{post.title}}</h5>
+          <p class="text-center">{{post.content}}</p>
+          <div class="w-100">
+            <p class="text-start">{{post.count_likes}}</p>
+            <p class="text-end"></p>
+          </div>
         </a>
-          
-        <p class="text-center">{{post.content}}</p>
-        <div class="w-100">
-          <p class="text-start">{{post.count_likes}}</p>
-          <p class="text-end"></p>
-        </div>
         <hr class="m-1">
         <div class="row py-1">
           <div class="col-4"><button class="btn w-100 p-0">
@@ -67,17 +66,18 @@
             </button></div>
         </div>
 
+
       </div>
       {% endfor %}
     </div>
     <div class="col-sm-12 col-md-3 col-lg-4">
-      <div class="content-box w-100 shadow rounded-3 py-2 boxes">
+      <div class="content-box w-100 shadow rounded p-2 boxes">
         <h6>People you may know</h6>
       </div>
-      <div class="content-box w-100 shadow rounded-3 mt-2 boxes">
+      <div class="content-box w-100 shadow rounded p-2 mt-2 boxes">
         <h6>Messages</h6>
       </div>
-      <div class="w-100 shadow rounded-3 mt-4">
+      <div class="w-100 shadow rounded mt-4">
         {% include "footer.html" %}
       </div>
     </div>
@@ -93,7 +93,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="/feed/">
+        <form method="post">
           {{ form | crispy }}
           {% csrf_token %}
 
