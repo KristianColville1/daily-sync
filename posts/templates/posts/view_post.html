@@ -6,7 +6,8 @@
 {% block content %}
 <div class="container">
   <div class="row position-relative">
-    <div class="content-box max-600 shadow rounded-3 mt-4 py-2 boxes position-absolute top-0 start-50 translate-middle-x">
+    <div
+      class="content-box max-600 shadow rounded-3 mt-4 py-2 boxes position-absolute top-0 start-50 translate-middle-x">
       <div class="post-options dropdown text-end position-relative">
         <button class="btn dropdown-toggle rounded-circle position-relative mx-3" type="button"
           data-bs-toggle="dropdown" aria-expanded="false">
@@ -45,4 +46,6 @@
       </div>
     </div>
   </div>
-  {% endblock %}
+</div>
+{% include "footer.html" %}
+{% endblock %}
