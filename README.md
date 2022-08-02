@@ -54,6 +54,10 @@
 |[#10](https://github.com/KristianColville1/daily-sync/issues/10)|As a registered user I can use a search mechanism so that I can find things like people or groups|
 |[#11](https://github.com/KristianColville1/daily-sync/issues/11)|As a registered user I can add my friends so that I can contact them, and view their profiles and posts|
 |[#12](https://github.com/KristianColville1/daily-sync/issues/12)|As a registered user I can quickly identify that I have new notifications so that I can act accordingly and respond to notifications like comments on a post, people liking my posts or messages from friends|
+|[#16](https://github.com/KristianColville1/daily-sync/issues/16)| As a user I can check how many hours or days since a post was created so that I understand the time frame when a particular post was created and can identify between new and old content |
+|[#17](https://github.com/KristianColville1/daily-sync/issues/17)| As a registered user I can upload a photo to use on my profile as a profile picture so that I can help others identify me on the network and have the ability to add more personalization |
+|[#19](https://github.com/KristianColville1/daily-sync/issues/19)| As a user I can report a post to inform the admin of the site of content that might have bad intentions and be clearly identified as a misuse of the purpose of the website so that I can enjoy a pleasant experience on the website free from bad actors and possible malicious content |
+|||
 |||
 |||
 |||
@@ -112,6 +116,9 @@ In no particular order these are the following models created for the Daily Sync
 | [#14](https://github.com/KristianColville1/daily-sync/issues/14) | An issue with migrating the comment model in posts/models.py. Planned to migrate new changes and it's refusing to do so because of the name field not having a default. My observation and knowledge tell me this is incorrect as I should not need a default on the name field | I found a simple fix from stack overflow suggesting deleting all migrations as this is a common issue encountered when working with django and to not delete the folder or __init__.py file and it solved the issue |
 |[#15](https://github.com/KristianColville1/daily-sync/issues/15) | Unable to delete posts in admin after creating comment model | Temporally removed comment model and then deleted all posts and added back all comment modal data, comment post ID was causing the issue |
 |[#18](https://github.com/KristianColville1/daily-sync/issues/18) | Unable to create a post that has the same title as a published post | I thought the issue was with the slug but after removing unique=true from the title variable in the post model this helped fix posting new posts with the same title but with a unique slug link |
+||||
+||||
+||||
 ||||
 
 ## Development & Deployment
