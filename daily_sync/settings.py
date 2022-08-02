@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages', 'django.contrib.sites', 'allauth',
     'allauth.account', 'allauth.socialaccount', 'cloudinary_storage',
     'django.contrib.staticfiles', 'cloudinary', 'django_summernote',
-    'crispy_forms', 'home', 'feed', 'posts'
+    'crispy_forms', 'home', 'feed', 'posts', 'profiles'
 ]
 
 SITE_ID = 1
