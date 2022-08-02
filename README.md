@@ -1,7 +1,13 @@
 # Daily Sync
 
+Developer: Kristian Colville
+
+[Visit this website](https://daily-sync123.herokuapp.com/)
+
+<br>
+
 ## Table of Contents
-* [About](#about)
+
 * [Project Goals](#project-goals)
     * [User Goals](#user-goals)
     * [Site Owners Goals](#site-owners-goals)
@@ -31,10 +37,25 @@
 * [Credits](#credits)
 * [Acknowledgements](#acknowledgements)
 
-## About
 ## Project Goals
+
+The goal of this project was to create a social media website that takes advantage of good UX design principles and can clearly indicate to a global audience it's purpose.
+
 ### User Goals
+
+- Create a social media account on Daily Sync
+- Add friends, expand a network and post content that reaches my network
+- Have the ability to personalize a profile
+- Have the ability to message friends and family
+
 ### Site Owners Goals
+
+- Create a social media website that has the look and presentation of an experienced brand
+- Allow users to use create, read, update and delete functionality throughout the website to keep people engaged in a meaningful and interactive way
+- Provide authority for content that might offend or discriminate to ensure users that this is what family friendly social media website looks like
+- Build a responsive and accessible website for a wide audience and build it with the latest tools and technology this world has to offer
+- Bring attention to detail and provide a great user experience
+
 ## User Experience
 ### Target Audience
 ### User Requirements and Expectations
