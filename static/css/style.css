@@ -83,7 +83,6 @@ footer a i:hover {
 .content-box,
 .form-box {
   background-color: white;
-  width: fit-content;
   height: fit-content;
 }
 
@@ -151,6 +150,7 @@ form {
 .post-options > button {
   width: 30px;
   height: 30px;
+  font-size: 18px;
 }
 
 .post-options > button:hover {
@@ -180,20 +180,22 @@ form {
   background-color: var(--french-violet);
 }
 
-.max-600 {
-  max-width: 600px;
-}
-
 .post-link:hover,
 .post-link {
   color: var(--independence);
   cursor: pointer;
 }
 
+.user-post-options button:hover {
+  color: white;
+  font-weight: 700;
+  background-color: var(--independence);
+  transition: all 0.5s ease-in-out;
+  border: none;
+}
 /***************************************************Alert messages*/
 
 .alert {
   background-color: var(--turquoise);
   color: var(--independence);
 }
-
