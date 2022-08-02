@@ -82,7 +82,15 @@ In no particular order these are the following models created for the Daily Sync
 
 | Name | Database Key | Field Type | Validation |
 |---|---|---|---|
-|||||
+| Author | **author** | ForeignKey | User, on_delete=models.CASCADE, related_name="user_posts", null=True |
+|Title| **title**| TextField |max_length=200|
+|Slug| **slug** | AutoSlugField |populate_from='title', unique_with='author'|
+|Content| **content** | TextField |max_length=500|
+|Created on| **created_on** | DateTimeField |auto_now_add=True|
+|Updated on| **updated_on** | DateTimeField |auto_now_add=True|
+|Edited| **edited** | BooleanField |default=False|
+|Likes| **likes** | ManyToManyField |User, related_name='post_likes', blank=True|
+| Status| **status** | IntegerField |choices=STATUS, default=1|
 
 2. Comments
 
