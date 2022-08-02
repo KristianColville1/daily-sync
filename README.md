@@ -92,23 +92,31 @@ In no particular order these are the following models created for the Daily Sync
 |Likes| **likes** | ManyToManyField |User, related_name='post_likes', blank=True|
 | Status| **status** | IntegerField |choices=STATUS, default=1|
 
+<br>
+
 2. Comments
 
 | Name | Database Key | Field Type | Validation |
 |---|---|---|---|
 |||||
 
-2. Messages
+<br>
+
+3. Messages
 
 | Name | Database Key | Field Type | Validation |
 |---|---|---|---|
 |||||
+
+<br>
 
 4. Profiles
 
 | Name | Database Key | Field Type | Validation |
 |---|---|---|---|
 |||||
+
+<br>
 
 ### Flow Charts
 

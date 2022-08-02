@@ -19,7 +19,7 @@ class Profile(models.Model):
     posts = models.ManyToManyField(Post, related_name="user_posts")
     friends = models.ManyToManyField('self', blank=True, related_name='user_friends')
     bio = models.TextField(max_length=800, unique=False)
-    profile_slug = AutoSlugField(populate_from=username, unique=True)
+    slug = AutoSlugField(populate_from=username, unique=True)
 
     def __str__(self):
         return self.username
