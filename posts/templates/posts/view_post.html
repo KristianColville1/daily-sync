@@ -6,44 +6,49 @@
 {% block content %}
 <div class="container">
   <div class="row position-relative">
-    <div
-      class="content-box max-600 shadow rounded-3 mt-4 py-2 boxes position-absolute top-0 start-50 translate-middle-x">
+    <div class="col-sm-12 col-md-8 offset-sm-0 offset-md-2 content-box shadow-sm rounded mt-4 px-2 boxes postition-relative">
       <div class="post-options dropdown text-end position-relative">
         <button class="btn dropdown-toggle rounded-circle position-relative mx-3" type="button"
           data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
         </button>
         <ul class="dropdown-menu">
+          {% if post.author == user %}
           <li><a class="dropdown-item" href="#">Edit</a></li>
-          <li><a class="dropdown-item" href="#">Delete</a></li>
+          <li><a class="dropdown-item" href="/posts/delete/{{post.id}}">Delete</a></li>
+          {% endif %}
           <li><a class="dropdown-item" href="#">Report</a></li>
         </ul>
       </div>
-      <div class="author-post d-flex flex-row">
-        <div class="w-100">
-          <img class="profile-image-post rounded-circle shadow-sm mx-3"
-            src="{% static 'img/default-profile-image.png' %}" alt="profile image of author">
-          <p class="mx-3 w-100 fs-6">{{post.author}}, <span class="small-and-light">{{post.created_on}}</span></p>
+      <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
+        <div class="author-post d-flex flex-row">
+          <div class="w-100">
+            <img class="profile-image-post rounded-circle shadow-sm mx-3"
+              src="{% static 'img/default-profile-image.png' %}" alt="profile image of author">
+            <p class="mx-3 w-100 fs-6">{{post.author}},<span class="small-and-light">{{post.created_on}}</span></p>
+          </div>
         </div>
+        <h5 class="w-100 text-center">{{post.title}}</h5>
+        <p class="text-center">{{post.content}}</p>
+        <div class="w-100">
+          <p class="text-start">{{post.count_likes}}</p>
+          <p class="text-end"></p>
+        </div>
+      </a>
+      <br>
+      <div class="row user-post-options m-0">
+        <button class="col-4 btn">
+          <i class="fa-solid fa-thumbs-up"></i> Like
+        </button>
+        <button class="col-4 btn">
+          <i class="fa-solid fa-comment"></i> Comment
+        </button>
+        <button class="col-4 btn">
+          <i class="fa-solid fa-share-nodes"></i> Share
+        </button>
       </div>
-      <h1 class="w-100 text-center">{{post.title}}</h1>
-      <p class="text-center">{{post.content}}</p>
-      <div class="w-100">
-        <p class="text-start">{{post.count_likes}}</p>
-        <p class="text-end"></p>
-      </div>
-      <hr class="m-1">
-      <div class="row py-1">
-        <div class="col-4"><button class="btn w-100 p-0">
-            <i class="fa-solid fa-thumbs-up"></i> Like
-          </button></div>
-        <div class="col-4"><button class="btn w-100 p-0">
-            <i class="fa-solid fa-comment"></i> Comment
-          </button></div>
-        <div class="col-4"><button class="btn w-100 p-0">
-            <i class="fa-solid fa-share-nodes"></i> Share
-          </button></div>
-      </div>
+
+
     </div>
   </div>
 </div>
