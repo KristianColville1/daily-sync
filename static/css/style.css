@@ -10,10 +10,7 @@
 
 body {
   overflow-x: hidden;
-  background: url('../img/background/18410.jpg') repeat center center;
-  background-color: var(--independence);
-  background-size: cover;
-  background-blend-mode: soft-light;
+  background-color: whitesmoke;
 }
 
 .nav-bg {
@@ -55,6 +52,13 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+.navbar .dropdown-menu {
+  background-color: var(--independence);
+}
+
+.navbar .dropdown-item {
+  color: white;
+}
 /**********************************************Footer */
 footer {
   color: var(--isabelline);
@@ -189,7 +193,7 @@ form {
 /***************************************************Alert messages*/
 
 .alert {
-  background-color: var(--isabelline);
+  background-color: var(--turquoise);
   color: var(--independence);
 }
 
