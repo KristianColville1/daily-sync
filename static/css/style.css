@@ -3,14 +3,16 @@
 :root {
   --turquoise: #48e5c2ff;
   --isabelline: #f8f4f1ff;
-  --french-violet: #7f2ccbff;
+  --columbia-blue: #cae1ebff;
+  --little-boy-blue: #89a6fbff;
+  --carolina-blue: #3da5d9ff;
+  --queen-blue: #3f749dff;
   --independence: #414361ff;
-  --space-cadet: #2a2d43ff; 
 }
 
 body {
   overflow-x: hidden;
-  background-color: whitesmoke;
+  background-color: var(--isabelline);
 }
 
 .nav-bg {
@@ -20,23 +22,29 @@ body {
 
 .nav-bg,
 .navbar {
-  background-color: var(--space-cadet);
+  background-color: white;
   height: fit-content;
 }
 
 .nav-link {
-  color: var(--isabelline);
+  color: var(--independence);
 }
 
 .nav-link:hover {
+  color: var(--carolina-blue);
+}
+
+.navbar-brand,
+.navbar-brand:hover {
   color: var(--turquoise);
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: 'Lato', sans-serif;
   text-shadow: 1px 1px 1px var(--independence);
 }
 
-.navbar-brand {
-  color: var(--turquoise);
-  font-size: 1.4rem;
-  font-family: 'Lato', sans-serif;
+.logo {
+  width: 40px;
 }
 
 .navbar-toggler-icon {
@@ -44,22 +52,15 @@ body {
 }
 
 #menu-toggle {
-  border: 1px solid var(--turquoise);
+  border: 2px solid var(--columbia-blue);
 }
 
-#menu-toggle i {
+#menu-toggle span > i {
   color: var(--turquoise);
   font-size: 24px;
   transition: all 0.3s ease-in-out;
 }
 
-.navbar .dropdown-menu {
-  background-color: var(--independence);
-}
-
-.navbar .dropdown-item {
-  color: white;
-}
 /**********************************************Footer */
 footer {
   color: var(--isabelline);
@@ -100,28 +101,22 @@ form {
 
 .log-op-btn {
   color: var(--turquoise);
-  background-color: var(--french-violet);
+  background-color: var(--queen-blue);
   font-size: 24px;
 }
 
 .log-op-btn:hover {
-  color: var(--french-violet);
+  color: var(--little-boy-blue);
   background-color: var(--turquoise);
 }
 
 .form-head {
-  color: var(--french-violet);
+  color: var(--carolina-blue);
   text-shadow: 1px 1px 1px var(--independence);
 }
 
-.search-btn {
-  color: var(--turquoise);
-  background-color: var(--french-violet);
-}
-
-.search-btn:hover {
-  color: var(--french-violet);
-  background-color: var(--turquoise);
+.search-box {
+  background-color: var(--isabelline);
 }
 
 /********************profile images */
@@ -157,7 +152,7 @@ form {
 .post-options > button:hover {
   width: 30px;
   height: 30px;
-  background-color: var(--french-violet);
+  background-color: var(--little-boy-blue);
   color: white;
 }
 
@@ -167,18 +162,19 @@ form {
 }
 
 .dropdown-item:hover {
-  background-color: var(--turquoise);
-  color: var(--space-cadet);
+  background-color: var(--carolina-blue);
+  color: white;
+  transition: all 0.3s ease-in-out;
 }
 
 .post-btn {
-  color: var(--french-violet);
+  color: var(--little-boy-blue);
   background-color: var(--turquoise);
 }
 
 .post-btn:hover {
   color: var(--turquoise);
-  background-color: var(--french-violet);
+  background-color: var(--little-boy-blue);
 }
 
 .post-link:hover,
@@ -190,13 +186,13 @@ form {
 .user-post-options .btn:hover {
   color: white;
   font-weight: 700;
-  background-color: var(--independence);
+  background-color: var(--little-boy-blue);
   transition: all 0.5s ease-in-out;
   border: none;
 }
 /***************************************************Alert messages*/
 
 .alert {
-  background-color: var(--turquoise);
+  background-color: var(--columbia-blue);
   color: var(--independence);
 }

@@ -36,7 +36,7 @@
       <div class="container-fluid">
         {% if user.is_authenticated %}
         <a class="navbar-brand fst-italic" href="{% url 'feed' %}">
-          <i class="fa-solid fa-share-nodes"></i> Daily Sync</a>
+          <img class="logo shadow-sm" src="/static/img/favicon/android-chrome-192x192.png" alt="Daily Sync" aria-label="Daily Sync logo"></a>
         {% else %}
         <a class="navbar-brand fst-italic" href="{% url 'home' %}">
           <i class="fa-solid fa-share-nodes"></i> Daily Sync</a>
@@ -49,8 +49,7 @@
         </button>
         <div class="collapse navbar-collapse my-3" id="navbarScroll">
           <form class="d-flex" role="search">
-            <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn search-btn rounded-pill" type="submit">Search</button>
+            <input class="search-box form-control me-2 rounded" type="search" placeholder="Search" aria-label="Search">
           </form>
           <ul class="navbar-nav mx-auto my-2 my-lg-0 navbar-nav-scroll">
             {% if user.is_authenticated %}
@@ -91,10 +90,10 @@
       </div>
     </nav>
   </div>
-
+  <div class="w-100 mt-3"></div>
   <div class="container">
-    <div class="row">
-        <div class="col-8 offset-2 text-center">
+    <div class="row mt-1">
+        <div class="col-8 offset-2 text-center mt-5">
             {% for message in messages %}
             <div class="alert {{message.tags}} alert-dismissible fade show mt-2 shadow-sm rounded" id="msg" role="alert">
                 {{ message | safe }}
