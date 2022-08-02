@@ -24,13 +24,4 @@ $(document).ready(() => {
         }
     });
 
-    /* Slides the dropdown menu for posts for editing, deleting and reporting */
-    $('.post-options-menu').on('click', () => {
-        if ($('.post-options-menu').hasClass('show')) {
-            $('.post-option-list').slideUp();
-        } else if (!$('.post-options-menu').hasClass('show')) {
-            $('.post-option-list').slideDown();
-        }
-    });
-
 });
