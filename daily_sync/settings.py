@@ -109,7 +109,6 @@ else:
     EMAIL_HOST_PASSWORD = os.environ.get("MAILGUN_SMTP_PASSWORD")
     EMAIL_USE_TLS = True
     DEFAULT_FROM_EMAIL = 'daily.sync@example.com'
-    LOGIN_URL = '/accounts/login/'
     DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 
