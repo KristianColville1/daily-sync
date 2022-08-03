@@ -26,7 +26,7 @@ class FeedViewIndex(View):
             post_form.instance.status = 1
             post_form.save()
             messages.add_message(request, messages.SUCCESS,
-                                 'Your post has successfully submitted')
+                                 'Your post has been successfully submitted')
         else:
             messages.add_message(
                 request, messages.ERROR,

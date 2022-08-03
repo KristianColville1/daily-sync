@@ -32,7 +32,7 @@
 </head>
 <body class="d-flex flex-column min-vh-100 position-relative">
   <div class="nav-bg position-fixed w-100">
-    <nav class="container navbar navbar-expand-lg sticky-top gy-0 py-0">
+    <nav class="container navbar navbar-expand-lg sticky-top py-0">
       <div class="container-fluid">
         {% if user.is_authenticated %}
         <a class="navbar-brand fst-italic" href="{% url 'feed' %}">
@@ -47,7 +47,7 @@
             <i class="fa-solid fa-x d-none"></i>
           </span>
         </button>
-        <div class="collapse navbar-collapse my-3" id="navbarScroll">
+        <div class="collapse navbar-collapse" id="navbarScroll">
           <form class="d-flex" role="search">
             <input class="search-box form-control me-2 rounded" type="search" placeholder="Search" aria-label="Search">
           </form>
@@ -90,10 +90,10 @@
       </div>
     </nav>
   </div>
-  <div class="w-100 mt-3"></div>
-  <div class="container">
+  <div class="w-100 mt-1"></div>
+  <div class="container g-0">
     <div class="row mt-1">
-        <div class="col-8 offset-2 text-center mt-5">
+        <div class="col-6 offset-3 text-center mt-5">
             {% for message in messages %}
             <div class="alert {{message.tags}} alert-dismissible fade show mt-2 shadow-sm rounded" id="msg" role="alert">
                 {{ message | safe }}
