@@ -8,7 +8,8 @@
 <div class="container">
   <div class="row mt-4">
     <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 form-box shadow rounded-3 py-2 px-3 boxes">
-      <h1>{% trans "E-mail Addresses" %}</h1>
+      <h1 class="form-head text-center">{% trans "E-mail Addresses" %}</h1>
+      <hr>
       {% if user.emailaddress_set.all %}
       <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
 
