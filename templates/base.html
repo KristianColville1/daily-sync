@@ -36,20 +36,20 @@
       <div class="container-fluid">
         {% if user.is_authenticated %}
         <a class="navbar-brand fst-italic" href="{% url 'feed' %}">
-          <img class="logo shadow-sm" src="/static/img/favicon/android-chrome-192x192.png" alt="Daily Sync" aria-label="Daily Sync logo"></a>
+          <img class="logo shadow-sm rounded" src="/static/img/favicon/android-chrome-192x192.png" alt="Daily Sync" aria-label="Daily Sync logo"></a>
         {% else %}
         <a class="navbar-brand fst-italic" href="{% url 'home' %}">
           <i class="fa-solid fa-share-nodes"></i> Daily Sync</a>
         {% endif %}
-        <button  id="menu-toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon">
+        <button  id="menu-toggle" class="navbar-toggler position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon position-absolute top-50 start-50 translate-middle">
             <i class="fa-solid fa-bars"></i>
             <i class="fa-solid fa-x d-none"></i>
           </span>
         </button>
         <div class="collapse navbar-collapse" id="navbarScroll">
           <form class="d-flex" role="search">
-            <input class="search-box form-control me-2 rounded" type="search" placeholder="Search" aria-label="Search">
+            <input class="search-box form-control mx-1 rounded" type="search" placeholder="Search" aria-label="Search">
           </form>
           <ul class="navbar-nav mx-auto my-2 my-lg-0 navbar-nav-scroll">
             {% if user.is_authenticated %}
@@ -90,7 +90,6 @@
       </div>
     </nav>
   </div>
-  <div class="w-100 mt-1"></div>
   <div class="container g-0">
     <div class="row mt-1">
         <div class="col-6 offset-3 text-center mt-5">

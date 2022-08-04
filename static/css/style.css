@@ -63,13 +63,15 @@ h1 {
 }
 
 #menu-toggle {
-  border: 2px solid var(--columbia-blue);
+  height: 40px;
+  width: 45px;
+  border: 2px outset whitesmoke;
 }
 
 #menu-toggle span > i {
   color: var(--turquoise);
-  font-size: 24px;
-  transition: all 0.3s ease-in-out;
+  font-size: 30px;
+  transition: all 0.2s ease-in-out;
 }
 
 .search-box {
