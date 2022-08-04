@@ -51,6 +51,11 @@ h1 {
 
 .logo {
   width: 40px;
+  border: 2px outset var(--turquoise);
+}
+
+.logo:active {
+  border: 2px inset var(--turquoise);
 }
 
 .navbar-toggler-icon {
@@ -65,6 +70,12 @@ h1 {
   color: var(--turquoise);
   font-size: 24px;
   transition: all 0.3s ease-in-out;
+}
+
+.search-box {
+  height: 40px;
+  background-color: var(--isabelline);
+  border: 2px inset;
 }
 
 /**********************************************Footer */
@@ -119,10 +130,6 @@ form {
 .form-head {
   color: var(--carolina-blue);
   text-shadow: 1px 1px 1px var(--independence);
-}
-
-.search-box {
-  background-color: var(--isabelline);
 }
 
 /********************profile images */
