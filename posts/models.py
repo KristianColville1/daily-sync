@@ -11,7 +11,7 @@ class Post(models.Model):
     """
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
-                               related_name="user_posts",
+                               related_name="posts",
                                null=True)
     title = models.TextField(max_length=200)
     slug = AutoSlugField(populate_from='title', unique_with='author')
@@ -38,6 +38,10 @@ class Comment(models.Model):
     """
     Comment model class
     """
+    author = models.ForeignKey(User,
+                               on_delete=models.SET_NULL,
+                               related_name="comments",
+                               null=True)
     post = models.ForeignKey(Post,
                              on_delete=models.CASCADE,
                              related_name="comments")
@@ -51,7 +55,7 @@ class Comment(models.Model):
                                    blank=True)
 
     class Meta:
-        ordering = ['created_on']
+        ordering = ['-created_on']
 
     def __str__(self):
         return self.comment
