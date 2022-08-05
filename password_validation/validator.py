@@ -17,3 +17,20 @@ class NumValidator(object):
     def get_help_text(self):
         return text("Your password must contain at least 1 number, 0-9.")
 
+
+class SymbolValidator(object):
+    """
+    SymbolValidator checks passwords for symbols
+    """
+
+    def validate(self, password, user=None):
+        if not re.findall('["#$%&\'()*+,-./:;<=>?@\\^_`{|}~]', password):
+            raise ValidationError(text(
+                "The password must contain at least 1 special character: " +
+                "()[]{}|\`~!@#$%^&*_-+=;:'\",<>./?"),
+                                  code='password_no_symbol')
+
+    def get_help_text(self):
+        return text(
+            "Your password must contain at least 1 special character: " +
+            "()[]{}|\`~!@#$%^&*_-+=;:'\",<>./?")
