@@ -140,6 +140,11 @@ form {
   height: 40px;
 }
 
+.profile-pic-md,
+.profile-image-feed {
+  height: 100px;
+}
+
 /********************posts */
 
 .post-box {
@@ -199,9 +204,8 @@ form {
 }
 
 .user-post-options .btn:hover {
-  color: white;
   font-weight: 700;
-  background-color: var(--little-boy-blue);
+  background-color: var(--isabelline);
   transition: all 0.5s ease-in-out;
   border: none;
 }

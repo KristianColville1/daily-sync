@@ -8,7 +8,10 @@
   <div class="row mt-2">
     <div class="col-sm-12 col-md-3 col-lg-2 d-none d-sm-none d-md-block">
       <div class="content-box w-100 shadow-sm rounded p-2 boxes">
-        Profile
+        <div class="profile-pic-md position-relative">
+          <img class="profile-image-feed rounded-circle shadow-sm position-absolute top-50 start-50 translate-middle"
+            src="{% static 'img/default-profile-image.png' %}" alt="current user profile image">
+        </div>
       </div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-6 mb-2">
@@ -36,8 +39,10 @@
             {% if post.author == user %}
             <li><a class="dropdown-item" href="#">Edit</a></li>
             <li><a class="dropdown-item" href="/posts/delete/{{post.id}}">Delete</a></li>
-            {% endif %}
+            {% else %}
+            <li><a class="dropdown-item" href="#">Share post</a>
             <li><a class="dropdown-item" href="#">Report</a></li>
+            {% endif %}
           </ul>
         </div>
         <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
@@ -61,15 +66,21 @@
           <button class="col-4 btn">
             <i class="fa-solid fa-thumbs-up"></i> Like
           </button>
-          <a href="{% url 'view_post' post.slug %}" class="col-4 btn" role="button">
-            <i class="fa-solid fa-comment"></i> Comment
-          </a>
+          <button class="col-4 btn" onclick="commentForm({{post.id}})">
+            <p class="d-none post-id"> testing</p>
+            <i class="fa-solid fa-comment"></i> Comment 
+          </button>
           <button class="col-4 btn">
             <i class="fa-solid fa-share-nodes"></i> Share
           </button>
         </div>
-
-
+        <div class="row comment-form-{{post.id}} d-none">
+          <form method="post">
+              {{ comment_form | crispy }}
+              {% csrf_token %}
+              <button type="submit" class="btn w-100">Submit</button>
+          </form>
+        </div>
       </div>
       {% endfor %}
     </div>

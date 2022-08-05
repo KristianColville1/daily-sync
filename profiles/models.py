@@ -1,4 +1,3 @@
-from email.policy import default
 from autoslug import AutoSlugField
 from django.db import models
 from django.contrib.auth.models import User

@@ -62,8 +62,8 @@
       <h5 class="d-none d-sm-none d-md-block text-center">Comments</h5>
       {% for comment in comments %}
       <div class="content-box shadow-sm rounded  boxes text-center p-1 my-1">
-        <p class="text-center">{{comment.content}}</p>
-        <p class="text-end">- {{comment.name}}</p>
+        <p class="text-center mt-2">{{comment.content}}</p>
+        <p class="text-end">- {{comment.name}}, {{comment.created_on}}</p>
         <div class="row user-post-options m-0">
           <button class="col-12 btn">
             <i class="fa-solid fa-thumbs-up"></i> Like
