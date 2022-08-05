@@ -13,7 +13,7 @@ from pathlib import Path
 import os
 import dj_database_url
 
-if os.path.exists("env.py"):
+if os.path.isfile("env.py"):
     import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -126,34 +126,32 @@ DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
+AUTH_PASSWORD_PATH = 'django.contrib.auth.password_validation'
+
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME":
-        "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        'NAME': f'{AUTH_PASSWORD_PATH}.UserAttributeSimilarityValidator',
     },
     {
-        "NAME":
-        "django.contrib.auth.password_validation.MinimumLengthValidator",
-        "OPTIONS": {
-            'min_length': 10,
+        'NAME': f'{AUTH_PASSWORD_PATH}.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 9,
         }
     },
     {
-        "NAME":
-        "django.contrib.auth.password_validation.CommonPasswordValidator",
+        'NAME': f'{AUTH_PASSWORD_PATH}.CommonPasswordValidator',
     },
     {
-        "NAME":
-        "django.contrib.auth.password_validation.NumericPasswordValidator",
+        'NAME': f'{AUTH_PASSWORD_PATH}.NumericPasswordValidator',
     },
     {
-        "NAME": "password_validation.NumValidator",
+        "NAME": "password_validation.validators.NumValidator",
     },
     {
-        "NAME": "password_validation.SymbolValidator",
+        "NAME": "password_validation.validators.SymbolValidator",
     },
     {
-        "NAME": "password_validation.UppercaseValidator",
+        "NAME": "password_validation.validators.UppercaseValidator",
     },
 ]
 
@@ -174,8 +172,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
+CLOUD_STORAGE = 'StaticHashedCloudinaryStorage'
 
-STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
+STATICFILES_STORAGE = f"cloudinary_storage.storage.{CLOUD_STORAGE}"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 

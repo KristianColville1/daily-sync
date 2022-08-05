@@ -1,6 +1,6 @@
 import re
 from django.core.exceptions import ValidationError
-from django.util.translation import ugettext as text
+from django.utils.translation import ugettext as text
 
 
 class NumValidator(object):
@@ -24,16 +24,16 @@ class SymbolValidator(object):
     """
 
     def validate(self, password, user=None):
-        if not re.findall('["#$%&\'()*+,-./:;<=>?@\\^_`{|}~]', password):
+        if not re.findall('["#$%!&\'()*+,-./:;<=>?@^_`{|}~]', password):
             raise ValidationError(text(
                 "The password must contain at least 1 special character: " +
-                "()[]{}|\`~!@#$%^&*_-+=;:'\",<>./?"),
+                "()[]{}|`~!@#$%^&*_-+=;:'\",<>./?"),
                                   code='password_no_symbol')
 
     def get_help_text(self):
         return text(
             "Your password must contain at least 1 special character: " +
-            "()[]{}|\`~!@#$%^&*_-+=;:'\",<>./?")
+            "()[]{}|`~!@#$%^&*_-+=;:'\",<>./?")
 
 
 class UppercaseValidator(object):
