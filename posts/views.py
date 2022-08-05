@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from .models import Post
-from .forms import PostForm
 
 
 def get_posts(request):

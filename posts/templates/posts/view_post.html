@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container">
   <div class="row position-relative mt-2">
-    <div class="col-sm-12 col-md-8 offset-sm-0 offset-md-2 content-box shadow-sm rounded mt-4 boxes postition-relative">
+    <div class="col-sm-12 col-md-8 content-box shadow-sm rounded mt-4 boxes postition-relative">
       <div class="post-options dropdown text-end position-relative">
         <button class="btn dropdown-toggle rounded-circle position-relative mx-3" type="button"
           data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,17 +40,40 @@
         <button class="col-4 btn">
           <i class="fa-solid fa-thumbs-up"></i> Like
         </button>
-        <button class="col-4 btn">
+        <button class="col-4 btn" onclick="commentForm({{post.id}})">
           <i class="fa-solid fa-comment"></i> Comment
         </button>
         <button class="col-4 btn">
           <i class="fa-solid fa-share-nodes"></i> Share
         </button>
       </div>
-
+      <div class="row comment-form-{{post.id}} d-none">
+        <form method="post">
+          {{ comment_form | crispy }}
+          {% csrf_token %}
+          <button type="submit" class="btn w-100">Submit</button>
+        </form>
+      </div>
 
     </div>
+
+
+    <div class="col-sm-12 col-md-4 mt-4">
+      <h5 class="d-none d-sm-none d-md-block text-center">Comments</h5>
+      {% for comment in comments %}
+      <div class="content-box shadow-sm rounded  boxes text-center p-1 my-1">
+        <p class="text-center">{{comment.content}}</p>
+        <p class="text-end">- {{comment.name}}</p>
+        <div class="row user-post-options m-0">
+          <button class="col-12 btn">
+            <i class="fa-solid fa-thumbs-up"></i> Like
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+      {% include "footer.html" %}
+    </div>
+
   </div>
-</div>
-{% include "footer.html" %}
-{% endblock %}
+
+  {% endblock %}
