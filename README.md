@@ -35,11 +35,11 @@ Developer: Kristian Colville
     * [Cloning this Repository](#cloning-this-repository)
     * [Heroku](#heroku)
 * [Credits](#credits)
-* [Acknowledgements](#acknowledgements)
+* [Acknowledgments](#acknowledgments)
 
 ## Project Goals
 
-The goal of this project was to create a social media website that takes advantage of good UX design principles and can clearly indicate to a global audience it's purpose.
+The goal of this project was to create a social media website that takes advantage of good UX design principles and can indicate to a global audience its purpose.
 
 ### User Goals
 
@@ -47,13 +47,13 @@ The goal of this project was to create a social media website that takes advanta
 - Add friends, expand a network and post content that reaches my network
 - Have the ability to personalize a profile
 - Have the ability to message friends and family
-- Be able to keep in touch with lost contacts create connections that last a lifetime
+- Being able to keep in touch with lost contacts & create connections that last a lifetime
 
 ### Site Owners Goals
 
 - Create a social media website that has the look and presentation of an experienced brand
 - Allow users to use create, read, update and delete functionality throughout the website to keep people engaged in a meaningful and interactive way
-- Provide authority for content that might offend or discriminate to ensure users that this is what a family friendly social media website looks like
+- Provide authority for content that might offend or discriminate to ensure users that this is what a family-friendly social media website looks like
 - Build a responsive and accessible website for a wide audience and build it with the latest tools and technology this world has to offer
 - Bring attention to detail and provide a great user experience
 
@@ -79,6 +79,10 @@ The goal of this project was to create a social media website that takes advanta
 |[#16](https://github.com/KristianColville1/daily-sync/issues/16)| As a user I can check how many hours or days since a post was created so that I understand the time frame when a particular post was created and can identify between new and old content |
 |[#17](https://github.com/KristianColville1/daily-sync/issues/17)| As a registered user I can upload a photo to use on my profile as a profile picture so that I can help others identify me on the network and have the ability to add more personalization |
 |[#19](https://github.com/KristianColville1/daily-sync/issues/19)| As a user I can report a post to inform the admin of the site of content that might have bad intentions and be clearly identified as a misuse of the purpose of the website so that I can enjoy a pleasant experience on the website free from bad actors and possible malicious content |
+|[#20](https://github.com/KristianColville1/daily-sync/issues/20)| As a registered user I can reset my password if forgot it so that I can access my account and have a good user experience |
+|[#21](https://github.com/KristianColville1/daily-sync/issues/21)| As a registered user I can update a post I have created so that I can correct errors or add additional content to a post |
+|[#22](https://github.com/KristianColville1/daily-sync/issues/22)| As a registered user I can delete a post or comment I have created so that I can personalize my experiences and remove content from my account that I might not want |
+|[#24](https://github.com/KristianColville1/daily-sync/issues/24)| As the site owner I can use custom validation for user passwords so that I can increase the security of my website to improve GDPR compliance in providing good website security |
 |||
 |||
 |||
