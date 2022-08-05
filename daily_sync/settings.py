@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "cloudinary",
     "django_summernote",
     "crispy_forms",
+    "password_validation",
     "home",
     "feed",
     "posts",
@@ -133,6 +134,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME":
         "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "OPTIONS": {
+            'min_length': 10,
+        }
     },
     {
         "NAME":
@@ -141,6 +145,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME":
         "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
+    {
+        "NAME": "password_validation.NumValidator",
+    },
+    {
+        "NAME": "password_validation.SymbolValidator",
+    },
+    {
+        "NAME": "password_validation.UppercaseValidator",
     },
 ]
 
