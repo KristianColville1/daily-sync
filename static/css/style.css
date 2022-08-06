@@ -68,6 +68,10 @@ h1 {
   border: 2px outset whitesmoke;
 }
 
+#menu-toggle:active {
+    border: 2px inset whitesmoke;
+}
+
 #menu-toggle span > i {
   color: var(--turquoise);
   font-size: 30px;
