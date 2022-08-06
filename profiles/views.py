@@ -1,3 +1,14 @@
 from django.shortcuts import render
+from django.views import View
+from .models import Profile
 
-# Create your views here.
+
+class ProfileOwnerView(View):
+    """
+    ProfileView class renders a users profile
+    """
+
+    def get(self, request, *args, **kwargs):
+        profile = Profile()
+
+        return render(request, 'profiles/index.html', profile)
