@@ -36,7 +36,8 @@
       <div class="container-fluid">
         {% if user.is_authenticated %}
         <a class="navbar-brand fst-italic" href="{% url 'feed' %}">
-          <img class="logo shadow-sm rounded" src="/static/img/favicon/android-chrome-192x192.png" alt="Daily Sync" aria-label="Daily Sync logo"></a>
+          <img class="logo shadow-sm rounded" src="{% static 'img/favicon/android-chrome-192x192.png' %}"
+            alt="Daily Sync" aria-label="Daily Sync logo"></a>
         {% else %}
         <a class="navbar-brand fst-italic" href="{% url 'home' %}">
           <i class="fa-solid fa-share-nodes"></i> Daily Sync</a>
