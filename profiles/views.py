@@ -9,6 +9,7 @@ class ProfileOwnerView(View):
     """
 
     def get(self, request, *args, **kwargs):
-        profile = Profile()
-
-        return render(request, 'profiles/index.html', profile)
+        context = {
+            'profile': Profile()
+        }
+        return render(request, 'profiles/index.html', context)
