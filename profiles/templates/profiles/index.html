@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-2">
+    <div class="row user-bg">
+        <div class="col-2">
+                    <img class="profile-image-feed rounded-circle shadow-sm"
+                        src="{% static 'img/default-profile-image.png' %}" alt="current user profile image">
+        </div>
+        <div class="col-10"></div>
+    </div>
+</div>
+{% endblock %}
