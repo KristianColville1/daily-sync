@@ -61,18 +61,10 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION = "username_email"
 ACCOUNT_USERNAME_MIN_LENGTH = 5
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ.get("MAILGUN_SMTP_LOGIN")
-EMAIL_HOST_PASSWORD = os.environ.get("MAILGUN_SMTP_PASSWORD")
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = "daily.sync@example.com"
 
 LOGIN_REDIRECT_URL = "/feed/"
 LOGOUT_REDIRECT_URL = "/"
@@ -114,14 +106,25 @@ WSGI_APPLICATION = "daily_sync.wsgi.application"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 if development:
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = BASE_DIR / 'emails_sent/'
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
-
-DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+else:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_HOST = os.environ.get("MAILGUN_SMTP_SERVER")
+    EMAIL_PORT = os.environ.get("MAILGUN_SMTP_PORT")
+    EMAIL_HOST_USER = os.environ.get("MAILGUN_SMTP_LOGIN")
+    EMAIL_HOST_PASSWORD = os.environ.get("MAILGUN_SMTP_PASSWORD")
+    EMAIL_USE_TLS = True
+    DEFAULT_FROM_EMAIL = "daily.sync@example.com"
+    DATABASES = {
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
