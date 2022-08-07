@@ -12,13 +12,15 @@
           data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
         </button>
-        <ul class="dropdown-menu">
-          {% if post.author == user %}
-          <li><a class="dropdown-item" href="#">Edit</a></li>
-          <li><a class="dropdown-item" href="/posts/delete/{{post.id}}">Delete</a></li>
-          {% endif %}
-          <li><a class="dropdown-item" href="#">Report</a></li>
-        </ul>
+          <ul class="dropdown-menu">
+            {% if post.author == user %}
+            <li><a class="dropdown-item" href="/posts/edit/{{post.id}}">Edit</a></li>
+            <li><a class="dropdown-item" href="/posts/delete/{{post.id}}">Delete</a></li>
+            {% else %}
+            <li><a class="dropdown-item" href="#">Share post</a>
+            <li><a class="dropdown-item" href="#">Report</a></li>
+            {% endif %}
+          </ul>
       </div>
       <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
         <div class="author-post d-flex flex-row">
@@ -54,10 +56,7 @@
           <button type="submit" class="btn w-100">Submit</button>
         </form>
       </div>
-
     </div>
-
-
     <div class="col-sm-12 col-md-4 mt-4">
       <h5 class="d-none d-sm-none d-md-block text-center">Comments</h5>
       {% for comment in comments %}
@@ -73,7 +72,6 @@
       {% endfor %}
       {% include "footer.html" %}
     </div>
-
   </div>
-
-  {% endblock %}
+</div>
+{% endblock %}

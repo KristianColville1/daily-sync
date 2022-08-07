@@ -37,7 +37,7 @@
           </button>
           <ul class="dropdown-menu">
             {% if post.author == user %}
-            <li><a class="dropdown-item" href="#">Edit</a></li>
+            <li><a class="dropdown-item" href="/posts/edit/{{post.id}}">Edit</a></li>
             <li><a class="dropdown-item" href="/posts/delete/{{post.id}}">Delete</a></li>
             {% else %}
             <li><a class="dropdown-item" href="#">Share post</a>
