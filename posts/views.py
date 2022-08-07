@@ -24,6 +24,8 @@ def edit_post(request, post_id):
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 'Your post has been edited')
         return redirect('/feed/')
     form = PostForm(instance=post)
     context = {'form': form}
