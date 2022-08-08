@@ -23,11 +23,11 @@ class Profile(models.Model):
     friends = models.ManyToManyField('self',
                                      blank=True,
                                      symmetrical=True,
-                                     related_name='friends')
+                                     related_name='user_friends')
     follows = models.ManyToManyField('self',
                                      blank=True,
                                      symmetrical=False,
-                                     related_name='follows')
+                                     related_name='user_followers')
 
     def __str__(self):
         return self.user.username
