@@ -11,7 +11,7 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=30, blank=True, null=True)
     email = models.CharField(max_length=320, unique=True)
     d_o_b = models.DateField(blank=True, null=True)
-    bio = models.TextField(max_length=200, unique=False)
+    bio = models.TextField(max_length=200, blank=True, unique=False)
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,
                                 related_name='profiles')
