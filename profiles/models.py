@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 from cloudinary.models import CloudinaryField
+from autoslug import AutoSlugField
 
 
 class Profile(models.Model):
@@ -18,8 +20,7 @@ class Profile(models.Model):
     avatar = CloudinaryField('avatar',
                              folder='avatars',
                              null=True,
-                             blank=True,
-                             default='/static/img/default-profile-image.png')
+                             blank=True)
     friends = models.ManyToManyField('self',
                                      blank=True,
                                      symmetrical=True,
@@ -28,6 +29,25 @@ class Profile(models.Model):
                                      blank=True,
                                      symmetrical=False,
                                      related_name='user_followers')
+    slug = AutoSlugField(populate_from="user", unique=True)
 
     def __str__(self):
         return self.user.username
+
+    @property
+    def get_avatar(self):
+        """
+        Returns a default user image or the users avatar
+        """
+        if self.avatar:
+            return self.avatar.url
+        return '/static/img/default-profile-image.png'
+
+
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        user_profile = Profile(user=instance)
+        user_profile.save()
+
+
+post_save.connect(create_profile, sender=User)
