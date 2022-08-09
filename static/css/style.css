@@ -138,7 +138,7 @@ form {
   text-shadow: 1px 1px 1px var(--independence);
 }
 
-/********************profile images */
+/********************profiles */
 
 .profile-image-post {
   height: 40px;
@@ -147,6 +147,15 @@ form {
 .profile-pic-md,
 .profile-image-feed {
   height: 100px;
+}
+
+.profile-img-profile {
+  max-height: 180px;
+  width: fit-content;
+}
+
+.user-bg {
+  height: 25vh;
 }
 
 /********************posts */
