@@ -18,7 +18,17 @@ class Profile(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,
                                 related_name='profile')
-    avatar = CloudinaryField('avatar', folder='avatars', null=True, blank=True)
+    avatar = CloudinaryField('avatar',
+                             folder='avatars',
+                             null=True,
+                             blank=True,
+                             default='/static/img/default-profile-image.png')
+    background = CloudinaryField(
+        'background',
+        folder='backgrounds',
+        null=True,
+        blank=True,
+        default='/static/img/default_backgrounds/bg.jpg')
     friends = models.ManyToManyField('self',
                                      blank=True,
                                      symmetrical=True,
@@ -32,15 +42,6 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-    @property
-    def get_avatar(self):
-        """
-        Returns a default user image or the users avatar
-        """
-        if self.avatar:
-            return self.avatar.url
-        return '/static/img/default-profile-image.png'
-
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
@@ -51,6 +52,6 @@ def create_profile(sender, instance, created, **kwargs):
     if created:
         user_profile = Profile(user=instance)
         user_profile.save()
-        user_profile.follows.set([instance.profile.id])
-        user_profile.email = instance.email
+        user_profile.follows.add(instance.profile)
+        user_profile.email.add(instance.email)
         user_profile.save()
