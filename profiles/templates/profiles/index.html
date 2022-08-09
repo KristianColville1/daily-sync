@@ -4,12 +4,14 @@
 {% block content %}
 <div class="container mt-2">
     <div class="row  position-relative gx-0">
-        <img src="{{profile.background}}" alt="user profile background" class="user-bg shadow-sm rounded">
+        <img src="{{profile.background_url}}" alt="user profile background" class="user-bg shadow-sm rounded">
         <div class="col-5">
         <div>
         <img class="profile-img-profile rounded-circle shadow-sm position-absolute bottom-0 start-0 mx-4"
-            src="{{ profile.avatar }}" alt="current user profile image">
-            <h6>{{profile.user}}</h6>
+            src="{{ profile.avatar_url }}" alt="current user profile image">
+            {% if profile.first_name %}
+            <h6>{{profile.first_name}}</h6>
+            {% endif %}
             </div>
 
         </div>

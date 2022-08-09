@@ -18,17 +18,11 @@ class Profile(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,
                                 related_name='profile')
-    avatar = CloudinaryField('avatar',
-                             folder='avatars',
-                             null=True,
-                             blank=True,
-                             default='/static/img/default-profile-image.png')
-    background = CloudinaryField(
-        'background',
-        folder='backgrounds',
-        null=True,
-        blank=True,
-        default='/static/img/default_backgrounds/bg.jpg')
+    avatar = CloudinaryField('avatar', folder='avatars', null=True, blank=True)
+    background = CloudinaryField('background',
+                                 folder='backgrounds',
+                                 null=True,
+                                 blank=True)
     friends = models.ManyToManyField('self',
                                      blank=True,
                                      symmetrical=True,
@@ -42,12 +36,30 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+    @property
+    def avatar_url(self):
+        """
+        Returns users profile avatar url or the default avatar url.
+        """
+        if self.avatar:
+            return self.avatar.url
+        return '/static/img/default-profile-image.png'
+
+    @property
+    def background_url(self):
+        """
+        Returns users profile background url or the default avatar url.
+        """
+        if self.background:
+            return self.background.url
+        return '/static/img/default_backgrounds/bg.jpg'
+
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     """
     Creates a profile for a user on sign up to connect everything
-    together
+    together.
     """
     if created:
         user_profile = Profile(user=instance)
