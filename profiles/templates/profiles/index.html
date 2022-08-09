@@ -3,12 +3,22 @@
 
 {% block content %}
 <div class="container mt-2">
-    <div class="row user-bg">
-        <div class="col-2">
-                    <img class="profile-image-feed rounded-circle shadow-sm"
-                        src="{% static 'img/default-profile-image.png' %}" alt="current user profile image">
+    <div class="row  position-relative gx-0">
+        <img src="{{profile.background}}" alt="user profile background" class="user-bg shadow-sm rounded">
+        <div class="col-5">
+        <div>
+        <img class="profile-img-profile rounded-circle shadow-sm position-absolute bottom-0 start-0 mx-4"
+            src="{{ profile.avatar }}" alt="current user profile image">
+            <h6>{{profile.user}}</h6>
+            </div>
+
         </div>
-        <div class="col-10"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-4"></div>
+        <div class="col-sm-12 col-md-8">
+
+        </div>
     </div>
 </div>
 {% endblock %}
