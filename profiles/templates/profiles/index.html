@@ -2,24 +2,35 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-2">
+<div class="container">
     <div class="row  position-relative gx-0">
-        <img src="{{profile.background_url}}" alt="user profile background" class="user-bg shadow-sm rounded">
+        <img src="{{profile.background_url}}" alt="user profile background" class="user-bg shadow-sm rounded-3">
         <div class="col-5">
-        <div>
-        <img class="profile-img-profile rounded-circle shadow-sm position-absolute bottom-0 start-0 mx-4"
-            src="{{ profile.avatar_url }}" alt="current user profile image">
-            {% if profile.first_name %}
-            <h6>{{profile.first_name}}</h6>
-            {% endif %}
+            <div>
+                <img class="profile-img-profile rounded-circle shadow-sm position-absolute bottom-0 start-0 mx-4"
+                    src="{{ profile.avatar_url }}" alt="current user profile image">
+                {% if profile.first_name %}
+                <h6>{{profile.first_name}}</h6>
+                {% endif %}
             </div>
 
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 col-md-4"></div>
+        <div class="col-sm-12 col-md-4">
+            <div class="user-bio">
+                {{profile.bio}}
+            </div>
+        </div>
         <div class="col-sm-12 col-md-8">
-
+            {% for posts in profile.post%}
+            <div>
+                <h6>{{posts.title}}</h6>
+                <p>{{posts.content}}</p>
+            </div>
+            
+            
+            {% endfor %}
         </div>
     </div>
 </div>
