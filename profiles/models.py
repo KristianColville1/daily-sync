@@ -16,7 +16,7 @@ class Profile(models.Model):
     bio = models.TextField(max_length=200, blank=True, unique=False)
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,
-                                related_name='profiles')
+                                related_name='profile')
     avatar = CloudinaryField('avatar',
                              folder='avatars',
                              null=True,
@@ -47,6 +47,9 @@ class Profile(models.Model):
 def create_profile(sender, instance, created, **kwargs):
     if created:
         user_profile = Profile(user=instance)
+        user_profile.save()
+        user_profile.follows.set([instance.profile.id])
+        user_profile.email = instance.email
         user_profile.save()
 
 
