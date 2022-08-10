@@ -4,34 +4,7 @@ from .models import Post, Comment
 from .forms import PostForm, CommentForm
 
 
-def get_posts(request):
-    posts = Post.objects.all()
-    context = {'posts': posts}
-    return render(request, 'posts/index.html', context)
-
-
-def delete_post(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-    post.delete()
-    messages.add_message(request, messages.SUCCESS,
-                         'Your post has been deleted')
-    return redirect('/feed/')
-
-
-def edit_post(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-    if request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
-        if form.is_valid():
-            form.save()
-            messages.add_message(request, messages.SUCCESS,
-                                 'Your post has been edited')
-        return redirect('/feed/')
-    form = PostForm(instance=post)
-    context = {'form': form}
-    return render(request, 'posts/edit_post.html', context)
-
-
+# ...................................................... Creating
 def create_comment(request, post_id):
     """
     Handles submitting posts and redirects
@@ -55,15 +28,19 @@ def create_comment(request, post_id):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
-def delete_comment(request, comment_id):
-    """
-    Deletes a comment for the user
-    """
-    comment = get_object_or_404(Comment, id=comment_id)
-    comment.delete()
-    messages.add_message(request, messages.SUCCESS,
-                         'Your comment has been deleted')
-    return redirect(request.META.get('HTTP_REFERER', '/'))
+# ...................................................... Editing
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 'Your post has been edited')
+        return redirect('/feed/')
+    form = PostForm(instance=post)
+    context = {'form': form}
+    return render(request, 'posts/edit_post.html', context)
 
 
 def edit_comment(request, comment_id):
@@ -81,3 +58,52 @@ def edit_comment(request, comment_id):
     form = CommentForm(instance=comment)
     context = {'form': form}
     return render(request, 'posts/edit_comment.html', context)
+
+
+# ...................................................... Deleting
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    post.delete()
+    messages.add_message(request, messages.SUCCESS,
+                         'Your post has been deleted')
+    return redirect('/feed/')
+
+
+def delete_comment(request, comment_id):
+    """
+    Deletes a comment for the user
+    """
+    comment = get_object_or_404(Comment, id=comment_id)
+    comment.delete()
+    messages.add_message(request, messages.SUCCESS,
+                         'Your comment has been deleted')
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+# ...................................................... Likes
+def like_post(request, post_id):
+    """
+    Allows a user to like and unlike a post
+    """
+    post = get_object_or_404(Post, id=post_id)
+
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+def like_comment(request, comment_id):
+    """
+    Allows a user to like and unlike a comment
+    """
+    comment = get_object_or_404(Post, id=comment_id)
+
+    if comment.likes.filter(id=request.user.id).exists():
+        comment.likes.remove(request.user)
+    else:
+        comment.likes.add(request.user)
+
+    return redirect(request.META.get('HTTP_REFERER', '/'))
