@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content%}
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 shadow-sm rounded boxes">
+            <h1 class="text-center">Edit your comment</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <button type="submit" class="general-btn btn w-100 my-2">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% include "footer.html" %}
+{% endblock %}
