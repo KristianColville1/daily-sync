@@ -56,11 +56,14 @@
         <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
           <h5 class="w-100 text-center">{{post.title}}</h5>
           <p class="text-center">{{post.content}}</p>
-          <div class="w-100">
-            <p class="text-start">{{post.count_likes}}</p>
-            <p class="text-end"></p>
-          </div>
         </a>
+        <div class="w-100">
+          <p class="text-start">{{post.count_likes}}</p>
+          {% if post.count_comments > 0 %}
+          <p class="text-end"><a href="{% url 'view_post' post.slug %}">{{post.count_comments}} Comments</a> </p>
+          {% endif %}
+        </div>
+
         <br>
         <div class="row user-post-options m-0">
           <button class="col-4 btn">
@@ -80,18 +83,6 @@
             {% csrf_token %}
             <button type="submit" class="general-btn btn w-100 my-2">Submit</button>
           </form>
-
-          {% for comment in comments %}
-          <div class="content-box shadow-sm rounded  boxes text-center p-1 my-1">
-            <p class="text-center mt-2">{{comment.content}}</p>
-            <p class="text-end">- {{comment.name}}, {{comment.created_on}}</p>
-            <div class="row user-post-options m-0">
-              <button class="col-12 btn">
-                <i class="fa-solid fa-thumbs-up"></i> Like
-              </button>
-            </div>
-          </div>
-          {% endfor %}
         </div>
       </div>
       {% endfor %}
@@ -110,12 +101,12 @@
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Post Modal -->
 <div class="modal fade" id="feed-create-post" tabindex="-1" aria-labelledby="feedCreatePost" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Create a post</h5>
+        <h5 class="modal-title w-100 text-center" id="create-post">Create a post</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

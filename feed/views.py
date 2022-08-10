@@ -56,7 +56,8 @@ class FeedViewPost(View):
         context = {
             'post': post,
             'comments': comments,
-            'comment_form': CommentForm()
+            'comment_form': CommentForm(),
+            'profile': request.user.profile,
         }
         return render(request, 'posts/view_post.html', context)
 
@@ -67,6 +68,7 @@ class FeedViewPost(View):
         context = {
             'post': post,
             'comments': comments,
-            'comment_form': CommentForm()
+            'comment_form': CommentForm(),
+            'profile': request.user.profile,
         }
         return render(request, 'posts/view_post.html', context)
