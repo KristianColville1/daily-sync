@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
-from .models import Post
+from .models import Post, Comment
 from .forms import PostForm, CommentForm
 
 
@@ -52,4 +52,32 @@ def create_comment(request, post_id):
         messages.add_message(
             request, messages.ERROR,
             'Oops something has went wrong, please try again!')
-    return redirect(request.META.get('HTTP_REFERER'))
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+def delete_comment(request, comment_id):
+    """
+    Deletes a comment for the user
+    """
+    comment = get_object_or_404(Comment, id=comment_id)
+    comment.delete()
+    messages.add_message(request, messages.SUCCESS,
+                         'Your comment has been deleted')
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+def edit_comment(request, comment_id):
+    """
+    Edits a comment for the user
+    """
+    comment = get_object_or_404(Comment, id=comment_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 'Your comment has been edited')
+        return redirect('/feed/')
+    form = CommentForm(instance=comment)
+    context = {'form': form}
+    return render(request, 'posts/edit_comment.html', context)

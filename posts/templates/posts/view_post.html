@@ -9,9 +9,9 @@
     <div class="col-sm-12 col-md-7 mt-2">
       <div class="boxes shadow-sm rounded p-2">
         <div class="boxes post-options dropdown text-end">
-          <button class="btn dropdown-toggle rounded-circle mx-3" type="button"
+          <button class="btn dropdown-toggle rounded-circle position-relative mx-3" type="button"
             data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-ellipsis"></i>
+            <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
           </button>
           <ul class="dropdown-menu">
             {% if post.author == user %}
@@ -59,7 +59,22 @@
         </div>
       </div>
       {% for comment in comments %}
-      <div class="content-box shadow-sm rounded  boxes mx-3 my-1">
+      <div class="content-box shadow-sm rounded-3  boxes mx-3 my-1">
+        <div class="boxes rounded-3 post-options dropdown text-end">
+          <button class="btn dropdown-toggle rounded-circle position-relative mx-3" type="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
+          </button>
+          <ul class="dropdown-menu">
+            {% if post.author == user %}
+            <li><a class="dropdown-item" href="/posts/edit_comment/{{comment.id}}" >Edit</a></li>
+            <li><a class="dropdown-item" href="/posts/delete_comment/{{comment.id}}">Delete</a></li>
+            {% else %}
+            <li><a class="dropdown-item" href="#">Share post</a>
+            <li><a class="dropdown-item" href="#">Report</a></li>
+            {% endif %}
+          </ul>
+        </div>
         <img src="{{comment.post.author.profile.avatar_url}}" alt="profile picture of user that commented on post"
           class="profile-image-post rounded-circle shadow-sm mx-3">
         <p class="text-center mt-2">{{comment.content}}</p>
