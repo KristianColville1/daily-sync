@@ -122,12 +122,14 @@ form {
   transform: translate(-50%, -50%);
 }
 
+.general-btn,
 .log-op-btn {
   color: var(--turquoise);
   background-color: var(--queen-blue);
-  font-size: 24px;
+  font-size: 20px;
 }
 
+.general-btn:hover,
 .log-op-btn:hover {
   color: var(--little-boy-blue);
   background-color: var(--turquoise);
@@ -144,14 +146,17 @@ form {
   height: 40px;
 }
 
+.user-post-image {
+  height: 55px;
+}
+
 .profile-pic-md,
 .profile-image-feed {
-  height: 100px;
+  height: 120px;
 }
 
 .profile-img-profile {
-  max-height: 180px;
-  width: fit-content;
+  max-height: 140px;
 }
 
 .user-bg {
