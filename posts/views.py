@@ -99,7 +99,7 @@ def like_comment(request, comment_id):
     """
     Allows a user to like and unlike a comment
     """
-    comment = get_object_or_404(Post, id=comment_id)
+    comment = get_object_or_404(Comment, id=comment_id)
 
     if comment.likes.filter(id=request.user.id).exists():
         comment.likes.remove(request.user)
