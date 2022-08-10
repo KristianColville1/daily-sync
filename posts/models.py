@@ -33,6 +33,11 @@ class Post(models.Model):
             return self.likes.count()
         return ''
 
+    def count_comments(self):
+        if self.comments.count() > 0:
+            return self.comments.count()
+        return ''
+
 
 class Comment(models.Model):
     """
@@ -55,7 +60,7 @@ class Comment(models.Model):
         ordering = ['-created_on']
 
     def __str__(self):
-        return self.comment
+        return self.content
 
     def count_likes(self):
         if self.likes.count() > 0:

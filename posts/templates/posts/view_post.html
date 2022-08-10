@@ -5,13 +5,14 @@
 
 {% block content %}
 <div class="container">
-  <div class="row position-relative mt-2">
-    <div class="col-sm-12 col-md-8 content-box shadow-sm rounded mt-4 boxes postition-relative">
-      <div class="post-options dropdown text-end position-relative">
-        <button class="btn dropdown-toggle rounded-circle position-relative mx-3" type="button"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
-        </button>
+  <div class="row">
+    <div class="col-sm-12 col-md-7 mt-2">
+      <div class="boxes shadow-sm rounded p-2">
+        <div class="boxes post-options dropdown text-end">
+          <button class="btn dropdown-toggle rounded-circle mx-3" type="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-ellipsis"></i>
+          </button>
           <ul class="dropdown-menu">
             {% if post.author == user %}
             <li><a class="dropdown-item" href="/posts/edit/{{post.id}}">Edit</a></li>
@@ -21,46 +22,46 @@
             <li><a class="dropdown-item" href="#">Report</a></li>
             {% endif %}
           </ul>
-      </div>
-      <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
-        <div class="author-post d-flex flex-row">
-          <div class="w-100">
-            <img class="profile-image-post rounded-circle shadow-sm mx-3"
-              src="{% static 'img/default-profile-image.png' %}" alt="profile image of author">
-            <p class="mx-3 w-100 fs-6">{{post.author}},<span class="small-and-light">{{post.created_on}}</span></p>
+        </div>
+        <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
+          <div class="author-post d-flex flex-row">
+            <div class="w-100">
+              <img class="profile-image-post rounded-circle shadow-sm mx-3"
+                src="{% static 'img/default-profile-image.png' %}" alt="profile image of author">
+              <p class="mx-3 w-100 fs-6">{{post.author}},<span class="small-and-light">{{post.created_on}}</span></p>
+            </div>
           </div>
+          <h5 class="w-100 text-center">{{post.title}}</h5>
+          <p class="text-center">{{post.content}}</p>
+          <div class="w-100">
+            <p class="text-start">{{post.count_likes}}</p>
+            <p class="text-end"></p>
+          </div>
+        </a>
+        <br>
+        <div class="row user-post-options m-0">
+          <button class="col-4 btn">
+            <i class="fa-solid fa-thumbs-up"></i> Like
+          </button>
+          <button class="col-4 btn" onclick="commentForm({{post.id}})">
+            <i class="fa-solid fa-comment"></i> Comment
+          </button>
+          <button class="col-4 btn">
+            <i class="fa-solid fa-share-nodes"></i> Share
+          </button>
         </div>
-        <h5 class="w-100 text-center">{{post.title}}</h5>
-        <p class="text-center">{{post.content}}</p>
-        <div class="w-100">
-          <p class="text-start">{{post.count_likes}}</p>
-          <p class="text-end"></p>
+        <div class="row comment-form-{{post.id}} d-none">
+          <form method="post" action="/posts/create_comment/{{post.id}}/">
+            {{ comment_form | crispy }}
+            {% csrf_token %}
+            <button type="submit" class="general-btn btn w-100 my-2">Submit</button>
+          </form>
         </div>
-      </a>
-      <br>
-      <div class="row user-post-options m-0">
-        <button class="col-4 btn">
-          <i class="fa-solid fa-thumbs-up"></i> Like
-        </button>
-        <button class="col-4 btn" onclick="commentForm({{post.id}})">
-          <i class="fa-solid fa-comment"></i> Comment
-        </button>
-        <button class="col-4 btn">
-          <i class="fa-solid fa-share-nodes"></i> Share
-        </button>
       </div>
-      <div class="row comment-form-{{post.id}} d-none">
-        <form method="post" action="/posts/create_comment/{{post.id}}/">
-          {{ comment_form | crispy }}
-          {% csrf_token %}
-          <button type="submit" class="general-btn btn w-100 my-2">Submit</button>
-        </form>
-      </div>
-    </div>
-    <div class="col-sm-12 col-md-4 mt-4">
-      <h5 class="d-none d-sm-none d-md-block text-center">Comments</h5>
       {% for comment in comments %}
-      <div class="content-box shadow-sm rounded  boxes text-center p-1 my-1">
+      <div class="content-box shadow-sm rounded  boxes mx-3 my-1">
+        <img src="{{comment.post.author.profile.avatar_url}}" alt="profile picture of user that commented on post"
+          class="profile-image-post rounded-circle shadow-sm mx-3">
         <p class="text-center mt-2">{{comment.content}}</p>
         <p class="text-end">- {{comment.name}}, {{comment.created_on}}</p>
         <div class="row user-post-options m-0">
@@ -70,6 +71,10 @@
         </div>
       </div>
       {% endfor %}
+    </div>
+
+    <div class="col-sm-12 col-md-5 mt-4">
+
       {% include "footer.html" %}
     </div>
   </div>

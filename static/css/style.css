@@ -233,3 +233,8 @@ form {
   background-color: var(--columbia-blue);
   color: var(--independence);
 }
+
+.pos-absolute {
+  position: absolute;
+  z-index: 99;
+}
