@@ -83,7 +83,7 @@ The goal of this project was to create a social media website that takes advanta
 |[#21](https://github.com/KristianColville1/daily-sync/issues/21)| As a registered user I can update a post I have created so that I can correct errors or add additional content to a post |
 |[#22](https://github.com/KristianColville1/daily-sync/issues/22)| As a registered user I can delete a post or comment I have created so that I can personalize my experiences and remove content from my account that I might not want |
 |[#24](https://github.com/KristianColville1/daily-sync/issues/24)| As the site owner I can use custom validation for user passwords so that I can increase the security of my website to improve GDPR compliance in providing good website security |
-|||
+|[#26](https://github.com/KristianColville1/daily-sync/issues/26)| As a registered user I can edit a comment I created so that I can fix any errors in my comment or adjust it instead of starting from scratch with a new comment |
 |||
 |||
 |||
