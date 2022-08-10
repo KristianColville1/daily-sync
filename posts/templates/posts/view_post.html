@@ -51,7 +51,7 @@
               {% else %}
               <i class="fa-solid fa-thumbs-up"></i>Like
               {% endif %}
-              
+
             </button>
           </form>
 
@@ -93,9 +93,17 @@
         <p class="text-center mt-2">{{comment.content}}</p>
         <p class="text-end">- {{comment.name}}, {{comment.created_on}}</p>
         <div class="row user-post-options m-0">
-          <button class="col-12 btn">
-            <i class="fa-solid fa-thumbs-up"></i> Like
-          </button>
+          <form class="like-btn col-12" action="/posts/like_comment/{{comment.id}}">
+            {% csrf_token %}
+            <button class="btn w-100">
+              {% if user in comment.likes.all %}
+              <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="blue-like">Like</span>
+              {% else %}
+              <i class="fa-solid fa-thumbs-up"></i>Like
+              {% endif %}
+
+            </button>
+          </form>
         </div>
       </div>
       {% endfor %}
