@@ -1,35 +1,101 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
     <div class="row  position-relative gx-0">
-        <img src="{{profile.background_url}}" alt="user profile background" class="user-bg shadow-sm rounded-3">
-        <div class="col-5">
-            <div>
-                <img class="profile-img-profile rounded-circle shadow-sm position-absolute bottom-0 start-0 mx-4"
-                    src="{{ profile.avatar_url }}" alt="current user profile image">
-                {% if profile.first_name %}
-                <h6>{{profile.first_name}}</h6>
-                {% endif %}
-            </div>
+        <div class="col-sm-12 col-md-7 col-lg-9">
+            <img src="{{profile.background_url}}" alt="user profile background"
+                class="user-bg shadow-sm rounded-3 w-100">
+            <div class="col-5">
+                <div>
+                    <img class="profile-img-profile my-2 rounded-circle shadow-sm position-absolute top-0 start-0 mx-4"
+                        src="{{ profile.avatar_url }}" alt="current user profile image">
+                    {% if profile.first_name %}
+                    <h6>{{profile.first_name}}</h6>
+                    {% endif %}
+                </div>
 
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-5 col-lg-3 gx-0">
+            <div class="content-box shadow-sm rounded-3 mx-3">
+                People you may know
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12 col-md-4">
-            <div class="user-bio">
-                {{profile.bio}}
-            </div>
+    <div class="row gx-0">
+        <div class="user-bio">
+            {{profile.bio}}
         </div>
-        <div class="col-sm-12 col-md-8">
-            {% for posts in profile.post%}
-            <div>
-                <h6>{{posts.title}}</h6>
-                <p>{{posts.content}}</p>
+        <div class="col-sm-12 col-md-4 gx-0"></div>
+        <div class="col-sm-12 col-md-5 gx-0">
+            {% for post in posts %}
+            <div class="content-box w-100 shadow-sm rounded mt-2 py-1 px-2 boxes postition-relative">
+                <div class="post-options dropdown text-end position-relative">
+                    <button class="btn dropdown-toggle rounded-circle position-relative mx-1" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% if post.author == user %}
+                        <li><a class="dropdown-item" href="/posts/edit/{{post.id}}">Edit</a></li>
+                        <li><a class="dropdown-item" href="/posts/delete/{{post.id}}">Delete</a></li>
+                        {% else %}
+                        <li><a class="dropdown-item" href="#">Share post</a>
+                        <li><a class="dropdown-item" href="#">Report</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="author-post">
+                    <div class="w-100 d-flex flex-row">
+                        <img class="profile-image-post rounded-circle shadow-sm mx-3"
+                            src="{{ post.author.profile.avatar_url }}" alt="profile image of author">
+                        <p class="mx-3 w-100 fs-6">{{post.author}},<span
+                                class="small-and-light">{{post.created_on}}</span></p>
+                    </div>
+                </div>
+                <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
+                    <h5 class="w-100 text-center">{{post.title}}</h5>
+                    <p class="text-center">{{post.content}}</p>
+                    <div class="w-100">
+                        <p class="text-start">{{post.count_likes}}</p>
+                        <p class="text-end"></p>
+                    </div>
+                </a>
+                <br>
+                <div class="row user-post-options m-0">
+                    <button class="col-4 btn">
+                        <i class="fa-solid fa-thumbs-up"></i> Like
+                    </button>
+                    <button class="col-4 btn" onclick="commentForm({{post.id}})">
+                        <p class="d-none post-id"> testing</p>
+                        <i class="fa-solid fa-comment"></i> Comment
+                    </button>
+                    <button class="col-4 btn">
+                        <i class="fa-solid fa-share-nodes"></i> Share
+                    </button>
+                </div>
+                <div class="row comment-form-{{post.id}} d-none">
+                    <form method="post" action="/posts/create_comment/{{post.id}}/">
+                        {{ comment_form | crispy }}
+                        {% csrf_token %}
+                        <button type="submit" class="general-btn btn w-100 my-2">Submit</button>
+                    </form>
+
+                    {% for comment in comments %}
+                    <div class="content-box shadow-sm rounded  boxes text-center p-1 my-1">
+                        <p class="text-center mt-2">{{comment.content}}</p>
+                        <p class="text-end">- {{comment.name}}, {{comment.created_on}}</p>
+                        <div class="row user-post-options m-0">
+                            <button class="col-12 btn">
+                                <i class="fa-solid fa-thumbs-up"></i> Like
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-            
-            
             {% endfor %}
         </div>
     </div>

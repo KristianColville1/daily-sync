@@ -7,18 +7,18 @@
 <div class="container">
   <div class="row mt-2">
     <div class="col-sm-12 col-md-3 col-lg-2 d-none d-sm-none d-md-block">
-      <div class="content-box w-100 shadow-sm rounded p-2 boxes">
-        <div class="profile-pic-md position-relative">
-          <img class="profile-image-feed rounded-circle shadow-sm position-absolute top-50 start-50 translate-middle"
-            src="{% static 'img/default-profile-image.png' %}" alt="current user profile image">
-        </div>
+      <div class="profile-pic-md position-relative">
+        <img src="{{profile.background_url}}" alt="profile background image"
+          class="shadow-sm rounded w-100 position-absolute">
+        <img class="profile-image-feed rounded-circle shadow-sm position-absolute top-50 start-50 translate-middle"
+          src="{{ profile.avatar_url }}" alt="current user profile image">
       </div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-6 mb-2">
       <div class="content-box post-box w-100 shadow-sm rounded-3 p-2 boxes">
         <div class="row">
           <div class="col-2">
-            <img class="profile-image-post rounded-circle shadow-sm " src="{% static 'img/default-profile-image.png' %}"
+            <img class="profile-image-post rounded-circle shadow-sm " src="{{ profile.avatar_url }}"
               alt="profile image of author"></div>
           <div class="col-10">
             <button class="btn create-post-btn w-100 rounded-pill text-start" type="button"
@@ -29,6 +29,7 @@
       </div>
 
       {% for post in posts %}
+      {% comment "TODO:" %} condition for friends of user posts {% endcomment %}
       <div class="content-box w-100 shadow-sm rounded mt-2 py-1 px-2 boxes postition-relative">
         <div class="post-options dropdown text-end position-relative">
           <button class="btn dropdown-toggle rounded-circle position-relative mx-1" type="button"
@@ -45,15 +46,14 @@
             {% endif %}
           </ul>
         </div>
-        <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
-          <div class="author-post">
-            <div class="w-100 d-flex flex-row">
-              <img class="profile-image-post rounded-circle shadow-sm mx-3"
-                src="{% static 'img/default-profile-image.png' %}" alt="profile image of author">
-              <p class="mx-3 w-100 fs-6">{{post.author}},<span class="small-and-light">{{post.created_on}}</span></p>
-
-            </div>
+        <div class="author-post">
+          <div class="w-100 d-flex flex-row">
+            <img class="profile-image-post rounded-circle shadow-sm mx-3" src="{{ post.author.profile.avatar_url }}"
+              alt="profile image of author">
+            <p class="mx-3 w-100 fs-6">{{post.author}},<span class="small-and-light">{{post.created_on}}</span></p>
           </div>
+        </div>
+        <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
           <h5 class="w-100 text-center">{{post.title}}</h5>
           <p class="text-center">{{post.content}}</p>
           <div class="w-100">
@@ -68,18 +68,30 @@
           </button>
           <button class="col-4 btn" onclick="commentForm({{post.id}})">
             <p class="d-none post-id"> testing</p>
-            <i class="fa-solid fa-comment"></i> Comment 
+            <i class="fa-solid fa-comment"></i> Comment
           </button>
           <button class="col-4 btn">
             <i class="fa-solid fa-share-nodes"></i> Share
           </button>
         </div>
         <div class="row comment-form-{{post.id}} d-none">
-          <form method="post">
-              {{ comment_form | crispy }}
-              {% csrf_token %}
-              <button type="submit" class="btn w-100">Submit</button>
+          <form method="post" action="/posts/create_comment/{{post.id}}/">
+            {{ comment_form | crispy }}
+            {% csrf_token %}
+            <button type="submit" class="general-btn btn w-100 my-2">Submit</button>
           </form>
+
+          {% for comment in comments %}
+          <div class="content-box shadow-sm rounded  boxes text-center p-1 my-1">
+            <p class="text-center mt-2">{{comment.content}}</p>
+            <p class="text-end">- {{comment.name}}, {{comment.created_on}}</p>
+            <div class="row user-post-options m-0">
+              <button class="col-12 btn">
+                <i class="fa-solid fa-thumbs-up"></i> Like
+              </button>
+            </div>
+          </div>
+          {% endfor %}
         </div>
       </div>
       {% endfor %}

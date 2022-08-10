@@ -50,10 +50,10 @@
         </button>
       </div>
       <div class="row comment-form-{{post.id}} d-none">
-        <form method="post">
+        <form method="post" action="/posts/create_comment/{{post.id}}/">
           {{ comment_form | crispy }}
           {% csrf_token %}
-          <button type="submit" class="btn w-100">Submit</button>
+          <button type="submit" class="general-btn btn w-100 my-2">Submit</button>
         </form>
       </div>
     </div>
