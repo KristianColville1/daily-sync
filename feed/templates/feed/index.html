@@ -66,9 +66,17 @@
 
         <br>
         <div class="row user-post-options m-0">
-          <button class="col-4 btn">
-            <i class="fa-solid fa-thumbs-up"></i> Like
-          </button>
+          <form class="like-btn col-4" action="/posts/like_post/{{post.id}}">
+            {% csrf_token %}
+            <button class="btn w-100">
+              {% if user in post.likes.all %}
+              <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="blue-like">Like</span>
+              {% else %}
+              <i class="fa-solid fa-thumbs-up"></i>Like
+              {% endif %}
+
+            </button>
+          </form>
           <button class="col-4 btn" onclick="commentForm({{post.id}})">
             <p class="d-none post-id"> testing</p>
             <i class="fa-solid fa-comment"></i> Comment
