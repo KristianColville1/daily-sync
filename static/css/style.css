@@ -10,7 +10,8 @@
   --independence: #414361ff;
 }
 
-html, body {
+html,
+body {
   max-width: 100%;
   overflow-x: hidden;
   background-color: var(--isabelline);
@@ -23,7 +24,7 @@ h1 {
 }
 
 .nav-bg {
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
   z-index: 2;
 }
 
@@ -69,10 +70,10 @@ h1 {
 }
 
 #menu-toggle:active {
-    border: 2px inset whitesmoke;
+  border: 2px inset whitesmoke;
 }
 
-#menu-toggle span > i {
+#menu-toggle span>i {
   color: var(--turquoise);
   font-size: 30px;
   transition: all 0.2s ease-in-out;
@@ -181,20 +182,20 @@ form {
   font-size: .8rem;
 }
 
-.post-options > button {
+.post-options>button {
   width: 30px;
   height: 30px;
   font-size: 18px;
 }
 
-.post-options > button:hover {
+.post-options>button:hover {
   width: 30px;
   height: 30px;
   background-color: var(--little-boy-blue);
   color: white;
 }
 
-.post-options > button:after{
+.post-options>button:after {
   background-color: none;
   border-color: transparent;
 }
@@ -226,6 +227,15 @@ form {
   background-color: var(--isabelline);
   transition: all 0.5s ease-in-out;
   border: none;
+}
+
+.like-btn {
+  font-family: 'Lato',
+    sans-serif;
+}
+
+.blue-like {
+  color: var(--carolina-blue);
 }
 /***************************************************Alert messages*/
 
