@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Oswald&display=swap');
 
 :root {
+  /* light */
   --turquoise: #48e5c2ff;
   --isabelline: #f8f4f1ff;
   --columbia-blue: #cae1ebff;
@@ -8,6 +9,19 @@
   --carolina-blue: #3da5d9ff;
   --queen-blue: #3f749dff;
   --independence: #414361ff;
+  --white: white;
+  --whitesmoke: whitesmoke;
+
+  /* dark */
+  --black: #000000ff;
+  --middle-blue: #92dce5ff;
+  --powder-blue: #c0e1e7ff;
+  --lavender-blush: #eee5e9ff;
+  --sonic-silver: #777375ff;
+  --onyx: #3e3e3eff;
+  --gray-web: #7c7c7cff;
+  --cyber-grape: #483463ff;
+  --amethyst: #9067c6ff;
 }
 
 html,
@@ -30,7 +44,7 @@ h1 {
 
 .nav-bg,
 .navbar {
-  background-color: white;
+  background-color: var(--white);
 }
 
 .nav-link {
@@ -66,11 +80,11 @@ h1 {
 #menu-toggle {
   height: 40px;
   width: 45px;
-  border: 2px outset whitesmoke;
+  border: 2px outset var(--whitesmoke);
 }
 
 #menu-toggle:active {
-  border: 2px inset whitesmoke;
+  border: 2px inset var(--whitesmoke);
 }
 
 #menu-toggle span>i {
@@ -108,12 +122,12 @@ footer a i:hover {
 .boxes,
 .content-box,
 .form-box {
-  background-color: white;
+  background-color: var(--white);
   height: fit-content;
 }
 
 .dark-boxes {
-  background-color: whitesmoke;
+  background-color: var(--whitesmoke);
 }
 
 form {
@@ -157,11 +171,15 @@ form {
 
 .profile-pic-md,
 .profile-image-feed {
-  height: 120px;
+  height: 80px;
 }
 
 .profile-img-profile {
   max-height: 140px;
+}
+
+.profile-image-nav {
+  max-height: 25px;
 }
 
 .user-bg {
@@ -175,11 +193,11 @@ form {
 }
 
 .create-post-btn {
-  border: 2px solid whitesmoke;
+  border: 2px solid var(--whitesmoke);
 }
 
 .create-post-btn:hover {
-  background-color: whitesmoke;
+  background-color: var(--whitesmoke);
 }
 
 .small-and-light {
@@ -196,7 +214,7 @@ form {
   width: 30px;
   height: 30px;
   background-color: var(--little-boy-blue);
-  color: white;
+  color: var(--white);
 }
 
 .post-options>button:after {
@@ -206,7 +224,7 @@ form {
 
 .dropdown-item:hover {
   background-color: var(--carolina-blue);
-  color: white;
+  color: var(--white);
   transition: all 0.3s ease-in-out;
 }
 
