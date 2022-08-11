@@ -160,7 +160,7 @@ In no particular order these are the following models created for the Daily Sync
 |[#18](https://github.com/KristianColville1/daily-sync/issues/18) | Unable to create a post that has the same title as a published post | I thought the issue was with the slug but after removing unique=true from the title variable in the post model this helped fix posting new posts with the same title but with a unique slug link |
 |[#23](https://github.com/KristianColville1/daily-sync/issues/23)| When setting up the email backend and setting up an account or logging in the username and password fails | Used an addon service by heroku using a mailgun sandbox and separated development & production code so an smtp service is in place |
 |[#25](https://github.com/KristianColville1/daily-sync/issues/25)| Keep getting 500 errors on sign up or login of new users | Reset local database and heroku database and migrated both and this fixed the issue |
-||||
+|[#28](https://github.com/KristianColville1/daily-sync/issues/28)| Getting an index out of range error with the calc_time method for shorting the time since created | Removed a variable and adjusted the conditional logic for the first and last characters in the string and this fixed the bug |
 ||||
 
 ## Development & Deployment
