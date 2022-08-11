@@ -112,6 +112,10 @@ footer a i:hover {
   height: fit-content;
 }
 
+.dark-boxes {
+  background-color: whitesmoke;
+}
+
 form {
   font-family: 'Oswald', sans-serif;
 }
@@ -223,9 +227,11 @@ form {
 }
 
 .user-post-options .btn:hover {
-  font-weight: 700;
   background-color: var(--isabelline);
   transition: all 0.5s ease-in-out;
+}
+
+.user-post-options .btn {
   border: none;
 }
 
@@ -237,6 +243,7 @@ form {
 .blue-like {
   color: var(--carolina-blue);
 }
+
 /***************************************************Alert messages*/
 
 .alert {
