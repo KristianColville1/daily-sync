@@ -15,7 +15,7 @@ class Post(models.Model):
                                null=True)
     title = models.TextField(max_length=200)
     slug = AutoSlugField(populate_from="title", unique_with="author")
-    content = models.TextField(max_length=500)
+    post_body = models.TextField(max_length=500)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now_add=True)
     edited = models.BooleanField(default=False)
@@ -52,7 +52,7 @@ class Comment(models.Model):
                                     null=True)
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    content = models.TextField()
+    comment = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)
     likes = models.ManyToManyField(User,
