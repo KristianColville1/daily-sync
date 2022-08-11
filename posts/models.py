@@ -62,20 +62,20 @@ class Post(models.Model):
             'month',
             'year',
         ]
-
-        for value in time_options:
-            amount_to_cut = len(value)
-            if value in time_string:
-                index = time_string.index(value)
-                first = time_string[0:index]
-                cut_piece = time_string[index:index + amount_to_cut]
-                last = time_string[index + amount_to_cut]
-                char_1 = cut_piece[0]
-                char_2 = cut_piece[-1]
-                if char_2 == 'e':
-                    time_string = first + char_1 + 'in' + last
-                else:
-                    time_string = first + char_1 + char_2 + last
+        if time_string[0] != '0':
+            for value in time_options:
+                amount_to_cut = len(value)
+                if value in time_string:
+                    index = time_string.index(value)
+                    first = time_string[0:index]
+                    cut_piece = time_string[index:index + amount_to_cut]
+                    last = time_string[index + amount_to_cut]
+                    char_1 = cut_piece[0]
+                    char_2 = cut_piece[-1]
+                    if char_2 == 'e':
+                        time_string = first + char_1 + 'in' + last
+                    else:
+                        time_string = first + char_1 + char_2 + last
         return time_string
 
 
