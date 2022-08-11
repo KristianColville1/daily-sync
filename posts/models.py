@@ -69,13 +69,12 @@ class Post(models.Model):
                     index = time_string.index(value)
                     first = time_string[0:index]
                     cut_piece = time_string[index:index + amount_to_cut]
-                    last = time_string[index + amount_to_cut]
+                    last = time_string[index + amount_to_cut - 1]
                     char_1 = cut_piece[0]
-                    char_2 = cut_piece[-1]
-                    if char_2 == 'e':
+                    if last == 'e':
                         time_string = first + char_1 + 'in' + last
                     else:
-                        time_string = first + char_1 + char_2 + last
+                        time_string = first + char_1 + last
         return time_string
 
 
