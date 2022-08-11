@@ -11,7 +11,7 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = (
             'title',
-            'content',
+            'post_body',
         )
         widgets = {
             'title':
@@ -19,7 +19,7 @@ class PostForm(forms.ModelForm):
                 'rows': 1,
                 'placeholder': 'Write the title of your post here'
             }),
-            'content':
+            'post_body':
             forms.Textarea(attrs={
                 'rows': 6,
                 'placeholder': 'Write your post here'
@@ -35,10 +35,10 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = (
-            'content',
+            'comment',
         )
         widgets = {
-            'content':
+            'comment':
             forms.Textarea(attrs={
                 'rows': 3,
                 'placeholder': 'Write your comment here'
