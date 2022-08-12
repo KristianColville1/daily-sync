@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Oswald&display=swap');
 
 :root {
-  /* light */
   --turquoise: #48e5c2ff;
   --isabelline: #f8f4f1ff;
   --columbia-blue: #cae1ebff;
@@ -11,17 +10,6 @@
   --independence: #414361ff;
   --white: white;
   --whitesmoke: whitesmoke;
-
-  /* dark */
-  --black: #000000ff;
-  --middle-blue: #92dce5ff;
-  --powder-blue: #c0e1e7ff;
-  --lavender-blush: #eee5e9ff;
-  --sonic-silver: #777375ff;
-  --onyx: #3e3e3eff;
-  --gray-web: #7c7c7cff;
-  --cyber-grape: #483463ff;
-  --amethyst: #9067c6ff;
 }
 
 html,
@@ -53,6 +41,10 @@ h1 {
 
 .nav-link:hover {
   color: var(--carolina-blue);
+}
+
+nav div ul i {
+  font-size: 24px;
 }
 
 .navbar-brand,
@@ -99,6 +91,11 @@ h1 {
   border: 2px inset;
 }
 
+.custom-tooltip {
+  color: var(--white);
+  --bs-tooltip-bg: var(--carolina-blue);
+  font-size: 16px;
+}
 /**********************************************Footer */
 footer {
   color: var(--isabelline);
