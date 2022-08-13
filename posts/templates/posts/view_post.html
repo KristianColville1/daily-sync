@@ -8,12 +8,12 @@
   <div class="row">
     <div class="col-sm-12 col-md-7 mt-2">
       <div class="boxes shadow-sm rounded p-2">
-        <div class="boxes post-options dropdown text-end">
-          <button class="btn dropdown-toggle rounded-circle position-relative mx-3" type="button"
-            data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="post-options dropdown position-relative text-end" id="post-{{post.id}}">
+          <button class="btn dropdown-toggle rounded-circle position-relative mx-1" type="button" data-toggle="dropdown"
+            aria-expanded="false" data-flip="false" onclick="postDropdown({{post.id}})">
             <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
           </button>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu post-dropdown-{{post.id}} position-absolute top-100 end-0">
             {% if post.author == user %}
             <li><a class="dropdown-item" href="/posts/edit/{{post.id}}">Edit</a></li>
             <li><a class="dropdown-item" href="/posts/delete/{{post.id}}">Delete</a></li>
@@ -24,15 +24,18 @@
           </ul>
         </div>
         <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
-          <div class="author-post d-flex flex-row">
-            <div class="w-100">
-              <img class="profile-image-post rounded-circle shadow-sm mx-3"
-                src="{% static 'img/default-profile-image.png' %}" alt="profile image of author">
-              <p class="mx-3 w-100 fs-6">{{post.author}},<span class="small-and-light">{{post.created_on}}</span></p>
-            </div>
+        <div class="author-post">
+          <div class="w-100 d-flex flex-row">
+            <img class="profile-image-post rounded-circle shadow-sm mx-3" src="{{ post.author.profile.avatar_url }}"
+              alt="profile image of author">
           </div>
+          <ul class="list-style-none">
+            <a class="mx-3 fs-6">{{post.author}}</a>
+            <p class="mx-3 small-and-light">{{post.calc_time_since}}</p>
+          </ul>
+        </div>
           <h5 class="w-100 text-center">{{post.title}}</h5>
-          <p class="text-center">{{post.content}}</p>
+          <p class="text-center">{{post.post_body}}</p>
           <div class="w-100">
             {% if post.count_likes > 0%}
             <p class="text-start">{{post.count_likes}} Likes</p>

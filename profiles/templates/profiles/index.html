@@ -31,13 +31,14 @@
         <div class="col-sm-12 col-md-4 gx-0"></div>
         <div class="col-sm-12 col-md-5 gx-0">
             {% for post in posts %}
-            <div class="content-box w-100 shadow-sm rounded mt-2 py-1 px-2 boxes postition-relative">
-                <div class="post-options dropdown text-end position-relative">
+            <div class="content-box w-100 shadow-sm rounded mt-2 py-1 px-2 boxes">
+                <div class="post-options dropdown position-relative text-end" id="post-{{post.id}}">
                     <button class="btn dropdown-toggle rounded-circle position-relative mx-1" type="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                        data-toggle="dropdown" aria-expanded="false" data-flip="false"
+                        onclick="postDropdown({{post.id}})">
                         <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
                     </button>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu post-dropdown-{{post.id}} position-absolute top-100 end-0">
                         {% if post.author == user %}
                         <li><a class="dropdown-item" href="/posts/edit/{{post.id}}">Edit</a></li>
                         <li><a class="dropdown-item" href="/posts/delete/{{post.id}}">Delete</a></li>
@@ -51,19 +52,29 @@
                     <div class="w-100 d-flex flex-row">
                         <img class="profile-image-post rounded-circle shadow-sm mx-3"
                             src="{{ post.author.profile.avatar_url }}" alt="profile image of author">
-                        <p class="mx-3 w-100 fs-6">{{post.author}},<span
-                                class="small-and-light">{{post.created_on}}</span></p>
                     </div>
+                    <ul class="list-style-none">
+                        <a class="mx-3 fs-6">{{post.author}}</a>
+                        <p class="mx-3 small-and-light">{{post.calc_time_since}}</p>
+                    </ul>
                 </div>
                 <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
                     <h5 class="w-100 text-center">{{post.title}}</h5>
-                    <p class="text-center">{{post.content}}</p>
-                    <div class="w-100">
-                        <p class="text-start">{{post.count_likes}}</p>
-                        <p class="text-end"></p>
-                    </div>
+                    <p class="text-center">{{post.post_body}}</p>
                 </a>
-                <br>
+
+                <div class="row mx-3 g-0">
+                    {% if post.count_likes > 0%}
+                    <p class="col-6 text-start">{{post.count_likes}} Likes</p>
+                    {% endif %}
+                    {% if post.count_comments > 0 %}
+                    <p class="col-6 text-end"><a href="{% url 'view_post' post.slug %}">{{post.count_comments}}
+                            Comments</a>
+                    </p>
+                    {% endif %}
+                </div>
+
+                <hr class="m-0">
                 <div class="row user-post-options m-0">
                     <form class="like-btn col-4" action="/posts/like_post/{{post.id}}">
                         {% csrf_token %}
@@ -77,7 +88,6 @@
                         </button>
                     </form>
                     <button class="col-4 btn" onclick="commentForm({{post.id}})">
-                        <p class="d-none post-id"> testing</p>
                         <i class="fa-solid fa-comment"></i> Comment
                     </button>
                     <button class="col-4 btn">
@@ -88,20 +98,9 @@
                     <form method="post" action="/posts/create_comment/{{post.id}}/">
                         {{ comment_form | crispy }}
                         {% csrf_token %}
-                        <button type="submit" class="general-btn btn w-100 my-2">Submit</button>
+                        <div class="text-end"><button type="submit"
+                                class="general-btn btn rounded-5 my-2">Submit</button></div>
                     </form>
-
-                    {% for comment in comments %}
-                    <div class="content-box shadow-sm rounded  boxes text-center p-1 my-1">
-                        <p class="text-center mt-2">{{comment.content}}</p>
-                        <p class="text-end">- {{comment.name}}, {{comment.created_on}}</p>
-                        <div class="row user-post-options m-0">
-                            <button class="col-12 btn">
-                                <i class="fa-solid fa-thumbs-up"></i> Like
-                            </button>
-                        </div>
-                    </div>
-                    {% endfor %}
                 </div>
             </div>
             {% endfor %}
