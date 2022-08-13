@@ -7,4 +7,31 @@ $(document).ready(() => {
     alert.close();
   }, 3200);
 
+  /* Tooltips - bootstrap */ 
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+  /* Darkmode */
+  let darkModeSwitch = false;
+  $('button.enable-dark-mode').click(() => {
+    if (!darkModeSwitch) {
+      document.documentElement.style.setProperty('--whitesmoke', getComputedStyle(document.documentElement).getPropertyValue('--black'));
+
+
+      darkModeSwitch = true;
+      $('.fa-moon').addClass('d-none')
+      $('.fa-sun').removeClass('d-none')
+    } else {
+      document.documentElement.style.setProperty('--black', getComputedStyle(document.documentElement).getPropertyValue('--whitesmoke'));
+
+
+      darkModeSwitch = false;
+      $('.fa-moon').addClass('d-none')
+      $('.fa-sun').removeClass('d-none')
+    }
+
+  })
+
+
+
 });
