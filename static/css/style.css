@@ -66,6 +66,11 @@ h1 {
   color: var(--carolina-blue);
 }
 
+.nav-item:hover {
+  background-color: var(--whitesmoke);
+  transition: all 0.2s ease-in-out;
+}
+
 nav div ul i {
   font-size: 24px;
 }
@@ -112,12 +117,6 @@ nav div ul i {
   height: 40px;
   background-color: var(--isabelline);
   border: 2px inset;
-}
-
-.custom-tooltip {
-  color: var(--white);
-  --bs-tooltip-bg: var(--carolina-blue);
-  font-size: 16px;
 }
 
 /**********************************************Footer */
@@ -281,6 +280,11 @@ form {
 
 .blue-like {
   color: var(--carolina-blue);
+}
+
+.modal-label {
+  font-size: 16px;
+  color: var(--independence);
 }
 
 /***************************************************Alert messages*/
