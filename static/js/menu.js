@@ -21,7 +21,7 @@ $('#menu-toggle').on('click', () => {
 /* Nav dropdown */
 let navDropdown = false
 $('#dropdownMenuButton1').on('click', () => {
-    if (navDropdown == false){
+    if (navDropdown == false) {
         $('#nav-dropdown-menu').slideDown()
         navDropdown = true
     } else {
@@ -35,19 +35,18 @@ $('#dropdownMenuButton1').on('click', () => {
     in order to slide the correct menu down */
 let postDropdownHistory = []
 let postDropdown = (post_id) => {
-    if (postDropdownHistory.includes(post_id)){
+    if (postDropdownHistory.includes(post_id)) {
         $(`.post-dropdown-${post_id}`).slideUp()
         let index = postDropdownHistory.indexOf(post_id)
-        if (postDropdownHistory.length > 2){
-            postDropdownHistory = postDropdownHistory.splice(index, index+1)
+        if (postDropdownHistory.length > 2) {
+            postDropdownHistory = postDropdownHistory.splice(index, index + 1)
         } else if (postDropdownHistory.length == 2) {
-            if (index > 0){
+            if (index > 0) {
                 postDropdownHistory.pop()
             } else {
                 postDropdownHistory = postDropdownHistory(1)
             }
-        }
-        else {
+        } else {
             postDropdownHistory = []
         }
     } else {

@@ -7,10 +7,6 @@ $(document).ready(() => {
     alert.close();
   }, 3200);
 
-  /* Tooltips - bootstrap */ 
-  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
   /* Darkmode */
   let darkModeSwitch = false;
   $('button.enable-dark-mode').click(() => {
@@ -32,6 +28,7 @@ $(document).ready(() => {
 
   })
 
-
-
+  /* enabled tooltips*/
+  $('.tooltip').tooltip();
+  $('.nav-link').attr('title').css('background-color', 'var(--carolina-blue)')
 });
