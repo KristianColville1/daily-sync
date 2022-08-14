@@ -28,6 +28,25 @@ def create_comment(request, post_id):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
+def create_post(request):
+    """
+    Handles submitting posts and redirects
+    back to the previous page.
+    """
+    form = PostForm(data=request.POST)
+    if form.is_valid():
+        form.instance.author = request.user
+        form.instance.status = 1
+        form.save()
+        messages.add_message(request, messages.SUCCESS,
+                             'Your post has been submitted')
+    else:
+        messages.add_message(
+            request, messages.ERROR,
+            'Oops something has went wrong, please try again!')
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
 # ...................................................... Editing
 def edit_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)

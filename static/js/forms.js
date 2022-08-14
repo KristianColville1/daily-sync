@@ -20,7 +20,6 @@ $(document).ready(() => {
      * Adds create post modal form to template
      */
     let csrf_token = $("input[name=csrfmiddlewaretoken]").val();
-    let modalContainer = $('.modal-container');
     $('.modal-container').html(`
     <div class="modal fade" id="feed-create-post" tabindex="-1" aria-labelledby="feedCreatePost" aria-hidden="true">
         <div class="modal-dialog">
@@ -30,7 +29,7 @@ $(document).ready(() => {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post">
+                <form method="post" action="/posts/create_post/">
                 <input type="hidden" name="csrfmiddlewaretoken" value="${csrf_token}">
                 <label for="title" class="w-100 text-center modal-label">Title</label>
                 <textarea name="title" rows="1" maxlength="200" required="" id="title" class="w-100 rounded"></textarea>
