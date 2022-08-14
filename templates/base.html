@@ -19,11 +19,11 @@
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon/favicon-16x16.png' %}">
 
   {% comment %} Bootstrap CSS & JavaScript CDN via jsDelivr {% endcomment %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-    </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+  </script>
 
   {% comment %} Custom CSS {% endcomment %}
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -56,20 +56,19 @@
           </form>
           <ul class="navbar-nav mx-auto my-2 my-lg-0">
             {% if user.is_authenticated %}
-            <li class="nav-item my-auto mx-5">
-              <a class="nav-link d-flex flex-column text-center py-0" data-bs-toggle="tooltip" data-bs-title="Home"
-                data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" aria-current="page"
-                href="{% url 'feed' %}">
+            <li class="nav-item py-auto px-5">
+              <a class="nav-link d-flex flex-column text-center p-2" href="{% url 'feed' %}" data-toggle="tooltip"
+                data-placement="bottom" title="Home">
                 <i class="fa-solid fa-house"></i></a>
             </li>
-            <li class="nav-item my-auto mx-5">
-              <a class="nav-link d-flex flex-column text-center py-0" data-bs-toggle="tooltip" data-bs-title="Messages"
-                data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" href="#">
+            <li class="nav-item py-auto px-5 position-relative">
+              <a class="nav-link d-flex flex-column text-center p-2" href="#" data-toggle="tooltip"
+                data-placement="bottom" title="Messages">
                 <i class="fa-solid fa-message"></i></a>
             </li>
-            <li class="nav-item my-auto mx-5">
-              <a class="nav-link d-flex flex-column text-center py-0" data-bs-toggle="tooltip"
-                data-bs-title="Notifications" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" href="#">
+            <li class="nav-item py-auto px-5">
+              <a class="nav-link d-flex flex-column text-center p-2" href="#" data-toggle="tooltip"
+                data-placement="bottom" title="Notifications">
                 <i class="fa-solid fa-bell"></i></a>
             </li>
             <div class="dropdown">
