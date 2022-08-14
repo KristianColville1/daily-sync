@@ -30,6 +30,19 @@
         </div>
         <div class="col-sm-12 col-md-4 gx-0"></div>
         <div class="col-sm-12 col-md-5 gx-0">
+            <div class="content-box post-box w-100 shadow-sm rounded-3 p-2 boxes">
+                <div class="row">
+                    <div class="col-2">
+                        <img class="profile-image-post rounded-circle shadow-sm " src="{{ profile.avatar_url }}"
+                            alt="profile image of author"></div>
+                    <div class="col-10">
+                        <button class="btn create-post-btn w-100 rounded-pill text-start" type="button"
+                            aria-label="Click here to create a post" data-bs-toggle="modal"
+                            data-bs-target="#feed-create-post">Create
+                            a
+                            post</button></div>
+                </div>
+            </div>
             {% for post in posts %}
             <div class="content-box w-100 shadow-sm rounded mt-2 py-1 px-2 boxes">
                 <div class="post-options dropdown position-relative text-end" id="post-{{post.id}}">
@@ -64,14 +77,17 @@
                 </a>
 
                 <div class="row mx-3 g-0">
-                    {% if post.count_likes > 0%}
-                    <p class="col-6 text-start">{{post.count_likes}} Likes</p>
-                    {% endif %}
-                    {% if post.count_comments > 0 %}
-                    <p class="col-6 text-end"><a href="{% url 'view_post' post.slug %}">{{post.count_comments}}
-                            Comments</a>
+                    <p class="col-6 w-50 text-start">
+                        {% if post.count_likes > 0%}
+                        {{post.count_likes}} Likes
+                        {% endif %}
                     </p>
-                    {% endif %}
+                    <p class="col-6 w-50 text-end">
+                        {% if post.count_comments > 0 %}
+                        <a href="{% url 'view_post' post.slug %}">{{post.count_comments}}
+                            Comments</a>
+                        {% endif %}
+                    </p>
                 </div>
 
                 <hr class="m-0">
@@ -106,5 +122,8 @@
             {% endfor %}
         </div>
     </div>
+</div>
+<!-- Modal -->
+<div class="modal-container">
 </div>
 {% endblock %}

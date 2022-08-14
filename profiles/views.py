@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from posts.models import Post
-from posts.forms import CommentForm
+from posts.forms import CommentForm, PostForm
 
 
 class ProfileOwnerView(View):
@@ -14,7 +14,8 @@ class ProfileOwnerView(View):
         context = {
             'profile': request.user.profile,
             'posts': post,
-            'comment_form': CommentForm()
+            'comment_form': CommentForm(),
+            'form': PostForm()
         }
         return render(request, 'profiles/index.html', context)
 
