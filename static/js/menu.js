@@ -1,30 +1,34 @@
 /* Switches icons for the menu when button clicked open and close*/
+let navMenu = false;
 $('#menu-toggle').on('click', () => {
     let toggle_on = 'i.fa-bars';
     let toggle_off = 'i.fa-x';
 
-    if ($(toggle_off).hasClass('d-none')) {
-        $(toggle_off).removeClass('d-none');
-        $(toggle_on).addClass('d-none').fadeIn(1300);
+    let thisSwitch = () => {
+        if ($(toggle_off).hasClass('d-none')) {
+            $(toggle_off).removeClass('d-none');
+            $(toggle_on).addClass('d-none').fadeIn(1300);
 
-    } else if ($(toggle_on).hasClass('d-none')) {
-        $(toggle_on).removeClass('d-none');
-        $(toggle_off).addClass('d-none').fadeIn(1300);
+        } else if ($(toggle_on).hasClass('d-none')) {
+            $(toggle_on).removeClass('d-none');
+            $(toggle_off).addClass('d-none').fadeIn(1300);
+        }
     }
+
+    thisSwitch();
 });
 
 /* Nav dropdown */
-let navDropdownOpen = false;
-let slideNavMenu = () => {
-    
-    if (navDropdownOpen == false) {
-        $('.nav-dropdown').slideDown()
-        navDropdownOpen = true
+let navDropdown = false
+$('#dropdownMenuButton1').on('click', () => {
+    if (navDropdown == false){
+        $('#nav-dropdown-menu').slideDown()
+        navDropdown = true
     } else {
-        $('.nav-dropdown').slideUp()
-        navDropdownOpen = false
+        $('#nav-dropdown-menu').slideUp()
+        navDropdown = false
     }
-}
+});
 
 /* posts dropdown */
 /* because there are mulitple posts the history is stored and modified
