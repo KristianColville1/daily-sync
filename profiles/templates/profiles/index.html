@@ -18,18 +18,38 @@
 
             </div>
         </div>
-        <div class="col-sm-12 col-md-5 col-lg-3 gx-0">
+        <div class="col-md-5 col-lg-3 d-none d-md-block">
             <div class="content-box shadow-sm rounded-3 mx-3">
-                People you may know
+                <h6 class="text-center py-2"> People you may know <i class="fa-solid fa-angle-down"></i>
+                    <h6>
+                        {% for profile in profiles %}
+                        <div class="w-50 position-relative mx-3">
+                            <img class="user-post-image  my-2 rounded-circle shadow-sm" src="{{ profile.avatar_url }}"
+                                alt="current user profile image" class="position-absolute">
+                            <a href="view_profile/{{profile.slug}}" aria-label="click link to go to users profile"
+                                class="position-absolute top-50 end-0">
+                                {% if profile.first_name and profile.last_name %}
+                                @{{profile.first_name}} {{profile.last_name}}
+                                {% else %}
+                                @{{profile.user}}
+                                {% endif %}
+                            </a>
+                        </div>
+                        {% endfor %}
             </div>
         </div>
     </div>
-    <div class="row gx-0">
-        <div class="user-bio">
-            {{profile.bio}}
+    <div class="row gx-0 my-1">
+        <div class="col-sm-12 col-md-4">
+            <div class="boxes shadow-sm rounded m-2 p-2">
+                <h4 class="text-start">Intro</h4>
+                <p class="text-start ">{{ profile.bio }}</p>
+            </div>
+            <div class="boxes shadow-sm rounded m-2 p-2">
+                <h4 class="text-start">Friends</h4>
+            </div>
         </div>
-        <div class="col-sm-12 col-md-4 gx-0"></div>
-        <div class="col-sm-12 col-md-5 gx-0">
+        <div class="col-sm-12 col-md-5">
             <div class="content-box post-box w-100 shadow-sm rounded-3 p-2 boxes">
                 <div class="row">
                     <div class="col-2">
@@ -43,8 +63,16 @@
                             post</button></div>
                 </div>
             </div>
+            <div class="boxes my-1 p-2 shadow-sm rounded">
+                <h4>Posts</h4>
+                <hr class="g-0 m-0">
+                <div class="w-100 d-flex flex-row">
+                    <button class="btn w-50">Newest</button>
+                    <button class="btn w-50">Popular</button>
+                </div>
+            </div>
             {% for post in posts %}
-            <div class="content-box w-100 shadow-sm rounded mt-2 py-1 px-2 boxes">
+            <div class="content-box w-100 shadow-sm rounded mt-1 py-1 px-2 boxes">
                 <div class="post-options dropdown position-relative text-end" id="post-{{post.id}}">
                     <button class="btn dropdown-toggle rounded-circle position-relative mx-1" type="button"
                         data-toggle="dropdown" aria-expanded="false" data-flip="false"
@@ -92,17 +120,43 @@
 
                 <hr class="m-0">
                 <div class="row user-post-options m-0">
-                    <form class="like-btn col-4" action="/posts/like_post/{{post.id}}">
-                        {% csrf_token %}
-                        <button class="btn w-100">
-                            {% if user in post.likes.all %}
-                            <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="blue-like">Like</span>
-                            {% else %}
-                            <i class="fa-solid fa-thumbs-up"></i>Like
-                            {% endif %}
+                    <div class="likes-container col-4 position-relative gx-0">
+                        <form class="like-btn position-absolute w-100" action="/posts/like_post/{{post.id}}/like/">
+                            {% csrf_token %}
+                            <button class="likes btn w-100">
+                                {% if user in post.thumbs_likes.all %}
+                                <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="blue-like">Like</span>
+                                {% elif user in post.heart_likes.all %}
+                                <i class="fa-solid fa-heart fs-4"></i><span class="">Love</span>
+                                {% elif user in post.laugh_likes.all %}
+                                <i class="fa-solid fa-face-laugh-squint fs-4"></i><span class="">Laugh</span>
+                                {% elif user in post.angry_likes.all %}
+                                <i class="fa-solid fa-face-angry fs-4"></i><span class="">Angry</span>
+                                {% else %}
+                                <i class="fa-solid fa-thumbs-up"></i>Like
+                                {% endif %}
+                            </button>
+                        </form>
+                        <div class="emojies boxes shadow-sm rounded d-flex flex-row p-2">
+                            <form action="/posts/like_post/{{post.id}}/like/">
+                                {% csrf_token %}
+                                <button class="btn"><i class="fa-solid fa-thumbs-up blue-like"></i></button>
+                            </form>
+                            <form action="/posts/like_post/{{post.id}}/love/">
+                                {% csrf_token %}
+                                <button class="btn"><i class="fa-solid fa-heart"></i></button>
+                            </form>
+                            <form action="/posts/like_post/{{post.id}}/laugh/">
+                                {% csrf_token %}
+                                <button class="btn"><i class="fa-solid fa-face-laugh-squint"></i></button>
+                            </form>
+                            <form action="/posts/like_post/{{post.id}}/angry/">
+                                {% csrf_token %}
+                                <button class="btn"><i class="fa-solid fa-face-angry"></i></button>
+                            </form>
+                        </div>
+                    </div>
 
-                        </button>
-                    </form>
                     <button class="col-4 btn" onclick="commentForm({{post.id}})">
                         <i class="fa-solid fa-comment"></i> Comment
                     </button>
