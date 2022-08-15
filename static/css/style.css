@@ -251,6 +251,7 @@ form {
 .post-btn {
   color: var(--little-boy-blue);
   background-color: var(--turquoise);
+  font-weight: 700;
 }
 
 .post-btn:hover {
@@ -273,18 +274,43 @@ form {
   border: none;
 }
 
-.like-btn {
+.likes {
   font-family: 'Lato',
     sans-serif;
+}
+
+.emojies {
+  width: fit-content;
+  visibility: hidden;
+  position: absolute;
+  z-index: 99;
+  top: -50px;
+}
+
+.emojies .btn {
+  text-shadow: 1px 1px 1px var(--independence);
 }
 
 .blue-like {
   color: var(--carolina-blue);
 }
 
+.fa-heart {
+  color: red;
+}
+
+.fa-face-laugh-squint {
+  color: yellow;
+}
+
+.fa-face-angry {
+  color: rgb(236, 162, 65);
+}
+
 .modal-label {
-  font-size: 16px;
-  color: var(--independence);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--carolina-blue);
 }
 
 /***************************************************Alert messages*/
@@ -297,4 +323,11 @@ form {
 .pos-absolute {
   position: absolute;
   z-index: 99;
+}
+
+/*********************************************************Feed*/
+.feed-profile-options a:hover {
+  color: var(--white);
+  background-color: var(--carolina-blue);
+  transition: all 0.3s ease-in-out;
 }
