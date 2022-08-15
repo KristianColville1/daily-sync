@@ -30,5 +30,17 @@ $(document).ready(() => {
 
   /* enabled tooltips*/
   $('.tooltip').tooltip();
-  $('.nav-link').attr('title').css('background-color', 'var(--carolina-blue)')
+
+  /**
+   * Handles the emojies and makes visible to user to select a like option
+   * written this way so emojies are shown correctly and stay on screen.
+   * The usual method will make them instantly disapear otherwise.
+   */
+  $('.like-btn').hover(function(){
+    $(this).siblings().css('visibility', 'unset');
+  }, function(){
+    $('.emojies').mouseleave(function () {
+      $(this).css('visibility', 'hidden');
+    })
+  });
 });
