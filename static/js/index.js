@@ -37,10 +37,10 @@ $(document).ready(() => {
    * The usual method will make them instantly disapear otherwise.
    */
   $('.like-btn').hover(function(){
-    $(this).siblings().css('visibility', 'unset');
+    $(this).siblings().css('visibility', 'unset').animate({top: '-50px'});
   }, function(){
     $('.emojies').mouseleave(function () {
-      $(this).css('visibility', 'hidden');
+      $(this).css('visibility', 'hidden').css('top', '0px');
     })
   });
 });
