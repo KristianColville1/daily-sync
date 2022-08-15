@@ -108,9 +108,21 @@ class Comment(models.Model):
     comment = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)
-    likes = models.ManyToManyField(User,
-                                   related_name="comment_likes",
-                                   blank=True)
+    total_likes = models.ManyToManyField(User,
+                                         related_name="comment_likes",
+                                         blank=True)
+    thumbs_likes = models.ManyToManyField(User,
+                                          related_name="comment_thumb_likes",
+                                          blank=True)
+    heart_likes = models.ManyToManyField(User,
+                                         related_name="comment_heart_likes",
+                                         blank=True)
+    laugh_likes = models.ManyToManyField(User,
+                                         related_name="comment_laugh_likes",
+                                         blank=True)
+    angry_likes = models.ManyToManyField(User,
+                                         related_name="comment_angry_likes",
+                                         blank=True)
 
     class Meta:
         ordering = ['-created_on']
