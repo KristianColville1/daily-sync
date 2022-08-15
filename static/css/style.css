@@ -38,7 +38,8 @@
 html,
 body {
   max-width: 100%;
-  overflow-x: hidden;
+  overflow: visible;
+  scroll-behavior: smooth;
   background-color: var(--isabelline);
 }
 
@@ -67,7 +68,7 @@ h1 {
 }
 
 .nav-item:hover {
-  background-color: var(--whitesmoke);
+  background-color: var(--isabelline);
   transition: all 0.2s ease-in-out;
 }
 
@@ -289,12 +290,18 @@ form {
 }
 
 .emojies .btn {
-
   text-shadow: 1px 1px 1px var(--independence);
 }
 
 .blue-like {
   color: var(--carolina-blue);
+}
+
+.fa-heart,
+.fa-face-angry,
+.fa-face-laugh-squint,
+.fa-thumbs-up {
+  text-shadow: 1px 1px 1px var(--independence);
 }
 
 .fa-heart {
