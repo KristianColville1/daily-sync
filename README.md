@@ -161,7 +161,7 @@ In no particular order these are the following models created for the Daily Sync
 |[#23](https://github.com/KristianColville1/daily-sync/issues/23)| When setting up the email backend and setting up an account or logging in the username and password fails | Used an addon service by heroku using a mailgun sandbox and separated development & production code so an smtp service is in place |
 |[#25](https://github.com/KristianColville1/daily-sync/issues/25)| Keep getting 500 errors on sign up or login of new users | Reset local database and heroku database and migrated both and this fixed the issue |
 |[#28](https://github.com/KristianColville1/daily-sync/issues/28)| Getting an index out of range error with the calc_time method for shorting the time since created | Removed a variable and adjusted the conditional logic for the first and last characters in the string and this fixed the bug |
-||||
+|[#33](https://github.com/KristianColville1/daily-sync/issues/33)| For an unknown reason, the screen has two scroll bars if the vertical layout is longer than the screen height | Upon investigation I correctly assumed this was caused by bootstrap as I had used a different method of managing page overflow. I changed the overflow of the html and body element to visible and this fixed the issue |
 
 ## Development & Deployment
 ### Version Control
