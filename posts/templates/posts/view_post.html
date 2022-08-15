@@ -9,7 +9,8 @@
     <div class="col-sm-12 col-md-7 mt-2">
       <div class="boxes shadow-sm rounded p-2">
         <div class="post-options dropdown position-relative text-end" id="post-{{post.id}}">
-          <button class="btn dropdown-toggle rounded-circle position-relative mx-1" type="button" data-toggle="dropdown"
+          <button aria-label="Click here to show the options you can use on a post"
+            class="btn dropdown-toggle rounded-circle position-relative mx-1" type="button" data-toggle="dropdown"
             aria-expanded="false" data-flip="false" onclick="postDropdown({{post.id}})">
             <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
           </button>
@@ -55,17 +56,18 @@
           <div class="likes-container col-4 position-relative gx-0">
             <form class="like-btn position-absolute w-100" action="/posts/like_post/{{post.id}}/like/">
               {% csrf_token %}
-              <button class="likes btn w-100">
+              <button name="Like button" class="likes btn w-100"
+                aria-label="Click here to leave a emoji like on a post">
                 {% if user in post.thumbs_likes.all %}
-                <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="blue-like">Like</span>
+                <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="blue-like"> Like</span>
                 {% elif user in post.heart_likes.all %}
-                <i class="fa-solid fa-heart fs-4"></i><span class="">Love</span>
+                <i class="fa-solid fa-heart fs-4"></i><span class=""> Love</span>
                 {% elif user in post.laugh_likes.all %}
-                <i class="fa-solid fa-face-laugh-squint fs-4"></i><span class="">Laugh</span>
+                <i class="fa-solid fa-face-laugh-squint fs-4"></i><span class=""> Laugh</span>
                 {% elif user in post.angry_likes.all %}
-                <i class="fa-solid fa-face-angry fs-4"></i><span class="">Angry</span>
+                <i class="fa-solid fa-face-angry fs-4"></i><span class=""> Angry</span>
                 {% else %}
-                <i class="fa-solid fa-thumbs-up"></i>Like
+                <i class="fa-solid fa-thumbs-up"></i> Like
                 {% endif %}
               </button>
             </form>
@@ -101,7 +103,8 @@
           <form method="post" action="/posts/create_comment/{{post.id}}/">
             {{ comment_form | crispy }}
             {% csrf_token %}
-            <div class="text-end"><button type="submit" class="general-btn btn rounded-5 my-2">Submit</button></div>
+            <div class="text-end"><button type="submit" class="general-btn btn rounded-5 my-2"
+                aria-label="Click here to submit your comment">Submit</button></div>
 
           </form>
         </div>
@@ -134,7 +137,7 @@
           <div class="row user-post-options m-0">
             <form class="like-btn col-12 mx-4" action="/posts/like_comment/{{comment.id}}">
               {% csrf_token %}
-              <button class="btn">
+              <button name="Like comment button" class="btn" aria-label="click here to like this comment">
                 {% if user in comment.likes.all %}
                 <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="blue-like">Like</span>
                 {% else %}
