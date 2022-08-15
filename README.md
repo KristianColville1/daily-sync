@@ -57,9 +57,34 @@ The goal of this project was to create a social media website that takes advanta
 - Build a responsive and accessible website for a wide audience and build it with the latest tools and technology this world has to offer
 - Bring attention to detail and provide a great user experience
 
+[Back to Top](#table-of-contents)
+
 ## User Experience
 ### Target Audience
+
+* Any user that wants to use another general-purpose social media website
+* Users who would like to keep in touch with friends and family alike
+* Users that are familiar with the user experience commonly seen on social media websites
+* Users that enjoy having methods of interaction beyond the common text message
+* People who enjoy writing meaningful content and are looking to express themselves
+* Users that would like to share their daily interactions with the world
+* People who enjoy having ways of personalizing their unique selves within a social environment
+
+
 ### User Requirements and Expectations
+
+* Intuitive navigation throughout the website with a focus on simplicity
+* Information is organized in a structured and easy-to-follow manner
+* There should be feedback provided on most CRUD functionality used
+* Help should be provided only if it does not interfere with the intuitive design
+* Simplicity is paramount to a great social media site so any complexity should be minimized
+* Any user should expect a reputable website to have a high degree of security to protect the user's personal information
+* The website should provide ease of accessibility for visually impaired users
+* The website should provide a sufficient amount of responsivity for various devices used
+* It's expected that any simplicity is correctly implemented to make sure that users can easily navigate around the website
+* It's greatly expected as part of the user experience that any simplicity involved should provide multiple options that perform the same action to help users
+
+
 ### User Stories
 
 | Issue ID | User Story |
@@ -90,6 +115,8 @@ The goal of this project was to create a social media website that takes advanta
 |[#31](https://github.com/KristianColville1/daily-sync/issues/31)| As a registered user I can like a comment on a post but have different emoji options available so that I can better express my feelings towards a comment I've read |
 |[#32](https://github.com/KristianColville1/daily-sync/issues/32)| As the site owner I can provide various options for users to like posts and comments in different ways so that my users can interact in a more meaningful and creative way with each other |
 
+[Back to Top](#table-of-contents)
+
 ## Technologies & Tools
 ## Design
 ### Color Scheme
@@ -102,9 +129,11 @@ The goal of this project was to create a social media website that takes advanta
 ### Data Relationships
 ### Data Modeling
 
+[Back to Top](#table-of-contents)
+
 #### Models
 
-In no particular order these are the following models created for the Daily Sync web app.
+In no particular order, these are the following models created for the Daily Sync web app.
 
 1. Posts
 
@@ -145,6 +174,8 @@ In no particular order these are the following models created for the Daily Sync
 |||||
 
 <br>
+
+[Back to Top](#table-of-contents)
 
 ### Flow Charts
 
