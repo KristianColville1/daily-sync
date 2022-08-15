@@ -179,6 +179,9 @@ form {
   text-shadow: 1px 1px 1px var(--independence);
 }
 
+.search-form {
+  margin-right: 90px;
+}
 /********************profiles */
 
 .profile-image-post {
@@ -284,7 +287,6 @@ form {
   visibility: hidden;
   position: absolute;
   z-index: 99;
-  top: -50px;
 }
 
 .emojies .btn {
