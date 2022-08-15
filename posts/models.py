@@ -65,7 +65,7 @@ class Post(models.Model):
     @property
     def calc_time_since(self):
         """
-        returns the time since posted
+        returns the time since posted in an easy to read format for users
         """
         time_string = timesince.timesince(self.created_on)
         time_options = [
@@ -86,9 +86,9 @@ class Post(models.Model):
                     last = time_string[index + amount_to_cut - 1]
                     char_1 = cut_piece[0]
                     if last == 'e':
-                        time_string = first + char_1 + 'in' + last
+                        time_string = first + char_1 + 'ins'
                     else:
-                        time_string = first + char_1 + last
+                        time_string = first + char_1 + last + 's'
         return time_string
 
 
