@@ -100,17 +100,27 @@ def delete_comment(request, comment_id):
 
 
 # ...................................................... Likes
-def like_post(request, post_id):
+def like_post(request, post_id, emoji):
     """
-    Allows a user to like and unlike a post
+    Allows user to pick an emoji to use on a post
     """
     post = get_object_or_404(Post, id=post_id)
+    emoji_dict = {
+        'like': post.thumbs_likes,
+        'love': post.heart_likes,
+        'laugh': post.laugh_likes,
+        'angry': post.angry_likes,
+    }
 
-    if post.likes.filter(id=request.user.id).exists():
-        post.likes.remove(request.user)
+    if post.total_likes.filter(id=request.user.id).exists():
+        post.total_likes.remove(request.user)
+        for key, value in emoji_dict.items():
+            value.remove(request.user)
     else:
-        post.likes.add(request.user)
-
+        post.total_likes.add(request.user)
+        for key, value in emoji_dict.items():
+            if key == str(emoji):
+                value.add(request.user)
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
