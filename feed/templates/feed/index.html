@@ -142,6 +142,18 @@
         </div>
       </div>
       {% endfor %}
+    <div class="pagination boxes shadow-sm rounded mt-2 py-2">
+      <div class="step-links">
+        {% if posts.has_previous %}
+        <a href="?page=1" class="btn general-btn  py-1 px-2 mx-3 rounded">&laquo; first</a>
+        <a href="?page={{ posts.previous_page_number }}" class="btn general-btn  py-1 px-2 mx-3 rounded">previous</a>
+        {% endif %}
+        {% if posts.has_next %}
+        <a href="?page={{ posts.next_page_number }}" class="btn general-btn py-1 px-2 mx-3 rounded">next</a>
+        <a href="?page={{ posts.paginator.num_pages }}" class="btn general-btn  py-1 px-2 mx-3 rounded">last &raquo;</a>
+        {% endif %}
+      </div>
+    </div>
     </div>
     <div class="col-sm-12 col-md-3 col-lg-4">
       <div class="content-box w-100 shadow-sm rounded p-2 boxes">
