@@ -13,6 +13,16 @@
         <img class="profile-image-feed rounded-circle shadow-sm position-absolute top-50 start-50 translate-middle"
           src="{{ profile.avatar_url }}" alt="current user profile image">
       </div>
+      <div class="mt-5">
+        <div class="list-group feed-profile-options">
+          <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-user"></i> Profile</a>
+          <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-users"></i> Friends</a>
+          <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-message"></i>
+            Messages</a>
+          <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-chess-board"></i>
+            Games</a>
+        </div>
+      </div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-6 mb-2">
       <div class="content-box post-box w-100 shadow-sm rounded-3 p-2 boxes">
@@ -32,12 +42,12 @@
       {% comment "TODO:" %} condition for friends of user posts {% endcomment %}
       <div class="content-box w-100 shadow-sm rounded mt-2 py-1 px-2 boxes">
         <div class="post-options dropdown position-relative text-end" id="post-{{post.id}}">
-          <button class="btn dropdown-toggle rounded-circle position-relative mx-1" type="button"
-            data-toggle="dropdown" aria-expanded="false" data-flip="false"
-            onclick="postDropdown({{post.id}})">
+          <button class="btn dropdown-toggle rounded-circle position-relative mx-1" type="button" data-toggle="dropdown"
+            aria-expanded="false" data-flip="false" onclick="postDropdown({{post.id}})">
             <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
           </button>
-          <ul class="dropdown-menu post-dropdown-{{post.id}} position-absolute top-100 end-0">
+          <ul class="dropdown-menu post-dropdown-{{post.id}} position-absolute top-100 end-0"
+            style="width: fit-content;">
             {% if post.author == user %}
             <li><a class="dropdown-item" href="/posts/edit/{{post.id}}">Edit</a></li>
             <li><a class="dropdown-item" href="/posts/delete/{{post.id}}">Delete</a></li>
@@ -52,10 +62,10 @@
             <img class="profile-image-post rounded-circle shadow-sm mx-3" src="{{ post.author.profile.avatar_url }}"
               alt="profile image of author">
           </div>
-            <ul class="list-style-none">
-              <a class="mx-3 fs-6">{{post.author}}</a>
-              <p class="mx-3 small-and-light">{{post.calc_time_since}}</p>
-            </ul>
+          <ul class="list-style-none">
+            <a class="mx-3 fs-6">{{post.author}}</a>
+            <p class="mx-3 small-and-light">{{post.calc_time_since}}</p>
+          </ul>
         </div>
         <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
           <h5 class="w-100 text-center">{{post.title}}</h5>
@@ -63,42 +73,71 @@
         </a>
 
         <div class="row mx-3 g-0">
-          {% if post.count_likes > 0%}
-          <p class="col-6 text-start">{{post.count_likes}} Likes</p>
-          {% endif %}
-          {% if post.count_comments > 0 %}
-          <p class="col-6 text-end"><a href="{% url 'view_post' post.slug %}">{{post.count_comments}} Comments</a>
+          <p class="col-6 w-50 text-start">
+            {% if post.count_likes > 0%}
+            {{post.count_likes}} Likes
+            {% endif %}
           </p>
-          {% endif %}
+          <p class="col-6 w-50 text-end">
+            {% if post.count_comments > 0 %}
+            <a href="{% url 'view_post' post.slug %}">{{post.count_comments}}
+              Comments</a>
+            {% endif %}
+          </p>
         </div>
 
         <hr class="m-0">
         <div class="row user-post-options m-0">
-          <form class="like-btn col-4" action="/posts/like_post/{{post.id}}">
-            {% csrf_token %}
-            <button class="btn w-100">
-              {% if user in post.likes.all %}
-              <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="blue-like">Like</span>
-              {% else %}
-              <i class="fa-solid fa-thumbs-up"></i>Like
-              {% endif %}
-
-            </button>
-          </form>
+          <div class="likes-container col-4 position-relative gx-0">
+            <form class="like-btn position-absolute w-100" action="/posts/like_post/{{post.id}}/like/">
+              {% csrf_token %}
+              <button class="likes btn w-100">
+                {% if user in post.thumbs_likes.all %}
+                <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="blue-like">Like</span>
+                {% elif user in post.heart_likes.all %}
+                <i class="fa-solid fa-heart fs-4"></i><span class="">Love</span>
+                {% elif user in post.laugh_likes.all %}
+                <i class="fa-solid fa-face-laugh-squint fs-4"></i><span class="">Laugh</span>
+                {% elif user in post.angry_likes.all %}
+                <i class="fa-solid fa-face-angry fs-4"></i><span class="">Angry</span>
+                {% else %}
+                <i class="fa-solid fa-thumbs-up"></i>Like
+                {% endif %}
+              </button>
+            </form>
+            <div class="emojies boxes shadow-sm rounded d-flex flex-row p-2">
+              <form action="/posts/like_post/{{post.id}}/like/">
+                {% csrf_token %}
+                <button class="btn"><i class="fa-solid fa-thumbs-up blue-like"></i></button>
+              </form>
+              <form action="/posts/like_post/{{post.id}}/love/">
+                {% csrf_token %}
+                <button class="btn"><i class="fa-solid fa-heart"></i></button>
+              </form>
+              <form action="/posts/like_post/{{post.id}}/laugh/">
+                {% csrf_token %}
+                <button class="btn"><i class="fa-solid fa-face-laugh-squint"></i></button>
+              </form>
+              <form action="/posts/like_post/{{post.id}}/angry/">
+                {% csrf_token %}
+                <button class="btn"><i class="fa-solid fa-face-angry"></i></button>
+              </form>
+            </div>
+          </div>
           <button class="col-4 btn" onclick="commentForm({{post.id}})">
             <i class="fa-solid fa-comment"></i> Comment
           </button>
           <button class="col-4 btn">
             <i class="fa-solid fa-share-nodes"></i> Share
           </button>
-          </div>
-          <div class="row comment-form-{{post.id}} d-none">
-            <form method="post" action="/posts/create_comment/{{post.id}}/">
-              {{ comment_form | crispy }}
-              {% csrf_token %}
-              <div class="text-end"><button type="submit" class="general-btn btn rounded-5 my-2">Submit</button></div>
-            </form>
-          </div>
+        </div>
+        <div class="row comment-form-{{post.id}} d-none">
+          <form method="post" action="/posts/create_comment/{{post.id}}/">
+            {{ comment_form | crispy }}
+            {% csrf_token %}
+            <div class="text-end"><button type="submit" class="general-btn btn rounded-5 my-2">Submit</button></div>
+          </form>
+        </div>
       </div>
       {% endfor %}
     </div>
@@ -116,23 +155,8 @@
   </div>
 </div>
 
-<!-- Post Modal -->
-<div class="modal fade" id="feed-create-post" tabindex="-1" aria-labelledby="feedCreatePost" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title w-100 text-center" id="create-post">Create a post</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form method="post">
-          {{ form | crispy }}
-          {% csrf_token %}
-
-          <button type="Submit" class="btn post-btn w-100 my-2 text-uppercase">Post</button>
-        </form>
-      </div>
-    </div>
-  </div>
+<!-- Modal -->
+<div class="modal-container">
 </div>
+
 {% endblock %}

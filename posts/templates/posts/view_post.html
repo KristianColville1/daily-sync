@@ -52,17 +52,42 @@
         </a>
         <hr class="m-0">
         <div class="row user-post-options m-0">
-          <form class="like-btn col-4" action="/posts/like_post/{{post.id}}">
-            {% csrf_token %}
-            <button class="btn w-100">
-              {% if user in post.likes.all %}
-              <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="blue-like">Like</span>
-              {% else %}
-              <i class="fa-solid fa-thumbs-up"></i>Like
-              {% endif %}
-
-            </button>
-          </form>
+          <div class="likes-container col-4 position-relative gx-0">
+            <form class="like-btn position-absolute w-100" action="/posts/like_post/{{post.id}}/like/">
+              {% csrf_token %}
+              <button class="likes btn w-100">
+                {% if user in post.thumbs_likes.all %}
+                <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="blue-like">Like</span>
+                {% elif user in post.heart_likes.all %}
+                <i class="fa-solid fa-heart fs-4"></i><span class="">Love</span>
+                {% elif user in post.laugh_likes.all %}
+                <i class="fa-solid fa-face-laugh-squint fs-4"></i><span class="">Laugh</span>
+                {% elif user in post.angry_likes.all %}
+                <i class="fa-solid fa-face-angry fs-4"></i><span class="">Angry</span>
+                {% else %}
+                <i class="fa-solid fa-thumbs-up"></i>Like
+                {% endif %}
+              </button>
+            </form>
+            <div class="emojies boxes shadow-sm rounded d-flex flex-row p-2">
+              <form action="/posts/like_post/{{post.id}}/like/">
+                {% csrf_token %}
+                <button class="btn"><i class="fa-solid fa-thumbs-up blue-like"></i></button>
+              </form>
+              <form action="/posts/like_post/{{post.id}}/love/">
+                {% csrf_token %}
+                <button class="btn"><i class="fa-solid fa-heart"></i></button>
+              </form>
+              <form action="/posts/like_post/{{post.id}}/laugh/">
+                {% csrf_token %}
+                <button class="btn"><i class="fa-solid fa-face-laugh-squint"></i></button>
+              </form>
+              <form action="/posts/like_post/{{post.id}}/angry/">
+                {% csrf_token %}
+                <button class="btn"><i class="fa-solid fa-face-angry"></i></button>
+              </form>
+            </div>
+          </div>
 
 
           <button class="col-4 btn" onclick="commentForm({{post.id}})">
