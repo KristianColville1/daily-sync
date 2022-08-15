@@ -30,7 +30,7 @@
   <title>Daily sync</title>
 </head>
 
-<body class="d-flex flex-column min-vh-100 position-relative">
+<body class="d-flex flex-column min-vh-100">
   <div class="nav-bg position-fixed w-100">
     <nav class="container navbar navbar-expand-lg sticky-top py-0">
       <div class="container-fluid">
@@ -61,7 +61,7 @@
                 data-placement="bottom" title="Home">
                 <i class="fa-solid fa-house"></i></a>
             </li>
-            <li class="nav-item py-auto px-5 position-relative">
+            <li class="nav-item py-auto px-5">
               <a class="nav-link d-flex flex-column text-center p-2" href="#" data-toggle="tooltip"
                 data-placement="bottom" title="Messages">
                 <i class="fa-solid fa-message"></i></a>
@@ -71,36 +71,36 @@
                 data-placement="bottom" title="Notifications">
                 <i class="fa-solid fa-bell"></i></a>
             </li>
-          <div class="dropdown position-absolute end-0">
-            <button class="btn dropdown-toggle  mx-5" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <img class="profile-image-nav rounded-circle shadow-sm" src="{{ request.user.profile.avatar_url }}"
-                alt="profile image of author">
-            </button>
-            <ul class="dropdown-menu nav-dropdown" aria-labelledby="dropdownMenuButton1" id="nav-dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'profile' %}">
-                  <i class="fa-solid fa-user mx-2 " aria-label="Go to your profile page"></i> Profile</a></li>
-              <li><a class="dropdown-item" href="#">
-                  <i class="fa-solid fa-gear mx-2 " aria-label="Go to your account settings"></i> Account</a></li>
-              <li><a class="dropdown-item" role="button" aria-label="click to turn darkmode on or off">
-                  <i class="fa-solid fa-moon mx-2 "></i> Darkmode
-                </a></li>
-              <hr class="dropdown-divider">
-              <li><a class="dropdown-item" href="{% url 'account_logout' %}">
-                  <i class="fa-solid fa-right-from-bracket mx-2 "></i> Logout</a></li>
-            </ul>
-          </div>
-
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-          </li>
-          {% endif %}
-        </ul>
-      </div>
+            <div class="dropdown position-absolute end-0">
+              <button class="btn dropdown-toggle  mx-5" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img class="profile-image-nav rounded-circle shadow-sm" src="{{ request.user.profile.avatar_url }}"
+                  alt="profile image of author">
+              </button>
+              <ul class="dropdown-menu nav-dropdown" aria-labelledby="dropdownMenuButton1" id="nav-dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'profile' %}" aria-label="Go to your profile page">
+                    <i class="fa-solid fa-user mx-2 "></i> Profile</a></li>
+                <li><a class="dropdown-item" href="#" aria-label="Go to your account settings">
+                    <i class="fa-solid fa-gear mx-2 "></i> Account</a></li>
+                <li><a class="dropdown-item" role="button" aria-label="click to turn darkmode on or off">
+                    <i class="fa-solid fa-moon mx-2 "></i> Darkmode
+                  </a></li>
+                <hr class="dropdown-divider">
+                <li><a class="dropdown-item" href="{% url 'account_logout' %}" aria-label="Click here to logout">
+                    <i class="fa-solid fa-right-from-bracket mx-2 "></i> Logout</a></li>
+              </ul>
+            </div>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_signup' %}" aria-label="Click here to sign up to Daily Sync">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}"
+                aria-label="Click here to login to Daily Sync">Login</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
     </nav>
   </div>
   <div class="container g-0 mt-5">
@@ -109,7 +109,7 @@
         {% for message in messages %}
         <div class="alert {{message.tags}} alert-dismissible fade show mt-2 shadow-sm rounded" id="msg" role="alert">
           {{ message | safe }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" aria-label="Click here to close alert message"></button>
         </div>
         {% endfor%}
       </div>
