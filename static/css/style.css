@@ -277,11 +277,6 @@ form {
   border: none;
 }
 
-.likes {
-  font-family: 'Lato',
-    sans-serif;
-}
-
 .emojies {
   width: fit-content;
   visibility: hidden;
@@ -289,7 +284,12 @@ form {
   z-index: 99;
 }
 
+.like-btn {
+  font-family: 'Lato', sans-serif;
+}
+
 .emojies .btn {
+
   text-shadow: 1px 1px 1px var(--independence);
 }
 
