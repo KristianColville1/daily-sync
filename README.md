@@ -84,9 +84,11 @@ The goal of this project was to create a social media website that takes advanta
 |[#22](https://github.com/KristianColville1/daily-sync/issues/22)| As a registered user I can delete a post or comment I have created so that I can personalize my experiences and remove content from my account that I might not want |
 |[#24](https://github.com/KristianColville1/daily-sync/issues/24)| As the site owner I can use custom validation for user passwords so that I can increase the security of my website to improve GDPR compliance in providing good website security |
 |[#26](https://github.com/KristianColville1/daily-sync/issues/26)| As a registered user I can edit a comment I created so that I can fix any errors in my comment or adjust it instead of starting from scratch with a new comment |
-|||
-|||
-|||
+|[#27](https://github.com/KristianColville1/daily-sync/issues/27)| As a registered user I can be followed or follow other users so that I can keep up to date with profiles that I like or am interested in |
+|[#29](https://github.com/KristianColville1/daily-sync/issues/29)| As a registered user I can change the colours of the website so that I can view the website in dark mode and lessen the strain on my eyes when using the website at later hours |
+|[#30](https://github.com/KristianColville1/daily-sync/issues/30)| As a registered user I can like a post but have different emoji options available so that I can better express my feelings towards a post |
+|[#31](https://github.com/KristianColville1/daily-sync/issues/31)| As a registered user I can like a comment on a post but have different emoji options available so that I can better express my feelings towards a comment I've read |
+|[#32](https://github.com/KristianColville1/daily-sync/issues/32)| As the site owner I can provide various options for users to like posts and comments in different ways so that my users can interact in a more meaningful and creative way with each other |
 
 ## Technologies & Tools
 ## Design
