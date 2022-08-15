@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.views import View
+from django.core.paginator import Paginator
 from posts.models import Post
 from posts.forms import PostForm, CommentForm
 
@@ -8,12 +9,14 @@ class FeedViewIndex(View):
     """
     FeedView class
     """
-
     def get(self, request, *args, **kwargs):
         post = Post.objects.filter(status=1).order_by("-created_on")
+        paginator = Paginator(post, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
         form = PostForm()
         context = {
-            'posts': post,
+            'posts': page_obj,
             'comment_form': CommentForm(),
             'form': form,
             'profile': request.user.profile
@@ -22,9 +25,12 @@ class FeedViewIndex(View):
 
     def post(self, request, *args, **kwargs):
         post = Post.objects.filter(status=1).order_by("-created_on")
+        paginator = Paginator(post, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
         form = PostForm()
         context = {
-            'posts': post,
+            'posts': page_obj,
             'comment_form': CommentForm(),
             'form': form,
             'profile': request.user.profile
