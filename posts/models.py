@@ -20,7 +20,21 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now_add=True)
     edited = models.BooleanField(default=False)
-    likes = models.ManyToManyField(User, related_name="post_likes", blank=True)
+    total_likes = models.ManyToManyField(User,
+                                         related_name="post_likes",
+                                         blank=True)
+    thumbs_likes = models.ManyToManyField(User,
+                                          related_name="thumb_likes",
+                                          blank=True)
+    heart_likes = models.ManyToManyField(User,
+                                         related_name="heart_likes",
+                                         blank=True)
+    laugh_likes = models.ManyToManyField(User,
+                                         related_name="laugh_likes",
+                                         blank=True)
+    angry_likes = models.ManyToManyField(User,
+                                         related_name="angry_likes",
+                                         blank=True)
     status = models.IntegerField(choices=STATUS, default=1)
 
     class Meta:
@@ -36,8 +50,8 @@ class Post(models.Model):
         """
         Counts the amount of likes a post has
         """
-        if self.likes.count() > 0:
-            return self.likes.count()
+        if self.total_likes.count() > 0:
+            return self.total_likes.count()
         return ''
 
     def count_comments(self):
