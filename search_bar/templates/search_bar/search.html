@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+            <div class="mt-4 boxes rounded shadow-sm p-3 text-center">
+                {% if searched %}
+                <h1>You searched for ... {{searched}}</h1>
+                {% else %}
+                <h1>If you search for nothing you find nothing :) <h1>
+                {% endif %}
+                <a href="{% url 'feed' %}" class="general-btn btn rounded shadow-sm" role="button"
+                    aria-label="Click here to go back to feed page">Return to feed</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "footer.html" %}
+{% endblock %}
