@@ -111,7 +111,7 @@
         <hr class="m-0">
         {% for comment in comments %}
         <div class="dark-boxes rounded mx-3 my-2">
-          <div class="rounded-pill post-options dropdown text-end">
+          <div class="rounded post-options dropdown text-end">
             <button class="btn dropdown-toggle rounded-circle position-relative mx-3" type="button"
               data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
@@ -131,22 +131,45 @@
               class="profile-image-post rounded-circle shadow-sm mx-3">
             <h6>{{comment.name}}</h6>
           </div>
-
-          <p class="text-center">{{comment.comment}}</p>
-          <p class="text-end"></p>
-          <div class="row user-post-options m-0">
-            <form class="like-btn col-12 mx-4" action="/posts/like_comment/{{comment.id}}">
-              {% csrf_token %}
-              <button name="Like comment button" class="btn" aria-label="click here to like this comment">
-                {% if user in comment.likes.all %}
-                <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="blue-like">Like</span>
-                {% else %}
-                <i class="fa-solid fa-thumbs-up"></i>Like
-                {% endif %}
-
-              </button>
-            </form>
+            <p class="text-center">{{comment.comment}}</p>
+            <p class="text-start mx-4">{{comment.count_likes}} likes</p>
+            <div class="row user-post-options m-0 position-relative">
+              <form class="like-btn" action="/posts/like_comment/{{comment.id}}/like/">
+                {% csrf_token %}
+                <button name="Like button" class="likes btn" aria-label="Click here to leave a emoji like on a post">
+                  {% if user in comment.thumbs_likes.all %}
+                  <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="blue-like"> Like</span>
+                  {% elif user in comment.heart_likes.all %}
+                  <i class="fa-solid fa-heart fs-4"></i><span class=""> Love</span>
+                  {% elif user in comment.laugh_likes.all %}
+                  <i class="fa-solid fa-face-laugh-squint fs-4"></i><span class=""> Laugh</span>
+                  {% elif user in comment.angry_likes.all %}
+                  <i class="fa-solid fa-face-angry fs-4"></i><span class=""> Angry</span>
+                  {% else %}
+                  <i class="fa-solid fa-thumbs-up"></i> Like
+                  {% endif %}
+                </button>
+              </form>
+              <div class="emojies boxes shadow-sm rounded d-flex flex-row p-2">
+                <form action="/posts/like_comment/{{comment.id}}/like/">
+                  {% csrf_token %}
+                  <button class="btn"><i class="fa-solid fa-thumbs-up blue-like"></i></button>
+                </form>
+                <form action="/posts/like_comment/{{comment.id}}/love/">
+                  {% csrf_token %}
+                  <button class="btn"><i class="fa-solid fa-heart"></i></button>
+                </form>
+                <form action="/posts/like_comment/{{comment.id}}/laugh/">
+                  {% csrf_token %}
+                  <button class="btn"><i class="fa-solid fa-face-laugh-squint"></i></button>
+                </form>
+                <form action="/posts/like_comment/{{comment.id}}/angry/">
+                  {% csrf_token %}
+                  <button class="btn"><i class="fa-solid fa-face-angry"></i></button>
+                </form>
+              </div>
           </div>
+
         </div>
         {% endfor %}
       </div>
@@ -155,11 +178,12 @@
 
     <div class="col-sm-12 col-md-5 mt-4">
 
-      {% include "footer.html" %}
+
     </div>
   </div>
 </div>
 <!-- Modal -->
 <div class="modal-container">
 </div>
+{% include "footer.html" %}
 {% endblock %}
