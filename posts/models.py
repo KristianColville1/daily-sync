@@ -131,6 +131,6 @@ class Comment(models.Model):
         return self.content
 
     def count_likes(self):
-        if self.likes.count() > 0:
-            return self.likes.count()
+        if self.total_likes.count() > 0:
+            return self.total_likes.count()
         return ''
