@@ -85,7 +85,7 @@ def delete_post(request, post_id):
     post.delete()
     messages.add_message(request, messages.SUCCESS,
                          'Your post has been deleted')
-    return redirect('/feed/')
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 def delete_comment(request, comment_id):
