@@ -17,7 +17,7 @@ urlpatterns = [
     path('like_post/<int:post_id>/<str:emoji>/',
          views.like_post,
          name='like_post_emoji'),
-    path('like_comment/<int:comment_id>/',
+    path('like_comment/<int:comment_id>/<str:emoji>/',
          views.like_comment,
          name='like_post'),
 

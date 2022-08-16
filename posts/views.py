@@ -124,15 +124,25 @@ def like_post(request, post_id, emoji):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
-def like_comment(request, comment_id):
+def like_comment(request, comment_id, emoji):
     """
-    Allows a user to like and unlike a comment
+    Allows user to pick an emoji to use on a comment
     """
     comment = get_object_or_404(Comment, id=comment_id)
+    emoji_dict = {
+        'like': comment.thumbs_likes,
+        'love': comment.heart_likes,
+        'laugh': comment.laugh_likes,
+        'angry': comment.angry_likes,
+    }
 
-    if comment.likes.filter(id=request.user.id).exists():
-        comment.likes.remove(request.user)
+    if comment.total_likes.filter(id=request.user.id).exists():
+        comment.total_likes.remove(request.user)
+        for key, value in emoji_dict.items():
+            value.remove(request.user)
     else:
-        comment.likes.add(request.user)
-
+        comment.total_likes.add(request.user)
+        for key, value in emoji_dict.items():
+            if key == str(emoji):
+                value.add(request.user)
     return redirect(request.META.get('HTTP_REFERER', '/'))
