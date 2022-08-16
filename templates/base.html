@@ -124,6 +124,10 @@
   {% else %}
   {% include "footer.html"%}
   {% endif %}
+
+  {% comment "csrf_token" %}{% endcomment %}
+  {% csrf_token %}
+  
   {% comment %} Font Awesome Icons {% endcomment %}
   <script src="https://kit.fontawesome.com/0d880835d2.js" crossorigin="anonymous"></script>
   {% comment %} jquery CDN {% endcomment %}
