@@ -156,28 +156,60 @@
                         </div>
                     </div>
                     {% endfor %}
+                    <div class="pagination boxes shadow-sm rounded mt-2 py-2">
+                        <div class="step-links">
+                            {% if posts.has_previous %}
+                            <a href="?page=1" class="btn general-btn  py-1 px-2 mx-3 rounded">&laquo; first</a>
+                            <a href="?page={{ posts.previous_page_number }}"
+                                class="btn general-btn  py-1 px-2 mx-3 rounded">previous</a>
+                            {% endif %}
+                            {% if posts.has_next %}
+                            <a href="?page={{ posts.next_page_number }}"
+                                class="btn general-btn py-1 px-2 mx-3 rounded">next</a>
+                            <a href="?page={{ posts.paginator.num_pages }}"
+                                class="btn general-btn  py-1 px-2 mx-3 rounded">last
+                                &raquo;</a>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-5 col-lg-3 d-none d-md-block">
-            <div class="content-box shadow-sm rounded-3 mx-3">
+            <div class="content-box shadow-sm rounded-3 mx-3 w-100">
                 <h6 class="text-center py-2"> People you may know <i class="fa-solid fa-angle-down"></i>
                 </h6>
-                {% for profile in profiles %}
-                <div class="w-50 position-relative mx-3">
-                    <img class="user-post-image  my-2 rounded-circle shadow-sm" src="{{ profile.avatar_url }}"
+                {% for persons in profiles %}
+                <div class="d-flex flex-row mx-3">
+                    <img class="user-post-image  my-2 rounded-circle shadow-sm" src="{{ persons.avatar_url }}"
                         alt="current user profile image" class="position-absolute">
-                    <a href="view_profile/{{profile.slug}}" aria-label="click link to go to users profile"
-                        class="position-absolute top-50 end-0">
-                        {% if profile.first_name and profile.last_name %}
-                        @{{profile.first_name}} {{profile.last_name}}
-                        {% else %}
-                        @{{profile.user}}
-                        {% endif %}
+                    <a href="view_profile/{{persons.slug}}" aria-label="click link to go to users profile"
+                        class="my-auto">
+                        {{persons.user}}
                     </a>
+                    <div class="d-flex flex-row mx-auto my-auto">
+                        <form action="follow_profile/{{persons.id}}">
+                            <button class="btn btn-light mx-auto"><i class="fa-solid fa-plus"></i> Follow</button>
+                        </form>
+                    </div>
                 </div>
                 {% endfor %}
+                <div class="pagination boxes shadow-sm rounded mt-2 py-2">
+                    <div class="step-links">
+                        {% if profiles.has_previous %}
+                        <a href="?page=1" class="py-1 px-2 mx-3 rounded">&laquo; first</a>
+                        <a href="?page={{ profiles.previous_page_number }}" class="py-1 px-2 mx-3 rounded">previous</a>
+                        {% endif %}
+                        {% if profiles.has_next %}
+                        <a href="?page={{ profiles.next_page_number }}" class="py-1 px-2 mx-3 rounded">next</a>
+                        <a href="?page={{ profiles.paginator.num_pages }}" class="py-1 px-2 mx-3 rounded">last
+                            &raquo;</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% include "footer.html" %}
             </div>
+
         </div>
 
 

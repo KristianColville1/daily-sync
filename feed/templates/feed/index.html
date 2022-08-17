@@ -17,6 +17,8 @@
         <div class="list-group feed-profile-options">
           <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-user"></i> Profile</a>
           <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-users"></i> Friends</a>
+          <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-user-group"></i>
+            Followers</a>
           <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-message"></i>
             Messages</a>
           <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-chess-board"></i>
@@ -43,8 +45,8 @@
       <div class="content-box w-100 shadow-sm rounded mt-2 py-1 px-2 boxes">
         <div class="post-options dropdown position-relative text-end" id="post-{{post.id}}">
           <button aria-label="Click here to show the options you can use on a post"
-            class="btn dropdown-toggle rounded-circle position-relative mx-1" type="button" type="button" data-toggle="dropdown"
-            aria-expanded="false" data-flip="false" onclick="postDropdown({{post.id}})">
+            class="btn dropdown-toggle rounded-circle position-relative mx-1" type="button" type="button"
+            data-toggle="dropdown" aria-expanded="false" data-flip="false" onclick="postDropdown({{post.id}})">
             <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
           </button>
           <ul class="dropdown-menu post-dropdown-{{post.id}} position-absolute top-100 end-0"
@@ -142,22 +144,51 @@
         </div>
       </div>
       {% endfor %}
-    <div class="pagination boxes shadow-sm rounded mt-2 py-2">
-      <div class="step-links">
-        {% if posts.has_previous %}
-        <a href="?page=1" class="btn general-btn  py-1 px-2 mx-3 rounded">&laquo; first</a>
-        <a href="?page={{ posts.previous_page_number }}" class="btn general-btn  py-1 px-2 mx-3 rounded">previous</a>
-        {% endif %}
-        {% if posts.has_next %}
-        <a href="?page={{ posts.next_page_number }}" class="btn general-btn py-1 px-2 mx-3 rounded">next</a>
-        <a href="?page={{ posts.paginator.num_pages }}" class="btn general-btn  py-1 px-2 mx-3 rounded">last &raquo;</a>
-        {% endif %}
+      <div class="pagination boxes shadow-sm rounded mt-2 py-2">
+        <div class="step-links">
+          {% if posts.has_previous %}
+          <a href="?page=1" class="btn general-btn  py-1 px-2 mx-3 rounded">&laquo; first</a>
+          <a href="?page={{ posts.previous_page_number }}" class="btn general-btn  py-1 px-2 mx-3 rounded">previous</a>
+          {% endif %}
+          {% if posts.has_next %}
+          <a href="?page={{ posts.next_page_number }}" class="btn general-btn py-1 px-2 mx-3 rounded">next</a>
+          <a href="?page={{ posts.paginator.num_pages }}" class="btn general-btn  py-1 px-2 mx-3 rounded">last
+            &raquo;</a>
+          {% endif %}
+        </div>
       </div>
     </div>
-    </div>
     <div class="col-sm-12 col-md-3 col-lg-4">
-      <div class="content-box w-100 shadow-sm rounded p-2 boxes">
-        <h6>People you may know</h6>
+      <div class="content-box shadow-sm rounded w-100">
+        <h6 class="text-center py-2"> People you may know <i class="fa-solid fa-angle-down"></i>
+        </h6>
+        {% for persons in profiles %}
+        <div class="d-flex flex-row mx-3">
+          <img class="user-post-image  my-2 rounded-circle shadow-sm" src="{{ persons.avatar_url }}"
+            alt="current user profile image" class="position-absolute">
+          <a href="/profiles/view_profile/{{persons.slug}}" aria-label="click link to go to users profile" class="my-auto">
+            {{persons.user}}
+          </a>
+          <div class="d-flex flex-row mx-auto my-auto">
+            <form action="/profiles/follow_profile/{{persons.id}}">
+              <button class="btn btn-light mx-auto"><i class="fa-solid fa-plus"></i> Follow</button>
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+        <div class="pagination boxes shadow-sm rounded mt-2 py-2">
+          <div class="step-links">
+            {% if profiles.has_previous %}
+            <a href="?page=1" class="py-1 px-2 mx-3 rounded">&laquo; first</a>
+            <a href="?page={{ profiles.previous_page_number }}" class="py-1 px-2 mx-3 rounded">previous</a>
+            {% endif %}
+            {% if profiles.has_next %}
+            <a href="?page={{ profiles.next_page_number }}" class="py-1 px-2 mx-3 rounded">next</a>
+            <a href="?page={{ profiles.paginator.num_pages }}" class="py-1 px-2 mx-3 rounded">last
+              &raquo;</a>
+            {% endif %}
+          </div>
+        </div>
       </div>
       <div class="content-box w-100 shadow-sm rounded p-2 mt-2 boxes">
         <h6>Messages</h6>
