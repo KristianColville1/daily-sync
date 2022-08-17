@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "feed",
     "posts",
     "profiles",
+    "search_bar",
 ]
 
 SITE_ID = 1
