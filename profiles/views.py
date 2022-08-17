@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
+from django.core.paginator import Paginator
 from .models import Profile
 from posts.models import Post
 from posts.forms import CommentForm, PostForm
@@ -13,10 +14,16 @@ class ProfileOwnerView(View):
     def get(self, request, *args, **kwargs):
         post = Post.objects.filter(author=request.user)
         profiles = Profile.objects.exclude(user=request.user)
+        post_paginator = Paginator(post, 10)
+        page_number = request.GET.get('page')
+        post_obj = post_paginator.get_page(page_number)
+        profile_paginator = Paginator(profiles, 5)
+        page_number = request.GET.get('page')
+        profile_obj = profile_paginator.get_page(page_number)
         context = {
             'profile': request.user.profile,
-            'profiles': profiles,
-            'posts': post,
+            'profiles': profile_obj,
+            'posts': post_obj,
             'comment_form': CommentForm(),
             'form': PostForm()
         }
