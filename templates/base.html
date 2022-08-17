@@ -51,8 +51,9 @@
           </span>
         </button>
         <div class="collapse navbar-collapse" id="navbarScroll">
-          <form class="d-flex search-form" role="search">
-            <input class="search-box form-control mx-1 rounded" type="search" placeholder="Search" aria-label="Search">
+          <form class="d-flex search-form" role="search" method="POST" action="{% url 'search' %}">
+            {% csrf_token %}
+            <input class="search-box form-control mx-1 rounded" type="search" placeholder="Search" aria-label="Search" name="searched" id="user_searches">
           </form>
           <ul class="navbar-nav">
             {% if user.is_authenticated %}

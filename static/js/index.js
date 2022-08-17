@@ -43,4 +43,10 @@ $(document).ready(() => {
       $(this).css('visibility', 'hidden').css('top', '0px');
     })
   });
+
+      /**
+      * When user puts mouse inside search bar this loads results the user
+      * has previously entered
+      */;
+      $( "#user_searches" ).autocomplete();
 });
