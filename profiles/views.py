@@ -13,12 +13,11 @@ class ProfileOwnerView(View):
 
     def get(self, request, *args, **kwargs):
         post = Post.objects.filter(author=request.user)
-        profiles = Profile.objects.exclude(user=request.user)
+        profiles = Profile.objects.exclude(follows=request.user.profile)
         post_paginator = Paginator(post, 10)
         page_number = request.GET.get('page')
         post_obj = post_paginator.get_page(page_number)
         profile_paginator = Paginator(profiles, 5)
-        page_number = request.GET.get('page')
         profile_obj = profile_paginator.get_page(page_number)
         context = {
             'profile': request.user.profile,
@@ -34,6 +33,7 @@ class ProfileView(View):
     """
     ProfileView class renders generic user profile view
     """
+
     def get(self, request, slug, *args, **kwargs):
         profile = get_object_or_404(Profile, slug=slug)
         context = {

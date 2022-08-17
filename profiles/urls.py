@@ -6,5 +6,8 @@ urlpatterns = [
     path('view_profile/<slug:slug>/',
          views.ProfileView.as_view(),
          name='user_profile'),
+    path('follow_profile/<int:profile_id>/',
+         views.follow_profile,
+         name='follow'),
     path('user_profiles/', views.ProfilesView.as_view(), name='user_profiles'),
 ]
