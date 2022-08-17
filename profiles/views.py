@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.core.paginator import Paginator
 from .models import Profile
@@ -51,3 +51,22 @@ class ProfilesView(View):
         post = Post.objects.filter(author=request.user)
         context = {'profile': request.user.profile, 'posts': post}
         return render(request, 'profiles/user_profiles.html', context)
+
+
+# .............................................................. Function views
+def follow_profile(request, profile_id):
+    """
+    follow profile adds user profile to following
+    """
+    profile = get_object_or_404(Profile, id=profile_id)
+    profile.follows.add(request.user.profile)
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+def unfollow_profile(request, profile_id):
+    """
+    unfollow profile adds user profile to following
+    """
+    profile = get_object_or_404(Profile, id=profile_id)
+    profile.follows.remove(request.user.profile)
+    return redirect(request.META.get('HTTP_REFERER', '/'))
