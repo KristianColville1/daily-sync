@@ -25,5 +25,6 @@ urlpatterns = [
     path('feed/', include('feed.urls')),
     path('posts/', include('posts.urls')),
     path('profiles/', include('profiles.urls')),
+    path('chats/', include('chats.urls')),
     path('search/', include('search_bar.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
