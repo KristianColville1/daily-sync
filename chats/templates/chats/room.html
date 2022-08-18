@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{{ room_name|json_script:"room-name" }}
+<div class="mt-5 col-sm-10 col-md-8 col-lg-4 offset-sm-1 offset-md-2 offset-lg-4 boxes rounded shadow-sm text-center">
+    <h1>Room > {{room_name}}</h1>
+<textarea id="chat-log" class="w-100" rows="20"></textarea><br>
+<input id="chat-message-input" type="text" size="25"><br>
+<input id="chat-message-submit" type="button" value="Send" class="m-2 general-btn btn">
+</div>
+
+{% endblock %}

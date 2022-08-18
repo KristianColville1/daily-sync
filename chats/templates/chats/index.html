@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-
-<center class="mt-5">
-    <h1>Send messages</h1>
-    <form id="chat-form">
-        <input type="text" name="message">
-    </form>
-</center>
-
+<div class="mt-5 col-sm-10 col-md-8 col-lg-4 offset-sm-1 offset-md-2 offset-lg-4 boxes rounded shadow-sm text-center">
+    <h1>Enter a chatroom name</h1>
+    <hr class="w-50 offset-3">
+    <input id="room-name-input" type="text" size="25">
+    <br>
+    <input id="room-name-submit" type="button" value="Enter" class="m-2 general-btn btn">
+</div>
 {% include "footer.html" %}
 {% endblock %}
