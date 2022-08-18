@@ -48,5 +48,5 @@ $(document).ready(() => {
       * When user puts mouse inside search bar this loads results the user
       * has previously entered
       */;
-      $( "#user_searches" ).autocomplete();
+      $( "#user_searches" ).autocomplete;
 });
