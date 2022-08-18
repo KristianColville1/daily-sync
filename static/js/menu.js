@@ -32,7 +32,9 @@ $('#dropdownMenuButton1').on('click', () => {
 
 /* posts dropdown */
 /* because there are mulitple posts the history is stored and modified
-    in order to slide the correct menu down */
+    in order to slide the correct menu down.
+    Could of used 'this' in regular function but wanted to practice different
+    methods of accomplishing same goal and other use cases. */
 let postDropdownHistory = []
 let postDropdown = (post_id) => {
     if (postDropdownHistory.includes(post_id)) {
