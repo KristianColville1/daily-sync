@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.views import View
 from django.core.paginator import Paginator
+from profiles.models import Profile
 from posts.models import Post
 from posts.forms import PostForm, CommentForm
 
@@ -11,15 +12,18 @@ class FeedViewIndex(View):
     """
     def get(self, request, *args, **kwargs):
         post = Post.objects.filter(status=1).order_by("-created_on")
-        paginator = Paginator(post, 10)
+        profiles = Profile.objects.exclude(follows=request.user.profile)
+        post_paginator = Paginator(post, 10)
         page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-        form = PostForm()
+        post_obj = post_paginator.get_page(page_number)
+        profile_paginator = Paginator(profiles, 3)
+        profile_obj = profile_paginator.get_page(page_number)
         context = {
-            'posts': page_obj,
+            'profile': request.user.profile,
+            'profiles': profile_obj,
+            'posts': post_obj,
             'comment_form': CommentForm(),
-            'form': form,
-            'profile': request.user.profile
+            'form': PostForm()
         }
         return render(request, 'feed/index.html', context)
 
