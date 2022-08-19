@@ -13,6 +13,11 @@
                 <a href="{% url 'feed' %}" class="general-btn btn rounded shadow-sm" role="button"
                     aria-label="Click here to go back to feed page">Return to feed</a>
             </div>
+            <div>
+                {% for result in results %}
+                {{result.search}}
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

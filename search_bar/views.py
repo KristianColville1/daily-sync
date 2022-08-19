@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 def search(request):
     """
-    Search fuction view to view search results
+    Search function view to view search results
     """
     if request.method == "POST":
         searched = request.POST['searched']
