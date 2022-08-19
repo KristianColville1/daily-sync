@@ -29,20 +29,30 @@ class ProfileOwnerView(View):
         return render(request, 'profiles/index.html', context)
 
 
-class ProfileView(View):
+class OtherProfileView(View):
     """
-    ProfileView class renders generic user profile view
+    View another users profile
     """
-
     def get(self, request, slug, *args, **kwargs):
-        profile = get_object_or_404(Profile, slug=slug)
+        user_profile = get_object_or_404(Profile, slug=slug)
+        post = Post.objects.filter(author=user_profile.user)
+        profiles = Profile.objects.exclude(follows=request.user.profile)
+        post_paginator = Paginator(post, 10)
+        page_number = request.GET.get('page')
+        post_obj = post_paginator.get_page(page_number)
+        profile_paginator = Paginator(profiles, 5)
+        profile_obj = profile_paginator.get_page(page_number)
         context = {
-            'profile': profile,
+            'profile': user_profile,
+            'profiles': profile_obj,
+            'posts': post_obj,
+            'comment_form': CommentForm(),
+            'form': PostForm()
         }
-        return render(request, 'profiles/user_profiles.html', context)
+        return render(request, 'profiles/index.html', context)
 
 
-class ProfilesView(View):
+class AllProfilesView(View):
     """
     ProfilesView class renders all users profiles
     """
