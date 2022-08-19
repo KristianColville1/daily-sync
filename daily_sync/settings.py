@@ -67,6 +67,7 @@ INSTALLED_APPS = [
 
 ASGI_APPLICATION = 'daily_sync.asgi.application'
 
+
 SITE_ID = 1
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -122,6 +123,14 @@ if development:
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'channels_redis.core.RedisChannelLayer',
+            'CONFIG': {
+                'hosts': [('127.0.0.1', 6379)]
+            }
+        }
+    }
 else:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_HOST = os.environ.get("MAILGUN_SMTP_SERVER")
@@ -130,10 +139,16 @@ else:
     EMAIL_HOST_PASSWORD = os.environ.get("MAILGUN_SMTP_PASSWORD")
     EMAIL_USE_TLS = True
     DEFAULT_FROM_EMAIL = "daily.sync@example.com"
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'channels_redis.core.RedisChannelLayer',
+            'CONFIG': {
+                'hosts': [(os.environ.get("REDIS_URL"))]
+            }
+        }
+    }
 
-DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
+DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
