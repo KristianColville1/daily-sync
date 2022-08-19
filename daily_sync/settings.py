@@ -36,7 +36,7 @@ DEBUG = development
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
-ALLOWED_HOSTS = ["daily-sync123.herokuapp.com", "localhost"]
+ALLOWED_HOSTS = ["daily-sync123.herokuapp.com", "localhost", "127.0.0.1"]
 
 # Application definition
 
