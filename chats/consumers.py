@@ -9,12 +9,19 @@ class ChatsConsumer(WebsocketConsumer):
         """
         Connects users
         """
-        self.room_group_name = 'test'
+        self.room_name = self.scope['url_route']['kwargs']['room_name']
+        self.room_group_name = 'chat_%s' % self.room_name
 
         async_to_sync(self.channel_layer.group_add)(self.room_group_name,
                                                     self.channel_name)
-
         self.accept()
+
+    def disconnect(self, close_code):
+        """
+        Disconnects consumer
+        """
+        async_to_sync(self.channel_layer.group_discard)(self.room_group_name,
+                                                        self.channel_name)
 
     def receive(self, text_data):
         """
@@ -29,9 +36,8 @@ class ChatsConsumer(WebsocketConsumer):
         })
 
     def chat_message(self, event):
-        """
-        Sends messages
-        """
         message = event['message']
 
-        self.send(text_data=json.dumps({'type': 'chat', 'message': message}))
+        self.send(text_data=json.dumps({
+            'message': message
+        }))
