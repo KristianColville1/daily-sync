@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Chat(models):
+class Chat(models.Model):
     """
     Chat model
     """
