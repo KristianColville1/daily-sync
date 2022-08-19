@@ -44,9 +44,8 @@ body {
 }
 
 h1 {
-  font-weight: 300;
   color: var(--carolina-blue);
-  text-shadow: 1px 1px 1px var(--independence);
+  text-shadow: 1px 1px 1px var(--independence)
 }
 
 .nav-bg {
@@ -164,15 +163,17 @@ form {
 
 .general-btn,
 .log-op-btn {
-  color: var(--turquoise);
-  background-color: var(--queen-blue);
+  color: var(--independence);
+  background-color: var(--carolina-blue);
   font-size: 20px;
+  border: 3px outset var(--carolina-blue);
 }
 
-.general-btn:hover,
-.log-op-btn:hover {
-  color: var(--little-boy-blue);
-  background-color: var(--turquoise);
+.general-btn:active,
+.log-op-btn:active {
+  color: var(--turquoise);
+  background-color: var(--queen-blue);
+  border: 3px inset var(--carolina-blue);
 }
 
 .form-head {
