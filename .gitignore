@@ -11,3 +11,4 @@ cloudinary_python.txt
 *.sqlite3
 emails_sent/
 tester.py
+django_messages-0.6.0.egg-info
