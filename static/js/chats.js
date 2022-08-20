@@ -1,7 +1,5 @@
 /**
- * Code from the django documentation for creating chats
- * I've simplified most of it for readability using jquery syntax as
- * its just easier to digest and parse through when fixing things.
+ * Some code pieces from the django documentation.
  * 
  * Link to original source https: //channels.readthedocs.io/en/latest/tutorial/part_2.html
  */
@@ -47,5 +45,5 @@ const chatSocket = new WebSocket(
 chatSocket.onmessage = function (e) {
     const data = JSON.parse(e.data);
     console.log(data);
-    document.querySelector('#chat-text').value += (data.username + ': ' + data.message + '\n')
+    document.querySelector('#chat-text').value += (data.username + ': ' + data.message + '\n');
 };

@@ -19,14 +19,26 @@ $('#menu-toggle').on('click', () => {
 });
 
 /* Nav dropdown */
-let navDropdown = false
+let navDropdown = false;
 $('#dropdownMenuButton1').on('click', () => {
     if (navDropdown == false) {
-        $('#nav-dropdown-menu').slideDown()
-        navDropdown = true
+        $('#nav-dropdown-menu').slideDown();
+        navDropdown = true;
     } else {
-        $('#nav-dropdown-menu').slideUp()
-        navDropdown = false
+        $('#nav-dropdown-menu').slideUp();
+        navDropdown = false;
+    }
+});
+
+/* Message dropdown */
+let messageDropdown = false;
+$('#message-dropdown').on('click', () => {
+    if (messageDropdown == false) {
+        $('#message-dropdown-menu').slideDown();
+        messageDropdown = true;
+    } else {
+        $('#message-dropdown-menu').slideUp();
+        messageDropdown = false;
     }
 });
 
