@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,11 +62,17 @@
                 data-placement="bottom" title="Home">
                 <i class="fa-solid fa-house"></i></a>
             </li>
-            <li class="nav-item py-auto px-5">
-              <a class="nav-link d-flex flex-column text-center p-2" href="#" data-toggle="tooltip"
-                data-placement="bottom" title="Messages">
-                <i class="fa-solid fa-message"></i></a>
-            </li>
+            <div class="dropdown">
+              <button class="nav-link btn dropdown-toggle mx-5 py-auto px-5" type="button" id="message-dropdown" data-bs-toggle="dropdown"
+                aria-expanded="false" data-toggle="tooltip"
+                data-placement="bottom" title="Messages"><i class="fa-solid fa-message"></i></button>
+              <ul class="dropdown-menu message-dropdown mx-3" aria-labelledby="message-dropdown" id="message-dropdown-menu">
+                <li><a href="{% url 'messages_inbox' %} " class="dropdown-item"><i class="fa-solid fa-inbox"></i> {% trans "Inbox" %}</a></li>
+                <li><a href="{% url 'messages_outbox' %} " class="dropdown-item"><i class="fa-solid fa-paper-plane"></i> {% trans "Sent Messages" %}</a></li>
+                <li><a href="{% url 'messages_compose' %} " class="dropdown-item"><i class="fa-solid fa-reply"></i> {% trans "New Message" %}</a></li>
+                <li><a href="{% url 'messages_trash' %} " class="dropdown-item"><i class="fa-solid fa-trash-can"></i> {% trans "Trash" %}</a></li>
+              </ul>
+            </div>
             <li class="nav-item py-auto px-5">
               <a class="nav-link d-flex flex-column text-center p-2" href="#" data-toggle="tooltip"
                 data-placement="bottom" title="Notifications">
