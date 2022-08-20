@@ -23,6 +23,17 @@ $('#room-name-submit').on('click', (e) => {
 /**
  * Using chat room
  */
+const user_username = JSON.parse(document.getElementById('user_username').textContent);
+document.querySelector('#submit-chat').onclick = function (e) {
+    const messageInputDom = document.querySelector('#chat-message');
+    const message = messageInputDom.value;
+    chatSocket.send(JSON.stringify({
+        'message': message,
+        'username': user_username,
+    }));
+    messageInputDom.value = '';
+};
+
 const roomName = JSON.parse(document.getElementById('room-name').textContent);
 const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 const chatSocket = new WebSocket(
@@ -33,27 +44,8 @@ const chatSocket = new WebSocket(
     '/'
 );
 
-chatSocket.onmessage = (e) =>{
+chatSocket.onmessage = function (e) {
     const data = JSON.parse(e.data);
-    document.querySelector('#chat-log').value += (data.message + '\n');
+    console.log(data);
+    document.querySelector('#chat-text').value += (data.username + ': ' + data.message + '\n')
 };
-
-chatSocket.onclose = (e) =>{
-    console.error('Chat socket closed unexpectedly');
-};
-
-$('#chat-message-input').focus();
-$('#chat-message-input').on('keyup', (e) =>{
-    if (e.keyCode === 13) { // enter, return
-        document.querySelector('#chat-message-submit').click();
-    }
-});
-
-$('#chat-message-submit').on('click', (e) =>{
-    const messageInputDom = document.querySelector('#chat-message-input');
-    const message = messageInputDom.value;
-    chatSocket.send(JSON.stringify({
-        'message': message
-    }));
-    messageInputDom.value = '';
-});
