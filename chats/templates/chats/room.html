@@ -2,12 +2,24 @@
 {% load static %}
 {% block content %}
 
-<div class="mt-5 col-sm-10 col-md-8 col-lg-4 offset-sm-1 offset-md-2 offset-lg-4 boxes rounded shadow-sm text-center">
-    <h1>Room > {{room_name}}</h1>
-<textarea id="chat-log" class="w-100" rows="20"></textarea><br>
-<input id="chat-message-input" type="text" size="25"><br>
-<input id="chat-message-submit" type="button" value="Send" class="m-2 general-btn btn">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 mt-3">
+            <form class="boxes shadow-sm rounded p-2">
+                <div class="form-group">
+                    <h1 class="w-100 pt-5 text-center">Chatroom -> <span class="fst-italic">{{room_name}}</span></h1>
+                    <hr class="w-50 offset-3">
+                    <textarea class="form-control" id="chat-text" rows="10" name="chatroom"></textarea><br>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="chat-message" type="text" placeholder="Write here"><br>
+                </div>
+                <input class="btn general-btn w-100" id="submit-chat" type="button" value="Send">
+            </form>
+        </div>
+    </div>
 </div>
+{{ request.user.username|json_script:"user_username" }}
 {{ room_name|json_script:"room-name" }}
 
 {% endblock %}
