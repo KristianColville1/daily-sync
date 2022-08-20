@@ -13,7 +13,7 @@ $('#menu-toggle').on('click', () => {
             $(toggle_on).removeClass('d-none');
             $(toggle_off).addClass('d-none').fadeIn(1300);
         }
-    }
+    };
 
     thisSwitch();
 });
@@ -43,28 +43,28 @@ $('#message-dropdown').on('click', () => {
 });
 
 /* posts dropdown */
-/* because there are mulitple posts the history is stored and modified
+/* because there are multiple posts the history is stored and modified
     in order to slide the correct menu down.
     Could of used 'this' in regular function but wanted to practice different
     methods of accomplishing same goal and other use cases. */
-let postDropdownHistory = []
+let postDropdownHistory = [];
 let postDropdown = (post_id) => {
     if (postDropdownHistory.includes(post_id)) {
-        $(`.post-dropdown-${post_id}`).slideUp()
-        let index = postDropdownHistory.indexOf(post_id)
+        $(`.post-dropdown-${post_id}`).slideUp();
+        let index = postDropdownHistory.indexOf(post_id);
         if (postDropdownHistory.length > 2) {
-            postDropdownHistory = postDropdownHistory.splice(index, index + 1)
+            postDropdownHistory = postDropdownHistory.splice(index, index + 1);
         } else if (postDropdownHistory.length == 2) {
             if (index > 0) {
-                postDropdownHistory.pop()
+                postDropdownHistory.pop();
             } else {
-                postDropdownHistory = postDropdownHistory(1)
+                postDropdownHistory = postDropdownHistory(1);
             }
         } else {
-            postDropdownHistory = []
+            postDropdownHistory = [];
         }
     } else {
-        $(`.post-dropdown-${post_id}`).slideDown()
-        postDropdownHistory.push(post_id)
+        $(`.post-dropdown-${post_id}`).slideDown();
+        postDropdownHistory.push(post_id);
     }
-}
+};
