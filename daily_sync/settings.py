@@ -65,7 +65,8 @@ INSTALLED_APPS = [
     "search_bar",
 ]
 
-ASGI_APPLICATION = 'daily_sync.asgi.application'
+ASGI_APPLICATION = 'daily_sync.routing.application'
+
 
 
 SITE_ID = 1
@@ -125,11 +126,8 @@ if development:
     }
     CHANNEL_LAYERS = {
         'default': {
-            'BACKEND': 'channels_redis.core.RedisChannelLayer',
-            'CONFIG': {
-                'hosts': [('127.0.0.1', 6379)]
-            }
-        }
+            'BACKEND': 'channels.layers.InMemoryChannelLayer',
+        },
     }
 else:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -143,9 +141,9 @@ else:
         'default': {
             'BACKEND': 'channels_redis.core.RedisChannelLayer',
             'CONFIG': {
-                'hosts': [(os.environ.get("REDIS_URL"))]
-            }
-        }
+                "hosts": [(os.environ.get("REDIS_URL"))],
+            },
+        },
     }
 
 DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
