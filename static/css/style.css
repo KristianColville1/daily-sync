@@ -66,6 +66,7 @@ h1 {
   color: var(--carolina-blue);
 }
 
+.nav-link.dropdown-toggle:hover,
 .nav-item:hover {
   background-color: var(--isabelline);
   transition: all 0.2s ease-in-out;
@@ -163,17 +164,18 @@ form {
 
 .general-btn,
 .log-op-btn {
-  color: var(--independence);
-  background-color: var(--carolina-blue);
-  font-size: 20px;
-  border: 3px outset var(--carolina-blue);
+  color: var(--white);
+  background-color: var(--queen-blue);
+  font-size: 18px;
 }
 
 .general-btn:active,
-.log-op-btn:active {
+.log-op-btn:active,
+.general-btn:hover,
+.log-op-btn:hover {
   color: var(--turquoise);
-  background-color: var(--queen-blue);
-  border: 3px inset var(--carolina-blue);
+  background-color: var(--independence);
+
 }
 
 .form-head {
@@ -326,8 +328,9 @@ form {
 /***************************************************Alert messages*/
 
 .alert {
-  background-color: var(--columbia-blue);
-  color: var(--independence);
+  font-weight: 500;
+  background-color: var(--independence);
+  color: var(--turquoise);
 }
 
 .pos-absolute {
