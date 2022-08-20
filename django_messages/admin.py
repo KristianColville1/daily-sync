@@ -5,21 +5,28 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 
 from django_messages.utils import get_user_model
+
 User = get_user_model()
 
-if "pinax.notifications" in settings.INSTALLED_APPS and getattr(settings, 'DJANGO_MESSAGES_NOTIFY', True):
+if "pinax.notifications" in settings.INSTALLED_APPS and getattr(
+        settings, 'DJANGO_MESSAGES_NOTIFY', True):
     from pinax.notifications import models as notification
 else:
     notification = None
 
 from django_messages.models import Message
 
+
 class MessageAdminForm(forms.ModelForm):
     """
     Custom AdminForm to enable messages to groups and all users.
     """
-    group = forms.ChoiceField(label=_('group'), required=False,
-        help_text=_('Creates the message optionally for all users or a group of users.'))
+    group = forms.ChoiceField(
+        label=_('group'),
+        required=False,
+        help_text=_(
+            'Creates the message optionally for all users or a group of users.'
+        ))
 
     def __init__(self, *args, **kwargs):
         super(MessageAdminForm, self).__init__(*args, **kwargs)
@@ -33,8 +40,9 @@ class MessageAdminForm(forms.ModelForm):
     class Meta:
         model = Message
         fields = ('sender', 'recipient', 'group', 'parent_msg', 'subject',
-                'body', 'sent_at', 'read_at', 'replied_at', 'sender_deleted_at',
-                'recipient_deleted_at')
+                  'body', 'sent_at', 'read_at', 'replied_at',
+                  'sender_deleted_at', 'recipient_deleted_at')
+
 
 class MessageAdmin(admin.ModelAdmin):
     form = MessageAdminForm
@@ -48,14 +56,18 @@ class MessageAdmin(admin.ModelAdmin):
         (_('Message'), {
             'fields': (
                 'parent_msg',
-                'subject', 'body',
+                'subject',
+                'body',
             ),
-            'classes': ('monospace' ),
+            'classes': ('monospace'),
         }),
         (_('Date/time'), {
             'fields': (
-                'sent_at', 'read_at', 'replied_at',
-                'sender_deleted_at', 'recipient_deleted_at',
+                'sent_at',
+                'read_at',
+                'replied_at',
+                'sender_deleted_at',
+                'recipient_deleted_at',
             ),
             'classes': ('collapse', 'wide'),
         }),
@@ -86,7 +98,9 @@ class MessageAdmin(admin.ModelAdmin):
                 recipients_label = 'messages_reply_received'
 
             # Notification for the sender.
-            notification.send([obj.sender], sender_label, {'message': obj,})
+            notification.send([obj.sender], sender_label, {
+                'message': obj,
+            })
 
         if form.cleaned_data['group'] == 'all':
             # send to all users
@@ -107,6 +121,9 @@ class MessageAdmin(admin.ModelAdmin):
 
             if notification:
                 # Notification for the recipient.
-                notification.send([user], recipients_label, {'message' : obj,})
+                notification.send([user], recipients_label, {
+                    'message': obj,
+                })
+
 
 admin.site.register(Message, MessageAdmin)

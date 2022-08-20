@@ -5,10 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
 from django.utils import timezone
-try:
-    from django.urls import reverse
-except ImportError:
-    from django.urls import reverse
+from django.urls import reverse
 from django.conf import settings
 
 from django_messages.models import Message
@@ -62,7 +59,8 @@ def trash(request, template_name='django_messages/trash.html'):
 
 @login_required
 def compose(request, recipient=None, form_class=ComposeForm,
-        template_name='django_messages/compose.html', success_url=None, recipient_filter=None):
+        template_name='django_messages/compose.html', success_url=None,
+        recipient_filter=None):
     """
     Displays and handles the ``form_class`` form to compose new messages.
     Required Arguments: None
@@ -73,6 +71,12 @@ def compose(request, recipient=None, form_class=ComposeForm,
         ``form_class``: the form-class to use
         ``template_name``: the template to use
         ``success_url``: where to redirect after successfull submission
+        ``recipient_filter``: a function which receives a user object and
+                              returns a boolean wether it is an allowed
+                              recipient or not
+
+    Passing GET parameter ``subject`` to the view allows pre-filling the
+    subject field of the form.
     """
     if request.method == "POST":
         sender = request.user
@@ -86,7 +90,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
                 success_url = request.GET['next']
             return HttpResponseRedirect(success_url)
     else:
-        form = form_class()
+        form = form_class(initial={"subject": request.GET.get("subject", "")})
         if recipient is not None:
             recipients = [u for u in User.objects.filter(**{'%s__in' % get_username_field(): [r.strip() for r in recipient.split('+')]})]
             form.fields['recipient'].initial = recipients
