@@ -181,13 +181,15 @@
                 </h6>
                 {% for persons in profiles %}
                 <div class="d-flex flex-row mx-3">
-                    <img class="user-post-image  my-2 rounded-circle shadow-sm" src="{{ persons.avatar_url }}"
+                    <div class="mx-4 d-flex flex-row w-50">
+                        <img class="user-post-image  my-2 rounded-circle shadow-sm" src="{{ persons.avatar_url }}"
                         alt="current user profile image" class="position-absolute">
                     <a href="view_profile/{{persons.slug}}" aria-label="click link to go to users profile"
-                        class="my-auto">
-                        {{persons.user}}
+                        class="my-auto"> 
+                        <p>{{persons.user}}</p>
                     </a>
-                    <div class="d-flex flex-row mx-auto my-auto">
+                    </div>
+                    <div class="w-50 my-3">
                         <form action="follow_profile/{{persons.id}}">
                             <button class="btn btn-light mx-auto"><i class="fa-solid fa-plus"></i> Follow</button>
                         </form>
