@@ -21,8 +21,8 @@
             Followers</a>
           <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-message"></i>
             Messages</a>
-          <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-chess-board"></i>
-            Games</a>
+          <a href="{% url 'chat' %}" class="list-group-item list-group-item-action"><i class="fa-solid fa-comments"></i></i>
+            Chat Rooms</a>
         </div>
       </div>
     </div>
@@ -39,7 +39,6 @@
               post</button></div>
         </div>
       </div>
-
       {% for post in posts %}
       {% comment "TODO:" %} condition for friends of user posts {% endcomment %}
       <div class="content-box w-100 shadow-sm rounded mt-2 py-1 px-2 boxes">
@@ -65,16 +64,15 @@
             <img class="profile-image-post rounded-circle shadow-sm mx-3" src="{{ post.author.profile.avatar_url }}"
               alt="profile image of author">
           </div>
-          <ul class="list-style-none">
-            <a class="mx-3 fs-6">{{post.author}}</a>
-            <p class="mx-3 small-and-light">{{post.calc_time_since}}</p>
+          <ul class="list-group list-unstyled">
+            <li class="list-item"><a class="mx-3 fs-6" href="/profiles/view_profile/{{post.author.profile.slug}}">{{post.author}}</a></li>
+            <li class="list-item"><p class="mx-3 small-and-light">{{post.calc_time_since}}</p></li>
           </ul>
         </div>
         <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
           <h5 class="w-100 text-center">{{post.title}}</h5>
           <p class="text-center">{{post.post_body}}</p>
         </a>
-
         <div class="row mx-3 g-0">
           <p class="col-6 w-50 text-start">
             {% if post.count_likes > 0%}
@@ -97,13 +95,13 @@
               <button name="Like button" class="likes btn w-100"
                 aria-label="Click here to leave a emoji like on a post">
                 {% if user in post.thumbs_likes.all %}
-                <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="blue-like"> Like</span>
+                <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span> Like</span>
                 {% elif user in post.heart_likes.all %}
-                <i class="fa-solid fa-heart fs-4"></i><span class=""> Love</span>
+                <i class="fa-solid fa-heart fs-4"></i><span> Love</span>
                 {% elif user in post.laugh_likes.all %}
-                <i class="fa-solid fa-face-laugh-squint fs-4"></i><span class=""> Laugh</span>
+                <i class="fa-solid fa-face-laugh-squint fs-4"></i><span> Laugh</span>
                 {% elif user in post.angry_likes.all %}
-                <i class="fa-solid fa-face-angry fs-4"></i><span class=""> Angry</span>
+                <i class="fa-solid fa-face-angry fs-4"></i><span> Angry</span>
                 {% else %}
                 <i class="fa-solid fa-thumbs-up"></i> Like
                 {% endif %}
@@ -164,17 +162,20 @@
         </h6>
         {% for persons in profiles %}
         <div class="d-flex flex-row mx-3">
-          <img class="user-post-image  my-2 rounded-circle shadow-sm" src="{{ persons.avatar_url }}"
-            alt="current user profile image" class="position-absolute">
-          <a href="/profiles/view_profile/{{persons.slug}}" aria-label="click link to go to users profile" class="my-auto">
-            {{persons.user}}
+          <div class="mx-4 d-flex flex-row w-50">
+              <img class="user-post-image  my-2 rounded-circle shadow-sm" src="{{ persons.avatar_url }}"
+              alt="current user profile image" class="position-absolute">
+          <a href="/profiles/view_profile/{{persons.slug}}" aria-label="click link to go to users profile"
+              class="my-auto"> 
+              <p>{{persons.user}}</p>
           </a>
-          <div class="d-flex flex-row mx-auto my-auto">
-            <form action="/profiles/follow_profile/{{persons.id}}">
-              <button class="btn btn-light mx-auto"><i class="fa-solid fa-plus"></i> Follow</button>
-            </form>
           </div>
-        </div>
+          <div class="w-50 my-3">
+              <form action="follow_profile/{{persons.id}}">
+                  <button class="btn btn-light mx-auto"><i class="fa-solid fa-plus"></i> Follow</button>
+              </form>
+          </div>
+      </div>
         {% endfor %}
         <div class="pagination boxes shadow-sm rounded mt-2 py-2">
           <div class="step-links">
@@ -191,7 +192,8 @@
         </div>
       </div>
       <div class="content-box w-100 shadow-sm rounded p-2 mt-2 boxes">
-        <h6>Messages</h6>
+        <h6 class="text-center">Messages</h6>
+
       </div>
       <div class="w-100 shadow-sm rounded mt-4">
         {% include "footer.html" %}
