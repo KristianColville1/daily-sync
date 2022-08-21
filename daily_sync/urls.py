@@ -28,4 +28,5 @@ urlpatterns = [
     path('chats/', include('chats.urls')),
     path('search/', include('search_bar.urls')),
     path('messages/', include('django_messages.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(
+    settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
