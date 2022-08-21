@@ -1,38 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Oswald&display=swap');
 
 :root {
-  /* original */
-  --turquoise: #48e5c2ff;
-  --isabelline: #f8f4f1ff;
-  --columbia-blue: #cae1ebff;
-  --little-boy-blue: #89a6fbff;
-  --carolina-blue: #3da5d9ff;
-  --queen-blue: #3f749dff;
-  --independence: #414361ff;
-  --white: white;
+  --black: black;
+  --bright-blue-1:#5cdeff;
+  --bright-blue-2:#76e4fd;
+  --middle-blue-1:#93ebfc;
+  --middle-blue-2:#aef3fc;
+  --light-blue-1:#c6f9fc;
+  --light-blue-2:#d9fdfc;
+  --off-white-1:#eafefc;
+  --off-white-2:#fafdfa;
   --whitesmoke: whitesmoke;
-
-  /* light mode */
-  --turquoise-light: #48e5c2ff;
-  --isabelline-light: #f8f4f1ff;
-  --columbia-blue-light: #cae1ebff;
-  --little-boy-blue-light: #89a6fbff;
-  --carolina-blue-light: #3da5d9ff;
-  --queen-blue-light: #3f749dff;
-  --independence-light: #414361ff;
-  --white-light: white;
-  --whitesmoke-light: whitesmoke;
-
-  /* darkmode */
-  --turquoise-dark: #48e5c2ff;
-  --isabelline-dark: #f8f4f1ff;
-  --columbia-blue-dark: #cae1ebff;
-  --little-boy-blue-dark: #89a6fbff;
-  --carolina-blue-dark: #3da5d9ff;
-  --queen-blue-dark: #3f749dff;
-  --independence-dark: #414361ff;
-  --white-dark: white;
-  --whitesmoke-dark: whitesmoke;
+  --white: white;
 }
 
 html,
@@ -40,12 +19,12 @@ body {
   max-width: 100%;
   overflow: visible;
   scroll-behavior: smooth;
-  background-color: var(--isabelline);
+  background-color: var(--off-white-1);
 }
 
 h1 {
-  color: var(--carolina-blue);
-  text-shadow: 1px 1px 1px var(--independence)
+  color: var(--bright-blue-1);
+  text-shadow: 2px 1px 2px var(--black)
 }
 
 .nav-bg {
@@ -59,16 +38,16 @@ h1 {
 }
 
 .nav-link {
-  color: var(--independence);
+  color: var(--black);
 }
 
 .nav-link:hover {
-  color: var(--carolina-blue);
+  color: var(--bright-blue-1);
 }
 
 .nav-link.dropdown-toggle:hover,
 .nav-item:hover {
-  background-color: var(--isabelline);
+  background-color: var(--whitesmoke);
   transition: all 0.2s ease-in-out;
 }
 
@@ -76,22 +55,8 @@ nav div ul i {
   font-size: 24px;
 }
 
-.navbar-brand,
-.navbar-brand:hover {
-  color: var(--turquoise);
-  font-size: 1.4rem;
-  font-weight: 700;
-  font-family: 'Lato', sans-serif;
-  text-shadow: 1px 1px 1px var(--independence);
-}
-
 .logo {
   width: 40px;
-  border: 2px outset var(--turquoise);
-}
-
-.logo:active {
-  border: 2px inset var(--turquoise);
 }
 
 .navbar-toggler-icon {
@@ -101,33 +66,28 @@ nav div ul i {
 #menu-toggle {
   height: 40px;
   width: 45px;
-  border: 2px outset var(--whitesmoke);
-}
-
-#menu-toggle:active {
-  border: 2px inset var(--whitesmoke);
+  border: 2px solid var(--bright-blue-1);
 }
 
 #menu-toggle span>i {
-  color: var(--turquoise);
+  color: var(--black);
   font-size: 30px;
   transition: all 0.2s ease-in-out;
 }
 
 .search-box {
   height: 40px;
-  background-color: var(--isabelline);
+  background-color: var(--off-white-1);
   border: 2px inset;
 }
 
 /**********************************************Footer */
 footer {
-  color: var(--isabelline);
-  background-color: var(--independence);
+  background-color: var(--off-white-2);
 }
 
 footer a {
-  color: var(--isabelline);
+  color: var(--black);
 }
 
 footer a i {
@@ -135,7 +95,7 @@ footer a i {
 }
 
 footer a i:hover {
-  color: var(--turquoise);
+  color: var(--bright-blue-1);
 }
 
 /**********************************************forms */
@@ -164,23 +124,16 @@ form {
 
 .general-btn,
 .log-op-btn {
-  color: var(--white);
-  background-color: var(--queen-blue);
+  color: var(--black);
+  background-color: var(--bright-blue-1);
+  border: 2px outset var(--bright-blue-2);
   font-size: 18px;
 }
 
 .general-btn:active,
-.log-op-btn:active,
-.general-btn:hover,
-.log-op-btn:hover {
-  color: var(--turquoise);
-  background-color: var(--independence);
-
-}
-
-.form-head {
-  color: var(--carolina-blue);
-  text-shadow: 1px 1px 1px var(--independence);
+.log-op-btn:active {
+  background-color: var(--middle-blue-1);
+  border: 2px inset var(--bright-blue-1);
 }
 
 .search-form {
@@ -240,7 +193,7 @@ form {
 .post-options>button:hover {
   width: 30px;
   height: 30px;
-  background-color: var(--little-boy-blue);
+  background-color: var(--bright-blue-1);
   color: var(--white);
 }
 
@@ -250,31 +203,19 @@ form {
 }
 
 .dropdown-item:hover {
-  background-color: var(--carolina-blue);
-  color: var(--white);
+  background-color: var(--middle-blue-1);
   transition: all 0.3s ease-in-out;
-}
-
-.post-btn {
-  color: var(--little-boy-blue);
-  background-color: var(--turquoise);
-  font-weight: 700;
-}
-
-.post-btn:hover {
-  color: var(--turquoise);
-  background-color: var(--little-boy-blue);
 }
 
 .post-link:hover,
 .post-link {
-  color: var(--independence);
+  color: var(--black);
   cursor: pointer;
 }
 
 .user-post-options .btn:hover {
-  background-color: var(--isabelline);
-  transition: all 0.5s ease-in-out;
+  background-color: var(--off-white-1);
+  transition: all 0.3s ease-in-out;
 }
 
 .user-post-options .btn {
@@ -293,18 +234,18 @@ form {
 }
 
 .emojies .btn {
-  text-shadow: 1px 1px 1px var(--independence);
+  text-shadow: 1px 1px 1px var(--black);
 }
 
 .blue-like {
-  color: var(--carolina-blue);
+  color: var(--bright-blue-1);
 }
 
 .fa-heart,
 .fa-face-angry,
 .fa-face-laugh-squint,
 .fa-thumbs-up {
-  text-shadow: 1px 1px 1px var(--independence);
+  text-shadow: 1px 1px 1px var(--black);
 }
 
 .fa-heart {
@@ -322,15 +263,15 @@ form {
 .modal-label {
   font-size: 24px;
   font-weight: 500;
-  color: var(--carolina-blue);
+  color: var(--bright-blue-2);
 }
 
 /***************************************************Alert messages*/
 
 .alert {
   font-weight: 500;
-  background-color: var(--independence);
-  color: var(--turquoise);
+  background-color: var(--bright-blue-1);
+  color: var(--black);
 }
 
 .pos-absolute {
@@ -340,7 +281,7 @@ form {
 
 /*********************************************************Feed*/
 .feed-profile-options a:hover {
-  color: var(--white);
-  background-color: var(--carolina-blue);
+  color: var(--black);
+  background-color: var(--bright-blue-2);
   transition: all 0.3s ease-in-out;
 }
