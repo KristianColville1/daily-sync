@@ -135,7 +135,32 @@ The goal of this project was to create a social media website that takes advanta
 
 In no particular order, these are the following models created for the Daily Sync web app.
 
-1. Posts
+1. Allauth User Model
+* A for all relationships that correspond to a individual user
+* User model was built using [django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) library
+* When a new user is created a profile model is automatically assigned to the user
+
+<br>
+
+2. Profile Model
+
+| Name | Database Key | Field Type | Validation |
+|---|---|---|---|
+|First_name|**first_name**|CharField|max_length=30, blank=True, null=True|
+|Last_name|**last_name**|CharField|max_length=30, blank=True, null=True|
+|Email|**email**|CharField|max_length=320, unique=True|
+|Date of Birth|**d_o_b**|DateField|blank=True, null=True|
+|Bio|**bio**|TextField|max_length=200, blank=True, unique=False|
+|User|**user**|OneToOneField|User, on_delete=models.CASCADE, related_name='profile'|
+|Avatar|**avatar**|CloudinaryField|'avatar', folder='avatars', null=True, blank=True|
+|Background|**background**|CloudinaryField|'background', folder='backgrounds',  null=True, blank=True|
+|Friends|**friends**|ManyToManyField|'self', blank=True, symmetrical=True, related_name='user_friends'|
+|Follows|**follows**|ManyToManyField|'self', blank=True, symmetrical=False, related_name='user_followers'|
+|Slug|**slug**|AutoSlugField|populate_from="user", unique=True|
+
+<br>
+
+3. Post Model
 
 | Name | Database Key | Field Type | Validation |
 |---|---|---|---|
@@ -155,7 +180,7 @@ In no particular order, these are the following models created for the Daily Syn
 
 <br>
 
-2. Comments
+4. Comment Model
 
 | Name | Database Key | Field Type | Validation |
 |---|---|---|---|
@@ -175,15 +200,15 @@ In no particular order, these are the following models created for the Daily Syn
 
 <br>
 
-3. MessageManager
+5. MessageManager Model
 
-**Purpose: Managing message objects**
+* Purpose: Automates the handling of the message objects like a physical postal service
+* The email backend in 'daily_sync/settings.py' is configured with an addon from [Heroku](https://dashboard.heroku.com/apps) called [MailGun](https://www.mailgun.com/)
+* When a user sends a message on the deployed website an email is also sent to the receiver's email to alert them as well as the actual website
 
-| Name | Database Key | Field Type | Validation |
-|---|---|---|---|
-| None | None | None | None |
+<br>
 
-4. Message
+6. Message
 
 | Name | Database Key | Field Type | Validation |
 |---|---|---|---|
@@ -198,24 +223,6 @@ In no particular order, these are the following models created for the Daily Syn
 |Sender_deleted_at|**sender_deleted_at**|DateTimeField|ugettext_lazy("Sender deleted at"), null=True, blank=True|
 |Recipient_deleted_at|**recipient_deleted_at**|DateTimeField|ugettext_lazy("Recipient deleted at"), null=True, blank=True|
 |Objects|**objects**|**MessageManager**||
-
-<br>
-
-5. Profiles
-
-| Name | Database Key | Field Type | Validation |
-|---|---|---|---|
-|First_name|**first_name**|CharField|max_length=30, blank=True, null=True|
-|Last_name|**last_name**|CharField|max_length=30, blank=True, null=True|
-|Email|**email**|CharField|max_length=320, unique=True|
-|Date of Birth|**d_o_b**|DateField|blank=True, null=True|
-|Bio|**bio**|TextField|max_length=200, blank=True, unique=False|
-|User|**user**|OneToOneField|User, on_delete=models.CASCADE, related_name='profile'|
-|Avatar|**avatar**|CloudinaryField|'avatar', folder='avatars', null=True, blank=True|
-|Background|**background**|CloudinaryField|'background', folder='backgrounds',  null=True, blank=True|
-|Friends|**friends**|ManyToManyField|'self', blank=True, symmetrical=True, related_name='user_friends'|
-|Follows|**follows**|ManyToManyField|'self', blank=True, symmetrical=False, related_name='user_followers'|
-|Slug|**slug**|AutoSlugField|populate_from="user", unique=True|
 
 <br>
 
