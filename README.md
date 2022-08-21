@@ -205,17 +205,17 @@ In no particular order, these are the following models created for the Daily Syn
 
 | Name | Database Key | Field Type | Validation |
 |---|---|---|---|
-|first_name|**first_name**|CharField|max_length=30, blank=True, null=True|
-|last_name|**last_name**|CharField|max_length=30, blank=True, null=True|
-|email|**email**|CharField|max_length=320, unique=True|
-|d_o_b|**d_o_b**|DateField|blank=True, null=True|
-|bio|**bio**|TextField|max_length=200, blank=True, unique=False|
-|user|**user**|OneToOneField|User, on_delete=models.CASCADE, related_name='profile'|
-|avatar|**avatar**|CloudinaryField|'avatar', folder='avatars', null=True, blank=True|
-|background|**background**|CloudinaryField|'background', folder='backgrounds',  null=True, blank=True|
-|friends|**friends**|ManyToManyField|'self', blank=True, symmetrical=True, related_name='user_friends'|
-|follows|**follows**|ManyToManyField|'self', blank=True, symmetrical=False, related_name='user_followers'|
-|slug|**slug**|AutoSlugField|populate_from="user", unique=True|
+|First_name|**first_name**|CharField|max_length=30, blank=True, null=True|
+|Last_name|**last_name**|CharField|max_length=30, blank=True, null=True|
+|Email|**email**|CharField|max_length=320, unique=True|
+|Date of Birth|**d_o_b**|DateField|blank=True, null=True|
+|Bio|**bio**|TextField|max_length=200, blank=True, unique=False|
+|User|**user**|OneToOneField|User, on_delete=models.CASCADE, related_name='profile'|
+|Avatar|**avatar**|CloudinaryField|'avatar', folder='avatars', null=True, blank=True|
+|Background|**background**|CloudinaryField|'background', folder='backgrounds',  null=True, blank=True|
+|Friends|**friends**|ManyToManyField|'self', blank=True, symmetrical=True, related_name='user_friends'|
+|Follows|**follows**|ManyToManyField|'self', blank=True, symmetrical=False, related_name='user_followers'|
+|Slug|**slug**|AutoSlugField|populate_from="user", unique=True|
 
 <br>
 
@@ -240,7 +240,7 @@ In no particular order, these are the following models created for the Daily Syn
 |[#28](https://github.com/KristianColville1/daily-sync/issues/28)| Getting an index out of range error with the calc_time method for shorting the time since created | Removed a variable and adjusted the conditional logic for the first and last characters in the string and this fixed the bug |
 |[#33](https://github.com/KristianColville1/daily-sync/issues/33)| For an unknown reason, the screen has two scroll bars if the vertical layout is longer than the screen height | Upon investigation I correctly assumed this was caused by bootstrap as I had used a different method of managing page overflow. I changed the overflow of the html and body element to visible and this fixed the issue |
 |[#34](https://github.com/KristianColville1/daily-sync/issues/34)| I implemented a modal pop-up for creating posts through javascript and I can't create a post on the profile page because there's a csrf_token error | Added a csrf_token to the base template in order to catch it with javascript and use anywhere when creating posts |
-||||
+|[#36](https://github.com/KristianColville1/daily-sync/issues/34)| Images are not being loaded by Heroku when deployed, and a server returns a 404 status on those images | Changed image paths, tested multiple outputs, adjusted code with no luck. I checked the documentation and I had django-heroku installed but not added and after setting up it loads the images. Added heroku settings local at bottom of settings.py in daily_sync directory |
 ||||
 |||| 
 
