@@ -205,10 +205,11 @@ In no particular order, these are the following models created for the Daily Syn
 * Purpose: Automates the handling of the message objects like a physical postal service
 * The email backend in 'daily_sync/settings.py' is configured with an addon from [Heroku](https://dashboard.heroku.com/apps) called [MailGun](https://www.mailgun.com/)
 * When a user sends a message on the deployed website an email is also sent to the receiver's email to alert them as well as the actual website
+* Both MessageManager and Message models were acquired using the [django-messages](https://django-messages.readthedocs.io/en/latest/) module and adjusted for the needs of the project and errors in the PY version were corrected using the master branch from the source
 
 <br>
 
-6. Message
+6. Message Model
 
 | Name | Database Key | Field Type | Validation |
 |---|---|---|---|
