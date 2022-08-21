@@ -20,9 +20,9 @@ body {
   overflow: visible;
   scroll-behavior: smooth;
   background: url('../img/background.jpeg') no-repeat center center;
-  background-color: var(--light-blue-2);
+  background-color: var(--whitesmoke);
   background-size: cover;
-  background-blend-mode: luminosity;
+  background-blend-mode: darken;
 }
 
 h1 {
