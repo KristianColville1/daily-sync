@@ -3,13 +3,13 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
-    <div class="row  position-relative gx-0">
+    <div class="row  position-relative gx-0 mt-2">
         <div class="col-sm-12 col-md-7 col-lg-9">
             <img src="{{profile.background_url}}" alt="user profile background"
-                class="user-bg shadow-sm rounded-3 w-100">
+                class="user-bg shadow-sm rounded-3 w-100 border">
             <div class="col-5">
                 <div>
-                    <img class="profile-img-profile my-2 rounded-circle shadow-sm position-absolute top-0 start-0 mx-4"
+                    <img class="profile-img-profile my-2 rounded-circle shadow-sm border position-absolute top-0 start-0 mx-4"
                         src="{{ profile.avatar_url }}" alt="current user profile image">
                     {% if profile.first_name %}
                     <h6>{{profile.first_name}}</h6>
@@ -18,29 +18,29 @@
             </div>
             <div class="row gx-0 my-1">
                 <div class="col-sm-12 col-md-4">
-                    <div class="boxes shadow-sm rounded p-2 mx-2">
+                    <div class="boxes shadow-sm rounded border p-2 mx-2">
                         <h4 class="text-start">Intro</h4>
                         <p class="text-start ">{{ profile.bio }}</p>
                     </div>
-                    <div class="boxes shadow-sm rounded p-2 m-2">
+                    <div class="boxes shadow-sm rounded border p-2 m-2">
                         <h4 class="text-start">Friends</h4>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-8">
-                    <div class="content-box post-box w-100 shadow-sm rounded p-2 boxes">
+                    <div class="content-box post-box w-100 shadow-sm rounded border p-2 boxes">
                         <div class="row">
                             <div class="col-2">
-                                <img class="profile-image-post rounded-circle shadow-sm " src="{{ profile.avatar_url }}"
+                                <img class="profile-image-post rounded-circle shadow-sm border" src="{{ profile.avatar_url }}"
                                     alt="profile image of author"></div>
                             <div class="col-10">
-                                <button class="btn create-post-btn w-100 rounded-pill text-start" type="button"
+                                <button class="btn create-post-btn w-100 rounded-pill border text-start" type="button"
                                     aria-label="Click here to create a post" data-bs-toggle="modal"
                                     data-bs-target="#feed-create-post">Create
                                     a
                                     post</button></div>
                         </div>
                     </div>
-                    <div class="boxes my-1 p-2 shadow-sm rounded">
+                    <div class="boxes my-1 p-2 shadow-sm rounded border">
                         <h4>Posts</h4>
                         <hr class="g-0 m-0">
                         <div class="w-100 d-flex flex-row">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     {% for post in posts %}
-                    <div class="content-box w-100 shadow-sm rounded mt-1 py-1 px-2 boxes">
+                    <div class="content-box w-100 shadow-sm rounded border mt-1 py-1 px-2 boxes">
                         <div class="post-options dropdown position-relative text-end" id="post-{{post.id}}">
                             <button name="Post options button dropdown"
                                 aria-label="Click here to show the options you can use on a post"
@@ -70,7 +70,7 @@
                         </div>
                         <div class="author-post">
                             <div class="w-100 d-flex flex-row">
-                                <img class="profile-image-post rounded-circle shadow-sm mx-3"
+                                <img class="profile-image-post rounded-circle shadow-sm border mx-3"
                                     src="{{ post.author.profile.avatar_url }}" alt="profile image of author">
                             </div>
                             <ul class="list-style-none">
@@ -82,7 +82,6 @@
                             <h5 class="w-100 text-center">{{post.title}}</h5>
                             <p class="text-center">{{post.post_body}}</p>
                         </a>
-
                         <div class="row mx-3 g-0">
                             <p class="col-6 w-50 text-start">
                                 {% if post.count_likes > 0%}
@@ -96,7 +95,6 @@
                                 {% endif %}
                             </p>
                         </div>
-
                         <hr class="m-0">
                         <div class="row user-post-options m-0">
                             <div class="likes-container col-4 position-relative gx-0">
@@ -156,7 +154,7 @@
                         </div>
                     </div>
                     {% endfor %}
-                    <div class="pagination boxes shadow-sm rounded mt-2 py-2">
+                    <div class="pagination boxes shadow-sm rounded border mt-2 py-2">
                         <div class="step-links">
                             {% if posts.has_previous %}
                             <a href="?page=1" class="btn general-btn  py-1 px-2 mx-3 rounded">&laquo; first</a>
@@ -176,7 +174,7 @@
             </div>
         </div>
         <div class="col-md-5 col-lg-3 d-none d-md-block">
-            <div class="content-box shadow-sm rounded-3 mx-3 w-100">
+            <div class="content-box shadow-sm rounded-3 border mx-3 w-100">
                 <h6 class="text-center py-2"> People you may know <i class="fa-solid fa-angle-down"></i>
                 </h6>
                 {% for persons in profiles %}
