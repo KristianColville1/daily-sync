@@ -146,7 +146,11 @@ In no particular order, these are the following models created for the Daily Syn
 |Created on| **created_on** | DateTimeField |auto_now_add=True|
 |Updated on| **updated_on** | DateTimeField |auto_now_add=True|
 |Edited| **edited** | BooleanField |default=False|
-|Likes| **likes** | ManyToManyField |User, related_name='post_likes', blank=True|
+|Total likes| **total_likes** | ManyToManyField |User, related_name='post_likes', blank=True|
+|Thumbs likes| **thumbs_likes** | ManyToManyField |User, related_name='thumb_likes', blank=True|
+|Heart likes| **heart_likes** | ManyToManyField |User, related_name='heart_likes', blank=True|
+|Laugh likes| **laugh_likes** | ManyToManyField |User, related_name='laugh_likes', blank=True|
+|Angry likes| **angry_likes** | ManyToManyField |User, related_name='angry_likes', blank=True|
 | Status| **status** | IntegerField |choices=STATUS, default=1|
 
 <br>
@@ -155,23 +159,63 @@ In no particular order, these are the following models created for the Daily Syn
 
 | Name | Database Key | Field Type | Validation |
 |---|---|---|---|
-|||||
+| Post | **post** | ForeignKey | Post, on_delete=models.CASCADE, related_name="comments" |
+|Contributor| **contributor**| TextField |User, on_delete=models.CASCADE, related_name="comments", null=True|
+|Name| **name** | CharField |max_length=100|
+|Email| **email** | EmailField | none |
+|Comment|**comment**| TextField | none |
+| Created_on |**created_on**| DateTimeField | auto_now_add=True |
+| Approved |**approved**| BooleanField | default=True |
+|Total likes| **total_likes** | ManyToManyField |User, related_name='comment_likes', blank=True|
+|Thumbs likes| **thumbs_likes** | ManyToManyField |User, related_name='thumb_likes', blank=True|
+|Heart likes| **heart_likes** | ManyToManyField |User, related_name='comment_heart_likes', blank=True|
+|Laugh likes| **laugh_likes** | ManyToManyField |User, related_name='comment_laugh_likes', blank=True|
+|Angry likes| **angry_likes** | ManyToManyField |User, related_name='comment_angry_likes', blank=True|
+| Status| **status** | IntegerField |choices=STATUS, default=1|
 
 <br>
 
-3. Messages
+3. MessageManager
+
+**Purpose: Managing message objects**
 
 | Name | Database Key | Field Type | Validation |
 |---|---|---|---|
-|||||
+| None | None | None | None |
+
+4. Message
+
+| Name | Database Key | Field Type | Validation |
+|---|---|---|---|
+|Subject|**subject**|*encrypt(CharField())*|ugettext_lazy("Subject"), max_length=100)|
+|Body|**body**|*encrypt(TextField())*|ugettext_lazy("Body"), max_length=1400)|
+|Sender|**sender**|ForeignKey|AUTH_USER_MODEL,related_name='sent_messages',verbose_name=_("Sender"),on_delete=models.PROTECT|
+|Recipient|**recipient**|ForeignKey|AUTH_USER_MODEL, related_name='received_messages', null=True, blank=True, verbose_name=_("Recipient"), on_delete=models.SET_NULL|
+|Parent_msg|**parent_msg**|ForeignKey|'self', related_name='next_messages', null=True, blank=True, verbose_name=_("Parent message"), on_delete=models.SET_NULL|
+|Sent_at|**sent_at**|DateTimeField|ugettext_lazy("sent at"), null=True, blank=True|
+|Read_at|**read_at**|DateTimeField|ugettext_lazy("read at"), null=True, blank=True|
+|Replied_at|**replied_at**|DateTimeField|ugettext_lazy("replied at"), null=True, blank=True|
+|Sender_deleted_at|**sender_deleted_at**|DateTimeField|ugettext_lazy("Sender deleted at"), null=True, blank=True|
+|Recipient_deleted_at|**recipient_deleted_at**|DateTimeField|ugettext_lazy("Recipient deleted at"), null=True, blank=True|
+|Objects|**objects**|**MessageManager**||
 
 <br>
 
-4. Profiles
+5. Profiles
 
 | Name | Database Key | Field Type | Validation |
 |---|---|---|---|
-|||||
+|first_name|**first_name**|CharField|max_length=30, blank=True, null=True|
+|last_name|**last_name**|CharField|max_length=30, blank=True, null=True|
+|email|**email**|CharField|max_length=320, unique=True|
+|d_o_b|**d_o_b**|DateField|blank=True, null=True|
+|bio|**bio**|TextField|max_length=200, blank=True, unique=False|
+|user|**user**|OneToOneField|User, on_delete=models.CASCADE, related_name='profile'|
+|avatar|**avatar**|CloudinaryField|'avatar', folder='avatars', null=True, blank=True|
+|background|**background**|CloudinaryField|'background', folder='backgrounds',  null=True, blank=True|
+|friends|**friends**|ManyToManyField|'self', blank=True, symmetrical=True, related_name='user_friends'|
+|follows|**follows**|ManyToManyField|'self', blank=True, symmetrical=False, related_name='user_followers'|
+|slug|**slug**|AutoSlugField|populate_from="user", unique=True|
 
 <br>
 
@@ -266,3 +310,13 @@ To deploy a project using Heroku follow these steps:
     - It will reveal your deployed app
     
 [Back to Top](#table-of-contents)
+
+## Credits
+
+[Creating Chat rooms](https://www.youtube.com/watch?v=F4nwRQPXD8w)
+
+[Using Daphne on Heroku and setting up redis](https://www.youtube.com/watch?v=zizzeE4Obc0)
+
+[Django Messages](https://django-messages.readthedocs.io/en/latest/) for django_messages module and updating to the [latest version](https://github.com/arneb/django-messages) allowed me to create a messaging system rapidly.
+
+## Acknowledgments
