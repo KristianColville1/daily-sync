@@ -56,7 +56,12 @@ nav div ul i {
 }
 
 .logo {
-  width: 40px;
+  height: 45px;
+  width: 45px;
+  border: 2px outset var(--bright-blue-1);
+  background: url('../img/favicon/android-chrome-192x192.png') no-repeat center center;
+  background-size: contain;
+  border-radius: 50%;
 }
 
 .navbar-toggler-icon {

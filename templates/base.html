@@ -31,17 +31,11 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
+  {% if user.is_authenticated %}
   <div class="nav-bg position-fixed w-100">
     <nav class="container navbar navbar-expand-lg sticky-top py-0">
       <div class="container-fluid">
-        {% if user.is_authenticated %}
-        <a class="navbar-brand fst-italic" href="{% url 'feed' %}">
-          <img class="logo shadow-sm rounded" src="{% static 'img/favicon/android-chrome-192x192.png' %}"
-            alt="Daily Sync" aria-label="Daily Sync logo"></a>
-        {% else %}
-        <a class="navbar-brand fst-italic" href="{% url 'home' %}">
-          <i class="fa-solid fa-share-nodes"></i> Daily Sync</a>
-        {% endif %}
+        <a class="navbar-brand fst-italic logo my-1" href="{% url 'feed' %}"></a>
         <button id="menu-toggle" class="navbar-toggler position-relative" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
           aria-label="Toggle navigation">
@@ -122,7 +116,7 @@
       </div>
     </div>
   </div>
-
+  {% endif %}
 
   {% block content %}
   {% endblock %}
