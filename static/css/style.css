@@ -19,7 +19,10 @@ body {
   max-width: 100%;
   overflow: visible;
   scroll-behavior: smooth;
-  background-color: var(--off-white-1);
+  background: url('../img/background.jpeg') no-repeat center center;
+  background-color: var(--light-blue-2);
+  background-size: cover;
+  background-blend-mode: luminosity;
 }
 
 h1 {
@@ -58,7 +61,6 @@ nav div ul i {
 .logo {
   height: 45px;
   width: 45px;
-  border: 2px outset var(--bright-blue-1);
   background: url('../img/favicon/android-chrome-192x192.png') no-repeat center center;
   background-size: contain;
   border-radius: 50%;
