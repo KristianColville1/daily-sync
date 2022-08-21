@@ -63,7 +63,8 @@ INSTALLED_APPS = [
     "profiles",
     "chats",
     "search_bar",
-    "django_messages"
+    "django_messages",
+    "notifications"
 ]
 
 ASGI_APPLICATION = 'daily_sync.routing.application'
