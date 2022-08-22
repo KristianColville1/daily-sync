@@ -1,15 +1,16 @@
 from django.urls import path
+from django.contrib.auth.decorators import login_required
 from . import views
 
 urlpatterns = [
-    path('', views.ProfileOwnerView.as_view(), name='profile'),
+    path('', login_required(views.ProfileOwnerView.as_view()), name='profile'),
     path('view_profile/<slug:slug>/',
-         views.OtherProfileView.as_view(),
+         login_required(views.OtherProfileView.as_view()),
          name='view_profile'),
     path('follow_profile/<int:profile_id>/',
-         views.follow_profile,
+         login_required(views.follow_profile),
          name='follow'),
     path('user_profiles/',
-         views.AllProfilesView.as_view(),
+         login_required(views.AllProfilesView.as_view()),
          name='user_profiles'),
 ]

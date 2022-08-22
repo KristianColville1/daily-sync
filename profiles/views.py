@@ -1,13 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required
 from .models import Profile
 from posts.models import Post
 from posts.forms import CommentForm, PostForm
 
 
-@login_required(login_url='/accounts/login/')
 class ProfileOwnerView(View):
     """
     ProfileOwnerView class renders a owners profile
@@ -31,7 +29,6 @@ class ProfileOwnerView(View):
         return render(request, 'profiles/index.html', context)
 
 
-@login_required(login_url='/accounts/login/')
 class OtherProfileView(View):
     """
     View another users profile
@@ -56,7 +53,6 @@ class OtherProfileView(View):
         return render(request, 'profiles/index.html', context)
 
 
-@login_required(login_url='/accounts/login/')
 class AllProfilesView(View):
     """
     ProfilesView class renders all users profiles
