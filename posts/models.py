@@ -14,9 +14,8 @@ class Post(models.Model):
                                on_delete=models.CASCADE,
                                related_name="posts",
                                null=True)
-    title = models.TextField(max_length=200)
-    slug = AutoSlugField(populate_from="title", unique_with="author")
     post_body = models.TextField(max_length=500)
+    slug = AutoSlugField(populate_from="post_body", unique_with="author")
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now_add=True)
     edited = models.BooleanField(default=False)
@@ -36,6 +35,7 @@ class Post(models.Model):
                                          related_name="angry_likes",
                                          blank=True)
     status = models.IntegerField(choices=STATUS, default=1)
+    shared = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_on']
@@ -99,7 +99,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Post,
                              on_delete=models.CASCADE,
                              related_name="comments")
-    contributer = models.ForeignKey(User,
+    contributor = models.ForeignKey(User,
                                     on_delete=models.CASCADE,
                                     related_name="comments",
                                     null=True)

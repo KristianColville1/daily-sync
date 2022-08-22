@@ -10,15 +10,9 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = (
-            'title',
             'post_body',
         )
         widgets = {
-            'title':
-            forms.Textarea(attrs={
-                'rows': 1,
-                'placeholder': 'Write the title of your post here'
-            }),
             'post_body':
             forms.Textarea(attrs={
                 'rows': 6,
