@@ -11,9 +11,9 @@ class FeedViewIndex(View):
     FeedView class
     """
     def get(self, request, *args, **kwargs):
-        post = Post.objects.filter(status=1).order_by("-created_on")
+        post = Post.objects.filter(author=request.user)
         profiles = Profile.objects.exclude(follows=request.user.profile)
-        post_paginator = Paginator(post, 10)
+        post_paginator = Paginator(post, 9)
         page_number = request.GET.get('page')
         post_obj = post_paginator.get_page(page_number)
         profile_paginator = Paginator(profiles, 3)

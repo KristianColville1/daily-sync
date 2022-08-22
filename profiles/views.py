@@ -8,7 +8,7 @@ from posts.forms import CommentForm, PostForm
 
 class ProfileOwnerView(View):
     """
-    ProfileOwnerView class renders a oweners profile
+    ProfileOwnerView class renders a owners profile
     """
 
     def get(self, request, *args, **kwargs):
