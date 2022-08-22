@@ -34,7 +34,7 @@
               alt="profile image of author"></div>
           <div class="col-10">
             <button class="btn create-post-btn w-100 rounded-pill border text-start" type="button"
-              aria-label="Click here to create a post" data-bs-toggle="modal" data-bs-target="#feed-create-post">Create
+              aria-label="Click here to create a post" data-bs-toggle="modal" data-bs-target="#feed-create-post" onclick="addModalContents('post')">Create
               a
               post</button></div>
         </div>
@@ -124,10 +124,10 @@
               </form>
             </div>
           </div>
-          <button class="col-4 btn" onclick="commentForm({{post.id}})">
+          <button class="col-4 btn" aria-label="click here to create a comment"  onclick="commentForm({{post.id}})">
             <i class="fa-solid fa-comment"></i> Comment
           </button>
-          <button class="col-4 btn">
+          <button class="col-4 btn" data-bs-toggle="modal" data-bs-target="#feed-create-post" aria-label="click here to share a post" onclick="addModalContents('sharePost')">
             <i class="fa-solid fa-share-nodes"></i> Share
           </button>
         </div>
