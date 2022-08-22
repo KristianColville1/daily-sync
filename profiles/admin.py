@@ -8,7 +8,7 @@ class PostInlineAdmin(admin.StackedInline):
     """
     PostInlineAdmin mixin to display posts in user inside admin panel.
     Provides a cleaner interface to work with. Uses Summernote to provide a
-    better editer.
+    better editor.
     """
     model = Post
     list_display = ('title', 'slug', 'status', 'created_on')
@@ -19,7 +19,7 @@ class CommentInlineAdmin(admin.StackedInline):
     """
     CommentInlineAdmin mixin to display posts in user inside admin panel.
     Provides a cleaner interface to work with. Uses Summernote to provide a
-    better editer.
+    better editor.
     """
     model = Comment
     list_display = ('content', 'created_on')

@@ -6,7 +6,7 @@ from django.utils import timesince
 STATUS = ((0, "Draft"), (1, "Posted"))
 
 
-class BaseModelForContentWriting(models.Model):
+class Base(models.Model):
     """
     Base Model for content writing.
     """
@@ -45,7 +45,7 @@ class BaseModelForContentWriting(models.Model):
         return time_string
 
 
-class Post(BaseModelForContentWriting):
+class Post(Base):
     """
     Post model
     """
@@ -93,11 +93,11 @@ class Post(BaseModelForContentWriting):
         return ''
 
 
-class Comment(BaseModelForContentWriting):
+class Comment(Base):
     """
     Comment model class
     """
-    post_commented_on = models.ForeignKey(Post,
+    post_commented = models.ForeignKey(Post,
                              on_delete=models.CASCADE,
                              related_name="comments")
     contributor = models.ForeignKey(User,
