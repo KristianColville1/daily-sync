@@ -136,7 +136,6 @@
                                     </form>
                                 </div>
                             </div>
-
                             <button class="col-4 btn" onclick="commentForm({{post.id}})">
                                 <i class="fa-solid fa-comment"></i> Comment
                             </button>
@@ -207,15 +206,9 @@
                         {% endif %}
                     </div>
                 </div>
-                {% include "footer.html" %}
             </div>
-
+            <div class="w-100 mx-3 shadow-sm rounded border mt-2 overflow-hidden">{% include "footer.html" %}</div>
         </div>
-
-
     </div>
-</div>
-<!-- Modal -->
-<div class="modal-container">
 </div>
 {% endblock %}

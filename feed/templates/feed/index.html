@@ -30,10 +30,10 @@
       <div class="content-box post-box w-100 shadow-sm border rounded-3 p-2 boxes">
         <div class="row">
           <div class="col-2">
-            <img class="profile-image-post rounded-circle shadow-sm" src="{{ profile.avatar_url }}"
+            <img class="profile-image-post rounded-circle border shadow-sm" src="{{ profile.avatar_url }}"
               alt="profile image of author"></div>
           <div class="col-10">
-            <button class="btn create-post-btn w-100 rounded-pill text-start" type="button"
+            <button class="btn create-post-btn w-100 rounded-pill border text-start" type="button"
               aria-label="Click here to create a post" data-bs-toggle="modal" data-bs-target="#feed-create-post">Create
               a
               post</button></div>
@@ -69,7 +69,6 @@
           </ul>
         </div>
         <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
-          <h5 class="w-100 text-center">{{post.title}}</h5>
           <p class="text-center">{{post.post_body}}</p>
         </a>
         <div class="row mx-3 g-0">
@@ -199,10 +198,6 @@
       </div>
     </div>
   </div>
-</div>
-
-<!-- Modal -->
-<div class="modal-container">
 </div>
 
 {% endblock %}
