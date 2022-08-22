@@ -1,11 +1,13 @@
 from django.shortcuts import get_object_or_404, render
 from django.views import View
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 from profiles.models import Profile
 from posts.models import Post
 from posts.forms import PostForm, CommentForm
 
 
+@login_required(login_url='/accounts/login/')
 class FeedViewIndex(View):
     """
     FeedView class
@@ -42,6 +44,7 @@ class FeedViewIndex(View):
         return render(request, 'feed/index.html', context)
 
 
+@login_required(login_url='/accounts/login/')
 class FeedViewPost(View):
     """
     FeedViewPost class
