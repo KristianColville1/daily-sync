@@ -2,23 +2,20 @@
  * comment form
  function collects the post id and manipulates
  the appropriate container with the element to select */
+
 var commentForm = (postID) => {
     let selector = `.comment-form-${postID}`;
-    $(selector).removeClass('d-none');
+    if ($(selector).hasClass('opened')){
+        $(selector).removeClass('opened').slideUp();
+    } else {
+        $(selector).removeClass('d-none').addClass('opened').slideDown();
+    }
 };
 
 /**
  * Adds create post modal form to template
  */
 let csrf_token = $("input[name=csrfmiddlewaretoken]").val();
-
-/**
- * Styles comment form
- */
-let commentContainer = $('#div_id_comment');
-let comment = $('#id_comment');
-$(comment).addClass('dark-boxes rounded-5 text-center');
-$(commentContainer).children().first().addClass('d-none');
 
 /**
  * Modal logic
@@ -29,7 +26,7 @@ $('.create-post-btn').hover(() => {
     let postForm = `
     <form method="post" action="/posts/create_post/">
         <input type="hidden" name="csrfmiddlewaretoken" value="${csrf_token}">
-        <textarea name="post_body" rows="6" maxlength="500" required="" id="post_body" class="w-100 rounded"></textarea>
+        <textarea name="post_body" rows="6" maxlength="500" required="" id="post_body" class="w-100 rounded" placeholder="Write here..."></textarea>
         <button type="Submit" class="btn general-btn w-100 my-2 text-uppercase" aria-label="Click here to submit post">Post</button>
     </form>
         `;
@@ -40,14 +37,21 @@ $('.create-post-btn').hover(() => {
 $('.share-post-btn').hover(function () {
     $('.modal-title').html('Share Post');
     let post_id = $(this).next().text();
+    let to_share = $(this).parentsUntil('div.post').parent().html();
+    
+    
     let shareForm = `
     <form method="post" action="/posts/share_post/${post_id}">
         <input type="hidden" name="csrfmiddlewaretoken" value="${csrf_token}">
-        <textarea name="post_body" rows="6" maxlength="500" required="" id="post_body" class="w-100 rounded"></textarea>
+        <textarea name="post_body" rows="6" maxlength="500" required="" id="post_body" class="w-100 rounded" placeholder="Write here..."></textarea>
+        <h3 class="blue-like w-100 text-center">sharing:</h3>
+        <div class="w-100 dark-boxes border shadow-sm rounded post-to-share mt-3"></div>
         <button type="Submit" class="btn general-btn w-100 my-2 text-uppercase" aria-label="Click here to submit post">Share post</button>
     </form>
+    
     `;
     $('.modal-body').html(`${shareForm}`);
+    let post_sharing = $('.post-to-share').html(to_share);
 });
 
 /* modal container */
