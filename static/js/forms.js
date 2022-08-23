@@ -7,69 +7,61 @@ var commentForm = (postID) => {
     $(selector).removeClass('d-none');
 };
 
-$(document).ready(() => {
-    /**
-     * Styles comment form
-     */
-    let commentContainer = $('#div_id_comment');
-    let comment = $('#id_comment');
-    $(comment).addClass('dark-boxes rounded-5 text-center');
-    $(commentContainer).children().first().addClass('d-none');
-});
 /**
  * Adds create post modal form to template
  */
 let csrf_token = $("input[name=csrfmiddlewaretoken]").val();
-let postForm = `
-    <div class="modal-header">
-        <h1 class="modal-title w-100 text-center" id="create-post">Create a post</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
+
+/**
+ * Styles comment form
+ */
+let commentContainer = $('#div_id_comment');
+let comment = $('#id_comment');
+$(comment).addClass('dark-boxes rounded-5 text-center');
+$(commentContainer).children().first().addClass('d-none');
+
+/**
+ * Modal logic
+ */
+/* create post */
+$('.create-post-btn').hover(() => {
+    $('.modal-title').html('Create a Post');
+    let postForm = `
     <form method="post" action="/posts/create_post/">
         <input type="hidden" name="csrfmiddlewaretoken" value="${csrf_token}">
         <textarea name="post_body" rows="6" maxlength="500" required="" id="post_body" class="w-100 rounded"></textarea>
         <button type="Submit" class="btn general-btn w-100 my-2 text-uppercase" aria-label="Click here to submit post">Post</button>
     </form>
-    </div>
-    `;
+        `;
+    $('.modal-body').html(`${postForm}`);
+});
 
-let shareForm = `
-    <div class="modal-header">
-        <h1 class="modal-title w-100 text-center" id="shared-post">Share post</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-    <form method="post" action="/posts/share_post/{{post.id}}">
+/* share post */
+$('.share-post-btn').hover(function () {
+    $('.modal-title').html('Share Post');
+    let post_id = $(this).next().text();
+    let shareForm = `
+    <form method="post" action="/posts/share_post/${post_id}">
         <input type="hidden" name="csrfmiddlewaretoken" value="${csrf_token}">
-        <label for="post_body" class="w-100 text-center modal-label">Content</label>
         <textarea name="post_body" rows="6" maxlength="500" required="" id="post_body" class="w-100 rounded"></textarea>
-        <button type="Submit" class="btn general-btn w-100 my-2 text-uppercase" aria-label="Click here to submit post">Post</button>
+        <button type="Submit" class="btn general-btn w-100 my-2 text-uppercase" aria-label="Click here to submit post">Share post</button>
     </form>
-    </div>
     `;
+    $('.modal-body').html(`${shareForm}`);
+});
 
-let modalContents = '';
-let createPost = () => {
-    $('.modal-container').html(`
-    <div class="modal fade" id="feed-create-post" tabindex="-1" aria-labelledby="feedCreatePost" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                ${postForm}
-            </div>
+/* modal container */
+$('.modal-container').html(`
+    <div class="modal fade" id="general-modal" tabindex="-1" aria-labelledby="general-modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title text-center w-100"></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-extra-content"></div>
         </div>
+      </div>
     </div>`);
-};
-
-let sharePost = (post_id) => {
-    $('.modal-container').html(`
-    <div class="modal fade" id="feed-create-post" tabindex="-1" aria-labelledby="feedCreatePost" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                ${shareForm}
-            </div>
-        </div>
-    </div>`);
-};
-
-
