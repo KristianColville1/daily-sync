@@ -13,11 +13,11 @@ def create_comment(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     comment_form = CommentForm(data=request.POST)
     if comment_form.is_valid():
-        comment_form.instance.name = request.user.username
+        comment_form.instance.name = request.user
         comment_form.instance.email = request.user.email
         comment_form.instance.approved = True
         comment = comment_form.save(commit=False)
-        comment.post = post
+        comment.post_name = post
         comment.save()
         messages.add_message(request, messages.SUCCESS,
                              'Your comment has been submitted')
@@ -46,6 +46,26 @@ def create_post(request):
             'Oops something has went wrong, please try again!')
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
+
+def share_post(request, post_id):
+    """
+    Handles sharing posts and redirects
+    back to the same page.
+    """
+    form = PostForm(data=request.POST)
+    if form.is_valid():
+        form.instance.author = request.user
+        form.instance.status = 1
+        form.instance.post_shared = get_object_or_404(Post, id=post_id)
+        form.instance.is_shared = True
+        form.save()
+        messages.add_message(request, messages.SUCCESS,
+                             'Your post has been submitted')
+    else:
+        messages.add_message(
+            request, messages.ERROR,
+            'Oops something has went wrong, please try again!')
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 # ...................................................... Editing
 def edit_post(request, post_id):

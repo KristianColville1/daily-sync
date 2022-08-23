@@ -16,11 +16,11 @@ class Base(models.Model):
             return self.total_likes.count()
         return ''
 
-    def calc_time_since(self, created_on):
+    def calc_time_since(self):
         """
         returns the time since posted in an easy to read format for users
         """
-        time_string = timesince.timesince(created_on)
+        time_string = timesince.timesince(self.created_on)
         time_options = [
             'minute',
             'hour',
@@ -74,6 +74,12 @@ class Post(Base):
                                          related_name="angry_likes",
                                          blank=True)
     status = models.IntegerField(choices=STATUS, default=1)
+    is_shared = models.BooleanField(default=False)
+    post_shared = models.ForeignKey('self',
+                                    on_delete=models.CASCADE,
+                                    related_name="shared_posts",
+                                    blank=True,
+                                    null=True)
 
     class Meta:
         ordering = ['-created_on']
@@ -97,14 +103,13 @@ class Comment(Base):
     """
     Comment model class
     """
-    post_commented = models.ForeignKey(Post,
+    post_name = models.ForeignKey(Post,
                              on_delete=models.CASCADE,
                              related_name="comments")
-    contributor = models.ForeignKey(User,
-                                    on_delete=models.CASCADE,
-                                    related_name="comments",
-                                    null=True)
-    name = models.CharField(max_length=100)
+    name = models.ForeignKey(User,
+                             on_delete=models.CASCADE,
+                             related_name="comments",
+                             null=True)
     email = models.EmailField()
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
@@ -132,11 +137,3 @@ class Comment(Base):
         String representation
         """
         return self.content
-
-class SharedPost(Post):
-    """
-    SharedPost model
-    """
-    post_shared = models.ForeignKey(Post,
-                                    on_delete=models.PROTECT,
-                                    related_name="shared_posts")
