@@ -2,16 +2,16 @@
 {% load i18n %}
 
 {% block content %}
-<div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 my-3 boxes shadow-sm rounded">
+<div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 my-3 boxes shadow-sm">
     <div class="m-3">
         <h1 class="text-center">{% trans "View Message" %}</h1>
         <hr>
-        <div class="bg-light rounded p-3 border">
+        <div class="bg-light boxes p-3 border">
             <p><span class="text-primary">{% trans "Date" %}: </span>{{ message.sent_at|date:_("DATETIME_FORMAT")}}</p>
             <p><span class="text-primary">{% trans "Recipient" %}: </span>{{ message.recipient }}</p>
             <p><span class="text-primary">From: </span> {{ message.sender }}</p>
             <p class="bg-light"><span class="text-primary">{% trans "Subject" %}: </span>{{ message.subject }}</p>
-            <div class="bg-white rounded p-3 border">
+            <div class="bg-white boxes p-3 border">
                 <p>{{ message.body|linebreaksbr }}</p>
             </div>
         </div>
