@@ -383,8 +383,15 @@ footer a i:hover {
   font-weight: 700;
 }
 
+/*********************************************************Error pages */
+.error-page {
+  height: 80vh;
+  background: url('../img/error.png') no-repeat center center;
+  background-size: contain;
+}
+
 /*********************************************************Media Queries*/
-@media screen and (max-width: 768px){
+@media only screen and (max-width: 768px){
   html,
   body {
     background-image: none;
