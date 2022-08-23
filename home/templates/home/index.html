@@ -1,19 +1,31 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
-<div class="container home mt-5">
-  {% if user.is_authenticated %}
-  {% else %}
+<div class="container home">
   <div class="row">
-    <div class="col-sm-12 col-md-6">
-      <div class="mt-5">
-        <h1 class="text-center">Welcome to the next generation of social media</h1>
+    <div class="col-md-8 d-none d-sm-none d-md-block">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+              <div class="home-img-1 w-100"></div>
+          </div>
+          <div class="carousel-item">
+            <div class="home-img-2 w-100"></div>
+          </div>
+          <div class="carousel-item">
+            <div class="home-img-3 w-100"></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-sm-12 col-md-6"></div>
-    <div class="w-50">
+    <div class="col-sm-12 col-md-4 bg-dark shadow rounded p-5">
+      <h1 class="text-center fst-italic my-2 w-100"><i class="fa-solid fa-share-nodes"></i> Daily Sync</h1>
+      <hr>
+      <h4 class="blue-like text-center">Welcome to the Next Generation of Social Media</h4>
+      <a class="btn home-btn w-50 my-4 offset-3" href='/accounts/login/'>Sign in</a>
+      <a class="btn home-btn w-50 my-4 offset-3" href='/accounts/signup/'>Sign up</a>
     </div>
   </div>
-  {% endif %}
 </div>
 {% endblock %}
