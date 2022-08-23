@@ -4,7 +4,7 @@
 <div class="post boxes w-100 shadow-sm border mt-2 py-1 px-5">
   <div class="post-options dropdown position-relative text-end py-2" id="post-{{post.id}}">
     <button aria-label="Click here to show the options you can use on a post"
-      class="btn dropdown-toggle rounded-circle position-absolute ml-5" type="button" type="button"
+      class="btn dropdown-toggle rounded-circle position-absolute ml-5" type="button"
       data-toggle="dropdown" aria-expanded="false" data-flip="false" onclick="postDropdown({{post.id}})">
       <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
     </button>
@@ -28,10 +28,10 @@
     </div>
   </div>
   <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
-    <p class="w-100 mt-5 mx-4">{{post.post_body}}</p>
+    <p class="w-100 mt-5 justify-content-center">{{post.post_body}}</p>
     {% if post.is_shared %}
     <div class="border dark-boxes shadow-sm m-lg-4 my-lg-2-2 p-md-2 p-lg-3">
-      <div class="col-12 author-post overflow-auto mt-2">
+      <div class="col-12 author-post overflow-hidden mt-2 px-2">
         <div class="w-100 position-relative">
           <img class="profile-image-post rounded-circle shadow-sm"
             src="{{ post.post_shared.author.profile.avatar_url }}" alt="profile image of author">
@@ -39,7 +39,7 @@
             {{post.post_shared.author}}
             <p class="position-absolute start-0 small-and-light w-25 text-center g-0">{{post.post_shared.calc_time_since}}.</p></a>
         </div>
-        <p class="w-100 text-center mt-5">{{post.post_shared.post_body}}</p>
+        <p class="w-100 justify-content-center mt-5">{{post.post_shared.post_body}}</p>
       </div>
     </div>
     {% endif %}
