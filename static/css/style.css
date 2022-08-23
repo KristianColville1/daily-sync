@@ -121,8 +121,8 @@ footer a i:hover {
   background-color: var(--whitesmoke);
 }
 
-form {
-  font-family: 'Oswald', sans-serif;
+.blue-box {
+  background-color: var(--bright-blue-1);
 }
 
 .abs-center {
@@ -149,6 +149,7 @@ form {
 .search-form {
   margin-right: 90px;
 }
+
 /********************profiles */
 
 .profile-image-post {
@@ -320,6 +321,48 @@ form {
   font-size: 20px;
 }
 
+.home-img-1 {
+  height: 80vh;
+  background: url('../img/home/home-five.png') no-repeat center center;
+  background-size: contain;
+}
+
+.home-img-2 {
+  height: 80vh;
+  background: url('../img/home/home-three.png') no-repeat center center;
+  background-size: contain;
+}
+
+.home-img-3 {
+  height: 80vh;
+  background: url('../img/home/home-four.png') no-repeat center center;
+  background-size: contain;
+}
+
+.home-btn {
+  color: var(--bright-blue-1);
+  border: 2px outset var(--bright-blue-2);
+  font-size: 18px;
+}
+.home-btn:hover {
+  background-color: var(--middle-blue-1);
+  color: var(--black);
+}
+.home-btn:active {
+  border: 2px inset var(--bright-blue-2);
+}
+
+.brand-name {
+  font-size: 4.5rem;
+}
+
+.home-box {
+  position: absolute;
+  left: 60%;
+  top: 40%;
+  transform: translate(-20%, -20%);
+}
+
 /*********************************************************Media Queries*/
 @media screen and (max-width: 768px){
   html,
@@ -328,5 +371,14 @@ form {
   }
   body {
     background-image: url('../img/background-small.webp') no-repeat center center;
+  }
+}
+
+@media screen and (max-width: 576px){
+  .home-box {
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: translate(0, 0);
   }
 }
