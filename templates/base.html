@@ -52,7 +52,7 @@
               <button class="nav-link btn dropdown-toggle mx-5 py-auto px-5" type="button" id="message-dropdown"
                 data-toggle="dropdown" aria-expanded="false" data-toggle="tooltip" data-placement="bottom"
                 title="Messages"><i class="fa-solid fa-message"></i></button>
-              <ul class="dropdown-menu message-dropdown mx-3" aria-labelledby="message-dropdown"
+              <ul class="dropdown-menu message-dropdown mx-3 boxes border" aria-labelledby="message-dropdown"
                 id="message-dropdown-menu">
                 <li><a href="{% url 'messages_inbox' %} " class="dropdown-item"><i class="fa-solid fa-inbox"></i>
                     {% trans "Inbox" %}</a></li>
@@ -75,7 +75,7 @@
                 <img class="profile-image-nav rounded-circle shadow-sm" src="{{ request.user.profile.avatar_url }}"
                   alt="profile image of author">
               </button>
-              <ul class="dropdown-menu nav-dropdown mx-4" aria-labelledby="dropdownMenuButton1" id="nav-dropdown-menu">
+              <ul class="dropdown-menu nav-dropdown mx-4 boxes border" aria-labelledby="dropdownMenuButton1" id="nav-dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'profile' %}" aria-label="Go to your profile page">
                     <i class="fa-solid fa-user mx-2 "></i> Profile</a></li>
                 <li><a class="dropdown-item" href="#" aria-label="Go to your account settings">

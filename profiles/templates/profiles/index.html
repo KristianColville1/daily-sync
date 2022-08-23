@@ -6,7 +6,7 @@
     <div class="row  position-relative gx-0 mt-2">
         <div class="col-sm-12 col-md-7 col-lg-9">
             <img src="{{profile.background_url}}" alt="user profile background"
-                class="user-bg shadow-sm rounded-3 w-100 border" height="330" width="160">
+                class="user-bg shadow-sm boxes w-100 border" height="330" width="160">
             <div class="col-5">
                 <div>
                     <img class="profile-img-profile my-2 rounded-circle shadow-sm border position-absolute top-0 start-0 mx-4"
@@ -18,16 +18,16 @@
             </div>
             <div class="row gx-0 my-1">
                 <div class="col-sm-12 col-md-4">
-                    <div class="boxes shadow-sm rounded border p-2 mx-2">
+                    <div class="boxes shadow-sm border p-2 mx-2">
                         <h4 class="text-start">Intro</h4>
                         <p class="text-start ">{{ profile.bio }}</p>
                     </div>
-                    <div class="boxes shadow-sm rounded border p-2 m-2">
+                    <div class="boxes shadow-sm border p-2 m-2">
                         <h4 class="text-start">Friends</h4>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-8">
-                    <div class="content-box post-box w-100 shadow-sm rounded border p-2 boxes">
+                    <div class="content-box post-box w-100 shadow-sm border p-2 boxes">
                         <div class="row">
                             <div class="col-2">
                                 <img class="profile-image-post rounded-circle shadow-sm border" src="{{ profile.avatar_url }}"
@@ -40,7 +40,7 @@
                                     post</button></div>
                         </div>
                     </div>
-                    <div class="boxes my-1 p-2 shadow-sm rounded border">
+                    <div class="boxes my-1 p-2 shadow-sm border">
                         <h4>Posts</h4>
                         <hr class="g-0 m-0">
                         <div class="w-100 d-flex flex-row">
@@ -51,7 +51,7 @@
                     {% for post in posts %}
                     {% include "posts/base.html" %}
                     {% endfor %}
-                    <div class="pagination boxes shadow-sm rounded border mt-2 py-2">
+                    <div class="pagination boxes shadow-sm border mt-2 py-2">
                         <div class="step-links">
                             {% if posts.has_previous %}
                             <a href="?page=1" class="btn general-btn  py-1 px-2 mx-3 rounded">&laquo; first</a>
@@ -71,7 +71,7 @@
             </div>
         </div>
         <div class="col-md-5 col-lg-3 d-none d-md-block">
-            <div class="content-box shadow-sm rounded-3 border mx-3 w-100">
+            <div class="content-box shadow-sm border mx-3 w-100">
                 <h6 class="text-center py-2"> People you may know <i class="fa-solid fa-angle-down"></i>
                 </h6>
                 {% for persons in profiles %}
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 {% endfor %}
-                <div class="pagination boxes shadow-sm rounded mt-2 py-2">
+                <div class="pagination boxes shadow-sm mt-2 py-2">
                     <div class="step-links">
                         {% if profiles.has_previous %}
                         <a href="?page=1" class="py-1 px-2 mx-3 rounded">&laquo; first</a>
@@ -105,7 +105,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-100 mx-3 shadow-sm rounded border mt-2 overflow-hidden">{% include "footer.html" %}</div>
+            <div class="w-100 mx-3 shadow-sm boxes border mt-2 overflow-hidden">{% include "footer.html" %}</div>
         </div>
     </div>
 </div>

@@ -9,12 +9,12 @@
     <div class="col-sm-12 col-md-3 col-lg-2 d-none d-sm-none d-md-block">
       <div class="profile-pic-md position-relative">
         <img src="{{profile.background_url}}" alt="profile background image"
-          class="shadow-sm rounded w-100 border position-absolute">
+          class="shadow-sm boxes w-100 border position-absolute">
         <img class="profile-image-feed rounded-circle shadow-sm position-absolute top-50 start-50 translate-middle"
           src="{{ profile.avatar_url }}" alt="current user profile image">
       </div>
       <div class="mt-5">
-        <div class="list-group feed-profile-options">
+        <div class="list-group feed-profile-options boxes">
           <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-user"></i> Profile</a>
           <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-users"></i> Friends</a>
           <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-user-group"></i>
@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-6 mb-2">
-      <div class="w-100 shadow-sm border rounded-3 px-2  py-3 boxes mb-2 d-md-none">
+      <div class="w-100 shadow-sm border px-2  py-3 boxes mb-2 d-md-none">
         <div class="d-flex flex-row justify-content-center small-feed-options">
           <a href="#" class="btn mx-auto" role="button" aria-label="Click here to go to your profile"><i class="fa-solid fa-user"></i></a>
           <a href="#" class="btn mx-auto" role="button" aria-label="Click here to go to your friends"><i class="fa-solid fa-users"></i></a>
@@ -36,7 +36,7 @@
           <a href="{% url 'chat' %}" class="btn mx-auto" role="button" aria-label="Click here to go to chat rooms"><i class="fa-solid fa-comments"></i></i></a>
         </div>
       </div>
-      <div class="content-box post-box w-100 shadow-sm border rounded-3 p-2 boxes">
+      <div class="content-box post-box w-100 shadow-sm border p-2 boxes">
         <div class="row">
           <div class="col-2">
             <img class="profile-image-post rounded-circle border shadow-sm" src="{{ profile.avatar_url }}"
@@ -51,10 +51,10 @@
       {% for post in posts %}
       {% include "posts/base.html" %}
       {% endfor %}
-      <div class="pagination boxes shadow-sm rounded border mt-2 py-2">
+      <div class="pagination boxes shadow-sm border mt-2 py-2">
         <div class="step-links">
           {% if posts.has_previous %}
-          <a href="?page=1" class="btn general-btn  py-1 px-2 mx-3 rounded">&laquo; first</a>
+          <a href="?page=1" class="btn general-btn rounded py-1 px-2 mx-3">&laquo; first</a>
           <a href="?page={{ posts.previous_page_number }}" class="btn general-btn  py-1 px-2 mx-3 rounded">previous</a>
           {% endif %}
           {% if posts.has_next %}
@@ -66,7 +66,7 @@
       </div>
     </div>
     <div class="col-sm-12 col-md-3 col-lg-4">
-      <div class="content-box shadow-sm rounded border w-100">
+      <div class="content-box shadow-sm border w-100">
         <h6 class="text-center py-2"> People you may know <i class="fa-solid fa-angle-down"></i>
         </h6>
         {% for persons in profiles %}
@@ -86,7 +86,7 @@
           </div>
       </div>
         {% endfor %}
-        <div class="pagination boxes shadow-sm rounded mt-2 py-2">
+        <div class="pagination boxes shadow-sm mt-2 py-2">
           <div class="step-links">
             {% if profiles.has_previous %}
             <a href="?page=1" class="py-1 px-2 mx-3 rounded">&laquo; first</a>
@@ -100,11 +100,11 @@
           </div>
         </div>
       </div>
-      <div class="content-box w-100 shadow-sm rounded p-2 mt-2 border boxes">
+      <div class="content-box w-100 shadow-sm p-2 mt-2 border boxes">
         <h6 class="text-center">Messages</h6>
 
       </div>
-      <div class="w-100 shadow-sm rounded border mt-2 overflow-hidden">
+      <div class="w-100 shadow-sm border boxes mt-2 overflow-hidden">
         {% include "footer.html" %}
       </div>
     </div>
