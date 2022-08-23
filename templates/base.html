@@ -2,6 +2,7 @@
 {% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,6 +26,7 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <title>Daily sync</title>
 </head>
+
 <body class="d-flex flex-column min-vh-100">
   {% if user.is_authenticated %}
   <div class="nav-bg position-fixed w-100">
@@ -122,9 +124,12 @@
   </div>
   {% block content %}
   {% endblock %}
-  <!-- Modal -->
+  {% comment "Modals" %}{% endcomment %}
   <div class="modal-container">
   </div>
+  {% comment "back to top button" %}{% endcomment %}
+  <button onclick="backToTop()" id="top-btn" title="Go to top" class="btn shadow border rounded-pill p-3"
+    aria-label="Go to top of page"><i class="fa-solid fa-circle-arrow-up"></i>Top</button>
   {% if user.is_authenticated %}
   {% else %}
   {% include "footer.html"%}

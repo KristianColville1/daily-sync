@@ -15,18 +15,18 @@ $(document).ready(() => {
 
 
       darkModeSwitch = true;
-      $('.fa-moon').addClass('d-none')
-      $('.fa-sun').removeClass('d-none')
+      $('.fa-moon').addClass('d-none');
+      $('.fa-sun').removeClass('d-none');
     } else {
       document.documentElement.style.setProperty('--black', getComputedStyle(document.documentElement).getPropertyValue('--whitesmoke'));
 
 
       darkModeSwitch = false;
-      $('.fa-moon').addClass('d-none')
-      $('.fa-sun').removeClass('d-none')
+      $('.fa-moon').addClass('d-none');
+      $('.fa-sun').removeClass('d-none');
     }
 
-  })
+  });
 
   /* enabled tooltips*/
   $('.tooltip').tooltip();
@@ -41,12 +41,23 @@ $(document).ready(() => {
   }, function(){
     $('.emojies').mouseleave(function () {
       $(this).css('visibility', 'hidden').css('top', '0px');
-    })
+    });
   });
-
-      /**
-      * When user puts mouse inside search bar this loads results the user
-      * has previously entered
-      */;
-      $( "#user_searches" ).autocomplete;
 });
+
+const topBtn = $('#top-btn');
+window.onscroll = () =>{showScrollerBtn();};
+
+const showScrollerBtn = () => {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    topBtn.css('display', 'block');
+  } else {
+    topBtn.css('display', 'none');
+  }
+};
+
+// configured for main browsers to scroll to top if clicked
+let backToTop = () =>{
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+};

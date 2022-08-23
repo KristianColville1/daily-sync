@@ -19,6 +19,9 @@ body {
   max-width: 100%;
   overflow: visible;
   scroll-behavior: smooth;
+}
+
+body {
   background: url('../img/background.jpeg') no-repeat center center;
   background-color: var(--whitesmoke);
   background-size: cover;
@@ -291,4 +294,39 @@ form {
   color: var(--black);
   background-color: var(--bright-blue-2);
   transition: all 0.3s ease-in-out;
+}
+
+.small-feed-options a {
+  text-decoration: none;
+  font-size: 24px;
+  color: var(--bright-blue-1);
+  text-shadow: 2px 2px 2px var(--black);
+}
+
+.small-feed-options a:hover {
+  color: var(--light-blue-2);
+}
+
+/*********************************************************Extras, javascript */
+#top-btn {
+  display: none; 
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
+  z-index: 99;
+  background-color: var(--bright-blue-1);
+  color: var(--black);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*********************************************************Media Queries*/
+@media screen and (max-width: 768px){
+  html,
+  body {
+    background-image: none;
+  }
+  body {
+    background-image: url('../img/background-small.webp') no-repeat center center;
+  }
 }
