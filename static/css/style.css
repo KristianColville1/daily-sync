@@ -94,6 +94,8 @@ nav div ul i {
 /**********************************************Footer */
 footer {
   background-color: var(--off-white-2);
+  position: relative;
+  z-index: 99;
 }
 
 footer a {
