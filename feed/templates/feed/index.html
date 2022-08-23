@@ -27,6 +27,15 @@
       </div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-6 mb-2">
+      <div class="w-100 shadow-sm border rounded-3 px-2  py-3 boxes mb-2 d-md-none">
+        <div class="d-flex flex-row justify-content-center small-feed-options">
+          <a href="#" class="btn mx-auto" role="button" aria-label="Click here to go to your profile"><i class="fa-solid fa-user"></i></a>
+          <a href="#" class="btn mx-auto" role="button" aria-label="Click here to go to your friends"><i class="fa-solid fa-users"></i></a>
+          <a href="#" class="btn mx-auto" role="button" aria-label="Click here to go to your followers"><i class="fa-solid fa-user-group"></i></a>
+          <a href="#" class="btn mx-auto" role="button" aria-label="Click here to go to your messages"><i class="fa-solid fa-message"></i></a>
+          <a href="{% url 'chat' %}" class="btn mx-auto" role="button" aria-label="Click here to go to chat rooms"><i class="fa-solid fa-comments"></i></i></a>
+        </div>
+      </div>
       <div class="content-box post-box w-100 shadow-sm border rounded-3 p-2 boxes">
         <div class="row">
           <div class="col-2">
@@ -34,111 +43,13 @@
               alt="profile image of author"></div>
           <div class="col-10">
             <button class="btn create-post-btn w-100 rounded-pill border text-start" type="button"
-              aria-label="Click here to create a post" data-bs-toggle="modal" data-bs-target="#feed-create-post" onclick="addModalContents('post')">Create
+              aria-label="Click here to create a post" data-bs-toggle="modal" data-bs-target="#general-modal">Create
               a
               post</button></div>
         </div>
       </div>
       {% for post in posts %}
-      <div class="content-box w-100 shadow-sm rounded border mt-2 py-1 px-2 boxes">
-        <div class="post-options dropdown position-relative text-end" id="post-{{post.id}}">
-          <button aria-label="Click here to show the options you can use on a post"
-            class="btn dropdown-toggle rounded-circle position-relative mx-1" type="button" type="button"
-            data-toggle="dropdown" aria-expanded="false" data-flip="false" onclick="postDropdown({{post.id}})">
-            <i class="fa-solid fa-ellipsis position-absolute top-50 start-50 translate-middle"></i>
-          </button>
-          <ul class="dropdown-menu post-dropdown-{{post.id}} position-absolute top-100 end-0"
-            style="width: fit-content;">
-            {% if post.author == user %}
-            <li><a class="dropdown-item" href="/posts/edit/{{post.id}}">Edit</a></li>
-            <li><a class="dropdown-item" href="/posts/delete/{{post.id}}">Delete</a></li>
-            {% else %}
-            <li><a class="dropdown-item" href="#">Share post</a>
-            <li><a class="dropdown-item" href="#">Report</a></li>
-            {% endif %}
-          </ul>
-        </div>
-        <div class="author-post">
-          <div class="w-100 d-flex flex-row">
-            <img class="profile-image-post rounded-circle shadow-sm mx-3" src="{{ post.author.profile.avatar_url }}"
-              alt="profile image of author">
-          </div>
-          <ul class="list-group list-unstyled">
-            <li class="list-item"><a class="mx-3 fs-6" href="/profiles/view_profile/{{post.author.profile.slug}}">{{post.author}}</a></li>
-            <li class="list-item"><p class="mx-3 small-and-light">{{post.calc_time_since}}</p></li>
-          </ul>
-        </div>
-        <a href="{% url 'view_post' post.slug %}" class="post-link text-decoration-none">
-          <p class="text-center">{{post.post_body}}</p>
-        </a>
-        <div class="row mx-3 g-0">
-          <p class="col-6 w-50 text-start">
-            {% if post.count_likes > 0%}
-            {{post.count_likes}} Likes
-            {% endif %}
-          </p>
-          <p class="col-6 w-50 text-end">
-            {% if post.count_comments > 0 %}
-            <a href="{% url 'view_post' post.slug %}">{{post.count_comments}}
-              Comments</a>
-            {% endif %}
-          </p>
-        </div>
-
-        <hr class="m-0">
-        <div class="row user-post-options m-0">
-          <div class="likes-container col-4 position-relative gx-0">
-            <form class="like-btn position-absolute w-100" action="/posts/like_post/{{post.id}}/like/">
-              {% csrf_token %}
-              <button name="Like button" class="likes btn w-100"
-                aria-label="Click here to leave a emoji like on a post">
-                {% if user in post.thumbs_likes.all %}
-                <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span> Like</span>
-                {% elif user in post.heart_likes.all %}
-                <i class="fa-solid fa-heart fs-4"></i><span> Love</span>
-                {% elif user in post.laugh_likes.all %}
-                <i class="fa-solid fa-face-laugh-squint fs-4"></i><span> Laugh</span>
-                {% elif user in post.angry_likes.all %}
-                <i class="fa-solid fa-face-angry fs-4"></i><span> Angry</span>
-                {% else %}
-                <i class="fa-solid fa-thumbs-up"></i> Like
-                {% endif %}
-              </button>
-            </form>
-            <div class="emojies boxes shadow-sm rounded d-flex flex-row p-2">
-              <form action="/posts/like_post/{{post.id}}/like/">
-                {% csrf_token %}
-                <button class="btn"><i class="fa-solid fa-thumbs-up blue-like"></i></button>
-              </form>
-              <form action="/posts/like_post/{{post.id}}/love/">
-                {% csrf_token %}
-                <button class="btn"><i class="fa-solid fa-heart"></i></button>
-              </form>
-              <form action="/posts/like_post/{{post.id}}/laugh/">
-                {% csrf_token %}
-                <button class="btn"><i class="fa-solid fa-face-laugh-squint"></i></button>
-              </form>
-              <form action="/posts/like_post/{{post.id}}/angry/">
-                {% csrf_token %}
-                <button class="btn"><i class="fa-solid fa-face-angry"></i></button>
-              </form>
-            </div>
-          </div>
-          <button class="col-4 btn" aria-label="click here to create a comment"  onclick="commentForm({{post.id}})">
-            <i class="fa-solid fa-comment"></i> Comment
-          </button>
-          <button class="col-4 btn" data-bs-toggle="modal" data-bs-target="#feed-create-post" aria-label="click here to share a post" onclick="addModalContents('sharePost')">
-            <i class="fa-solid fa-share-nodes"></i> Share
-          </button>
-        </div>
-        <div class="row comment-form-{{post.id}} d-none">
-          <form method="post" action="/posts/create_comment/{{post.id}}/">
-            {{ comment_form | crispy }}
-            {% csrf_token %}
-            <div class="text-end"><button type="submit" class="general-btn btn rounded-5 my-2">Submit</button></div>
-          </form>
-        </div>
-      </div>
+      {% include "posts/base.html" %}
       {% endfor %}
       <div class="pagination boxes shadow-sm rounded border mt-2 py-2">
         <div class="step-links">
