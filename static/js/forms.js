@@ -41,7 +41,7 @@ $('.share-post-btn').hover(function () {
     
     
     let shareForm = `
-    <form method="post" action="/posts/share_post/${post_id}">
+    <form method="post" action="/posts/share_post/${post_id}/">
         <input type="hidden" name="csrfmiddlewaretoken" value="${csrf_token}">
         <textarea name="post_body" rows="6" maxlength="500" required="" id="post_body" class="w-100 rounded" placeholder="Write here..."></textarea>
         <h3 class="w-100 text-center">sharing:</h3>

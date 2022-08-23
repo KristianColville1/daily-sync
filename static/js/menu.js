@@ -68,3 +68,25 @@ let postDropdown = (post_id) => {
         postDropdownHistory.push(post_id);
     }
 };
+
+let commentDropdownHistory = [];
+let commentDropdown = (comment_id) => {
+    if (commentDropdownHistory.includes(comment_id)) {
+        $(`.comment-dropdown-${comment_id}`).slideUp();
+        let index = commentDropdownHistory.indexOf(comment_id);
+        if (commentDropdownHistory.length > 2) {
+            commentDropdownHistory = commentDropdownHistory.splice(index, index + 1);
+        } else if (commentDropdownHistory.length == 2) {
+            if (index > 0) {
+                commentDropdownHistory.pop();
+            } else {
+                commentDropdownHistory = commentDropdownHistory(1);
+            }
+        } else {
+            commentDropdownHistory = [];
+        }
+    } else {
+        $(`.comment-dropdown-${comment_id}`).slideDown();
+        commentDropdownHistory.push(comment_id);
+    }
+};

@@ -7,7 +7,7 @@ $(document).ready(() => {
     alert.close();
   }, 3200);
 
-  /* Darkmode */
+  /* Dark mode */
   let darkModeSwitch = false;
   $('button.enable-dark-mode').click(() => {
     if (!darkModeSwitch) {
@@ -28,13 +28,16 @@ $(document).ready(() => {
 
   });
 
-  /* enabled tooltips*/
-  $('.tooltip').tooltip();
+  /* enabled tooltips using bootstrap & popper */
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
 
   /**
-   * Handles the emojies and makes visible to user to select a like option
-   * written this way so emojies are shown correctly and stay on screen.
-   * The usual method will make them instantly disapear otherwise.
+   * Handles the emoji'e's and makes visible to user to select a like option
+   * written this way so emoji'e's are shown correctly and stay on screen.
+   * The usual method will make them instantly disappear otherwise.
    */
   $('.like-btn').hover(function(){
     $(this).siblings().css('visibility', 'unset').animate({top: '-55px'});
