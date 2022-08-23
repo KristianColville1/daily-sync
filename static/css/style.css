@@ -91,11 +91,14 @@ nav div ul i {
   border: 2px inset;
 }
 
+.dropdown-menu.nav-dropdown {
+  position: relative;
+  z-index: 99;
+}
+
 /**********************************************Footer */
 footer {
   background-color: var(--off-white-2);
-  position: relative;
-  z-index: 99;
 }
 
 footer a {
@@ -117,10 +120,14 @@ footer a i:hover {
 .form-box {
   background-color: var(--white);
   height: fit-content;
+  border: transparent;
+  border-radius: 12px;
 }
-
 .dark-boxes {
   background-color: var(--whitesmoke);
+  height: fit-content;
+  border: transparent;
+  border-radius: 12px;
 }
 
 .blue-box {
@@ -315,7 +322,7 @@ footer a i:hover {
   display: none; 
   position: fixed;
   bottom: 10%;
-  right: 10%;
+  right: 40%;
   z-index: 99;
   background-color: var(--bright-blue-1);
   color: var(--black);
@@ -363,6 +370,17 @@ footer a i:hover {
   left: 60%;
   top: 40%;
   transform: translate(-20%, -20%);
+}
+
+.user-name {
+  color: var(--black);
+  font-weight: 500;
+}
+
+.user-name:hover,
+.user-name:active {
+  color: var(--bright-blue-1);
+  font-weight: 700;
 }
 
 /*********************************************************Media Queries*/
