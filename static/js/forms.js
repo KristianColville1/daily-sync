@@ -28,9 +28,6 @@ let postForm = `
     <div class="modal-body">
     <form method="post" action="/posts/create_post/">
         <input type="hidden" name="csrfmiddlewaretoken" value="${csrf_token}">
-        <label for="title" class="w-100 text-center modal-label">Title</label>
-        <textarea name="title" rows="1" maxlength="200" required="" id="title" class="w-100 rounded"></textarea>
-        <label for="post_body" class="w-100 text-center modal-label">Content</label>
         <textarea name="post_body" rows="6" maxlength="500" required="" id="post_body" class="w-100 rounded"></textarea>
         <button type="Submit" class="btn general-btn w-100 my-2 text-uppercase" aria-label="Click here to submit post">Post</button>
     </form>
@@ -39,14 +36,12 @@ let postForm = `
 
 let shareForm = `
     <div class="modal-header">
-        <h1 class="modal-title w-100 text-center" id="create-post">Create a post</h1>
+        <h1 class="modal-title w-100 text-center" id="shared-post">Share post</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
-    <form method="post" action="/posts/create_post/">
+    <form method="post" action="/posts/share_post/{{post.id}}">
         <input type="hidden" name="csrfmiddlewaretoken" value="${csrf_token}">
-        <label for="title" class="w-100 text-center modal-label">Title</label>
-        <textarea name="title" rows="1" maxlength="200" required="" id="title" class="w-100 rounded"></textarea>
         <label for="post_body" class="w-100 text-center modal-label">Content</label>
         <textarea name="post_body" rows="6" maxlength="500" required="" id="post_body" class="w-100 rounded"></textarea>
         <button type="Submit" class="btn general-btn w-100 my-2 text-uppercase" aria-label="Click here to submit post">Post</button>
@@ -55,22 +50,23 @@ let shareForm = `
     `;
 
 let modalContents = '';
-let addModalContents = (modalType) => {
-    let modalTypes = {
-        'post': postForm,
-        'sharePost': shareForm,
-    };
-    for (const [key, value] of Object.entries(modalTypes)) {
-        if (key === modalType) {
-            modalContents = value;
-            break;
-        }
-    }
+let createPost = () => {
     $('.modal-container').html(`
     <div class="modal fade" id="feed-create-post" tabindex="-1" aria-labelledby="feedCreatePost" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                ${modalContents}
+                ${postForm}
+            </div>
+        </div>
+    </div>`);
+};
+
+let sharePost = (post_id) => {
+    $('.modal-container').html(`
+    <div class="modal fade" id="feed-create-post" tabindex="-1" aria-labelledby="feedCreatePost" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                ${shareForm}
             </div>
         </div>
     </div>`);
