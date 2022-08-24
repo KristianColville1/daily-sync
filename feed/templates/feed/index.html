@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load inbox %}
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -19,23 +19,19 @@
           <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-users"></i> Friends</a>
           <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-user-group"></i>
             Followers</a>
-          <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-message"></i>
-            Messages</a>
+          <a href="/messages/inbox/" class="list-group-item list-group-item-action"><i class="fa-solid fa-message"></i>
+            Messages
+            {% inbox_count as messages_amount %}
+            {% if messages_amount > 0 %}
+            <span class="position-absolute top-50 end-0 translate-middle badge rounded-pill bg-danger">
+              {{ messages_amount}}</span>
+            {% endif %}</a>
           <a href="{% url 'chat' %}" class="list-group-item list-group-item-action"><i class="fa-solid fa-comments"></i></i>
             Chat Rooms</a>
         </div>
       </div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-6 mb-2">
-      <div class="w-100 shadow-sm border px-2  py-3 boxes mb-2 d-md-none">
-        <div class="d-flex flex-row justify-content-center small-feed-options">
-          <a href="#" class="btn mx-auto" role="button" aria-label="Click here to go to your profile"><i class="fa-solid fa-user"></i></a>
-          <a href="#" class="btn mx-auto" role="button" aria-label="Click here to go to your friends"><i class="fa-solid fa-users"></i></a>
-          <a href="#" class="btn mx-auto" role="button" aria-label="Click here to go to your followers"><i class="fa-solid fa-user-group"></i></a>
-          <a href="#" class="btn mx-auto" role="button" aria-label="Click here to go to your messages"><i class="fa-solid fa-message"></i></a>
-          <a href="{% url 'chat' %}" class="btn mx-auto" role="button" aria-label="Click here to go to chat rooms"><i class="fa-solid fa-comments"></i></i></a>
-        </div>
-      </div>
       <div class="content-box post-box w-100 shadow-sm border p-2 boxes">
         <div class="row">
           <div class="col-2">
@@ -69,18 +65,18 @@
       <div class="content-box shadow-sm border w-100">
         <h6 class="text-center py-2"> People you may know <i class="fa-solid fa-angle-down"></i>
         </h6>
-        {% for persons in profiles %}
+        {% for person in profiles %}
         <div class="d-flex flex-row mx-3">
           <div class="mx-4 d-flex flex-row w-50">
-              <img class="user-post-image  my-2 rounded-circle shadow-sm  border" src="{{ persons.avatar_url }}"
+              <img class="user-post-image  my-2 rounded-circle shadow-sm  border" src="{{ person.avatar_url }}"
               alt="current user profile image" class="position-absolute">
-          <a href="/profiles/view_profile/{{persons.slug}}" aria-label="click link to go to users profile"
+          <a href="/profiles/view_profile/{{person.slug}}" aria-label="click link to go to users profile"
               class="my-auto"> 
-              <p>{{persons.user}}</p>
+              <p>{{person.user}}</p>
           </a>
           </div>
           <div class="w-50 my-3">
-              <form action="/profiles/follow_profile/{{persons.id}}">
+              <form action="/profiles/follow_profile/{{person.id}}">
                   <button class="btn btn-light mx-auto"><i class="fa-solid fa-plus"></i> Follow</button>
               </form>
           </div>

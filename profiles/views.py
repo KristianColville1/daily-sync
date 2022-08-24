@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.core.paginator import Paginator
 from django.contrib import messages
+from django.db.models import Q
+from notifications.signals import notify
 from .models import FriendRequest, Profile
 from posts.models import Post
 from posts.forms import CommentForm, PostForm
@@ -13,8 +15,13 @@ class ProfileOwnerView(View):
     """
 
     def get(self, request, *args, **kwargs):
-        post = Post.objects.filter(author=request.user)
-        profiles = Profile.objects.exclude(follows=request.user.profile)
+        post = Post.objects.filter(
+            Q(author=request.user)
+        )
+        profiles = Profile.objects.exclude(
+            Q(user__profile__in=request.user.profile.friends.all()) |
+            Q(user__profile__in=request.user.profile.follows.all())
+        )
         post_paginator = Paginator(post, 10)
         page_number = request.GET.get('page')
         post_obj = post_paginator.get_page(page_number)
@@ -70,8 +77,10 @@ def follow_profile(request, profile_id):
     """
     follow profile adds user profile to following
     """
-    profile = get_object_or_404(Profile, id=profile_id)
-    profile.follows.add(request.user.profile)
+    their_profile = get_object_or_404(Profile, id=profile_id)
+    request.user.profile.follows.add(their_profile)
+    notify.send(sender=request.user,
+                recipient=their_profile.user, verb=f'{request.user} has added started following you')
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
@@ -81,6 +90,9 @@ def unfollow_profile(request, profile_id):
     """
     profile = get_object_or_404(Profile, id=profile_id)
     profile.follows.remove(request.user.profile)
+    notify.send(sender=request.user.profile.user,
+                recipient=get_object_or_404(
+                    Profile(id=profile_id)), verb=f'{request.user.profile.author} has added you as a friend')
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
@@ -90,21 +102,10 @@ def add_friend(request, profile_id):
     friend_request, created = FriendRequest.objects.get_or_create(
         from_user=from_user, to_user=to_user)
     if created:
-        messages.add_message(request, messages.SUCCESS,
-                             'Your friend request was sent')
+        notify.send(actor=request.user.profile.author,
+                recipient=get_object_or_404(
+                    Profile(id=profile_id)), verb=f'{request.user.profile.author} has added you as a friend')
         return redirect(request.META.get('HTTP_REFERER', '/'))
     messages.add_message(request, messages.SUCCESS,
                          'Oops! something went wrong please try again')
     return redirect(request.META.get('HTTP_REFERER', '/'))
-
-
-def accept_friendship(request, friend_request_id, friendship):
-    friend_request = FriendRequest.objects.get(id=friend_request_id)
-    if friendship is True:
-        friend_request.to_user.profile.friends.add(friend_request.from_user)
-        friend_request.from_user.profile.friends.add(friend_request.to_user)
-        friend_request.delete()
-        return redirect(request.META.get('HTTP_REFERER', '/'))
-    else:
-        friend_request.not_accepted = True
-        return redirect(request.META.get('HTTP_REFERER', '/'))
