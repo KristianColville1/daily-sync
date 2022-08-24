@@ -34,66 +34,17 @@ h1 {
 }
 
 .nav-bg {
+  background-color: var(--off-white-2);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
   z-index: 2;
 }
 
-.nav-bg,
-.navbar {
-  background-color: var(--white);
+.nav-options a {
+  font-size: 20px;
 }
 
-.nav-link {
-  color: var(--black);
-}
-
-.nav-link:hover {
-  color: var(--bright-blue-1);
-}
-
-.nav-link.dropdown-toggle:hover,
-.nav-item:hover {
-  background-color: var(--whitesmoke);
-  transition: all 0.2s ease-in-out;
-}
-
-nav div ul i {
-  font-size: 24px;
-}
-
-.logo {
-  height: 45px;
-  width: 45px;
-  background: url('../img/favicon/android-chrome-192x192.png') no-repeat center center;
-  background-size: contain;
-  border-radius: 50%;
-}
-
-.navbar-toggler-icon {
-  background-image: none;
-}
-
-#menu-toggle {
-  height: 40px;
-  width: 45px;
-  border: 2px solid var(--bright-blue-1);
-}
-
-#menu-toggle span>i {
-  color: var(--black);
-  font-size: 30px;
-  transition: all 0.2s ease-in-out;
-}
-
-.search-box {
-  height: 40px;
-  background-color: var(--off-white-1);
-  border: 2px inset;
-}
-
-.dropdown-menu.nav-dropdown {
-  position: relative;
-  z-index: 99;
+.dropdown-toggle:after {
+  content: none
 }
 
 /**********************************************Footer */
@@ -383,6 +334,13 @@ footer a i:hover {
   font-weight: 700;
 }
 
+.inbox-icons {
+  color: var(--black);
+}
+.inbox-icons:hover {
+  background-color: var(--middle-blue-2);
+}
+
 /*********************************************************Error pages */
 .error-page {
   height: 80vh;
@@ -407,8 +365,5 @@ footer a i:hover {
     left: 0;
     top: 0;
     transform: translate(0, 0);
-  }
-  #top-btn {
-    bottom: 5%;
   }
 }

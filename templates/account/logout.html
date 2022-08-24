@@ -10,18 +10,18 @@
     <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 form-box shadow py-2 px-3 boxes">
       <h1 class="text-center">{% trans "Sign Out" %}</h1>
       <hr>
-      <p>{% trans 'Are you sure you want to sign out?' %}</p>
-
+      <p class="text-center">{% trans 'Are you sure you want to sign out?' %}</p>
       <form method="post" action="{% url 'account_logout' %}">
         {% csrf_token %}
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
-        <button class="btn w-100 log-op-btn text-uppercase my-2" type="submit">{% trans 'Sign Out' %}</button>
+        <div class="d-flex flex-row">
+          <a href="/feed/" class="btn general-btn w-50 mx-1">Back to feed</a>
+          <button class="btn btn-danger w-50 mx-1" type="submit">{% trans 'Sign Out' %}</button>
+        </div>
       </form>
     </div>
   </div>
 </div>
-
-
 {% endblock %}

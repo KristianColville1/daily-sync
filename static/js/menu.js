@@ -1,26 +1,6 @@
-/* Switches icons for the menu when button clicked open and close*/
-let navMenu = false;
-$('#menu-toggle').on('click', () => {
-    let toggle_on = 'i.fa-bars';
-    let toggle_off = 'i.fa-x';
-
-    let thisSwitch = () => {
-        if ($(toggle_off).hasClass('d-none')) {
-            $(toggle_off).removeClass('d-none');
-            $(toggle_on).addClass('d-none').fadeIn(1300);
-
-        } else if ($(toggle_on).hasClass('d-none')) {
-            $(toggle_on).removeClass('d-none');
-            $(toggle_off).addClass('d-none').fadeIn(1300);
-        }
-    };
-
-    thisSwitch();
-});
-
 /* Nav dropdown */
 let navDropdown = false;
-$('#dropdownMenuButton1').on('click', () => {
+$('#settings').on('click', () => {
     if (navDropdown == false) {
         $('#nav-dropdown-menu').slideDown();
         navDropdown = true;
@@ -30,17 +10,6 @@ $('#dropdownMenuButton1').on('click', () => {
     }
 });
 
-/* Message dropdown */
-let messageDropdown = false;
-$('#message-dropdown').on('click', () => {
-    if (messageDropdown == false) {
-        $('#message-dropdown-menu').slideDown();
-        messageDropdown = true;
-    } else {
-        $('#message-dropdown-menu').slideUp();
-        messageDropdown = false;
-    }
-});
 
 /* posts dropdown */
 /* because there are multiple posts the history is stored and modified

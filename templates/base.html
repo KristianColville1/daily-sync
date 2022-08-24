@@ -24,77 +24,42 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
   {% if user.is_authenticated %}
-  <div class="nav-bg position-fixed w-100">
-    <nav class="container-fluid navbar navbar-expand-lg sticky-top py-0">
-      <div class="container-fluid">
-        <a class="navbar-brand fst-italic logo my-1 shadow-sm" href="{% url 'feed' %}"></a>
-        <button id="menu-toggle" class="navbar-toggler position-relative" type="button" data-bs-toggle="collapse"
-          data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon position-absolute top-50 start-50 translate-middle">
-            <i class="fa-solid fa-bars"></i>
-            <i class="fa-solid fa-x d-none"></i>
-          </span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarScroll">
-          <form class="d-flex search-form" role="search" method="POST" action="{% url 'search' %}">
-            {% csrf_token %}
-            <input class="search-box form-control rounded w-75" type="search" placeholder="Search" aria-label="Search"
-              name="searched" id="user_searches">
+  <div class="nav-container boxes mb-5 mb-lg-3">
+    <nav class="container nav-bg  fixed-top">
+      <div class="row">
+        <div class="col-sm-12 col-md-3">
+          <a href="{% url 'home' %}" class="text-decoration-none"><h1 class="w-100 text-center p-1"><i class="fa-solid fa-share-nodes"></i> Daily Sync</h1></a>
+        </div>
+        <div class="col-sm-12 col-md-9 d-flex flex-row nav-options">
+          <form class="form-inline position-relative my-auto d-none d-sm-none d-md-block">
+            <input class="form-control boxes border" type="search" placeholder="Search" aria-label="Search">
+            <div class="position-absolute top-50 end-0 translate-middle-y mx-2">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
           </form>
-          <ul class="navbar-nav">
-            {% if user.is_authenticated %}
-            <li class="nav-item mx-5">
-              <a class="nav-link text-center" href="{% url 'feed' %}" data-bs-toggle="tooltip"
-                data-bs-placement="bottom" data-bs-custom-class="nav-tooltips" title="Home">
-                <i class="fa-solid fa-house"></i></a>
-            </li>
-            <li class="nav-item mx-5">
-              <a class="nav-link text-center position-relative" href="{% url 'messages_inbox' %}" data-bs-toggle="tooltip"
-                data-bs-placement="bottom" data-bs-custom-class="nav-tooltips" title="Messages">
-                <i class="fa-solid fa-message"></i>
-                {% inbox_count as messages_amount %}
-                {% if messages_amount > 0 %}
-                <span class="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-danger">
-                  {{ messages_amount}}</span>
-                {% endif %}</a>
-            </li>
-            <li class="nav-item mx-5">
-              <a class="nav-link d-flex flex-column text-center" href="#" data-bs-toggle="tooltip"
-                data-bs-placement="bottom" data-bs-custom-class="nav-tooltips" title="Notifications">
-                <i class="fa-solid fa-bell"></i></a>
-            </li>
-            <div class="dropdown mx-5">
-              <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
-                data-toggle="dropdown"aria-expanded="false">
-                <img class="profile-image-nav rounded-circle shadow-sm" src="{{ request.user.profile.avatar_url }}"
-                  alt="profile image of author">
+            <a href="" class="btn boxes m-auto d-sm-block d-md-none"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="{% url 'messages_inbox' %}" class="btn boxes m-auto position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Messages"><i class="fa-solid fa-message"></i>
+              {% inbox_count as messages_amount %}
+              {% if messages_amount > 0 %}
+              <span class="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-danger">
+                {{ messages_amount}}</span>
+              {% endif %}</a>
+            <a href="" class="btn boxes m-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notifications"><i class="fa-solid fa-bell"></i></a>
+            <a href="" class="btn boxes m-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Games"><i class="fa-solid fa-gamepad"></i></a>
+            <div class="btn boxes m-auto position-relative">
+              <button class="btn dropdown-toggle" type="button" id="settings" data-toggle="dropdown" aria-expanded="false">
+                <img src="{{request.user.profile.avatar_url}}" width="30" height="30" class="rounded-circle border shadow-sm">
               </button>
-              <ul class="dropdown-menu nav-dropdown boxes border" aria-labelledby="dropdownMenuButton1" id="nav-dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'profile' %}" aria-label="Go to your profile page">
-                    <i class="fa-solid fa-user mx-2 "></i> Profile</a></li>
-                <li><a class="dropdown-item" href="#" aria-label="Go to your account settings">
-                    <i class="fa-solid fa-gear mx-2 "></i> Account</a></li>
-                <li><a class="dropdown-item" role="button" aria-label="click to turn darkmode on or off">
-                    <i class="fa-solid fa-moon mx-2 "></i> Darkmode
-                  </a></li>
-                <hr class="dropdown-divider">
-                <li><a class="dropdown-item" href="{% url 'account_logout' %}" aria-label="Click here to logout">
-                    <i class="fa-solid fa-right-from-bracket mx-2 "></i> Logout</a></li>
+              <ul class="dropdown-menu boxes border position-absolute end-0" aria-labelledby="settings" id="nav-dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="fa-solid fa-gear"></i> Profile</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                <li><a class="dropdown-item" role="button" aria-label="Click here to enable dark mode"><i class="fa-solid fa-moon"></i> Dark Mode</a></li>
+                <hr>
+                <li><a class="dropdown-item" href="/accounts/logout/"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
               </ul>
             </div>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_signup' %}"
-                aria-label="Click here to sign up to Daily Sync">Sign Up</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_login' %}"
-                aria-label="Click here to login to Daily Sync">Login</a>
-            </li>
-            {% endif %}
-          </ul>
         </div>
+      </div>
     </nav>
   </div>
   {% endif %}
