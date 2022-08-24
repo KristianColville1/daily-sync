@@ -52,7 +52,7 @@ class Profile(models.Model):
         """
         if self.background:
             return self.background.url
-        return '/static/img/default_backgrounds/bg.jpg'
+        return '/static/img/default_backgrounds/bg.webp'
 
 
 @receiver(post_save, sender=User)
@@ -67,3 +67,12 @@ def create_profile(sender, instance, created, **kwargs):
         user_profile.follows.add(instance.profile)
         user_profile.email = instance.email
         user_profile.save()
+
+
+class FriendRequest(models.Model):
+    """
+    FriendRequest model
+    """
+    from_user = models.ForeignKey(User, related_name="from_user", on_delete=models.CASCADE)
+    to_user = models.ForeignKey(User, related_name="to_user", on_delete=models.CASCADE)
+    not_accepted = models.BooleanField(default=False)
