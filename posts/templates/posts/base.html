@@ -65,15 +65,15 @@
         {% csrf_token %}
         <button name="Like button" class="likes btn w-100" aria-label="Click here to leave a emoji like on a post">
           {% if user in post.thumbs_likes.all %}
-          <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span> Like</span>
+          <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="d-none d-sm-none d-md-block"> Like</span>
           {% elif user in post.heart_likes.all %}
-          <i class="fa-solid fa-heart fs-4"></i><span> Love</span>
+          <i class="fa-solid fa-heart fs-4"></i><span class="d-none d-sm-none d-md-block"> Love</span>
           {% elif user in post.laugh_likes.all %}
-          <i class="fa-solid fa-face-laugh-squint fs-4"></i><span> Laugh</span>
+          <i class="fa-solid fa-face-laugh-squint fs-4"></i><span class="d-none d-sm-none d-md-block"> Laugh</span>
           {% elif user in post.angry_likes.all %}
-          <i class="fa-solid fa-face-angry fs-4"></i><span> Angry</span>
+          <i class="fa-solid fa-face-angry fs-4"></i><span class="d-none d-sm-none d-md-block"> Angry</span>
           {% else %}
-          <i class="fa-solid fa-thumbs-up"></i> Like
+          <i class="fa-solid fa-thumbs-up"></i><span class="d-none d-sm-none d-md-block"> Like</span>
           {% endif %}
         </button>
       </form>
@@ -97,11 +97,11 @@
       </div>
     </div>
     <button class="col-4 btn" aria-label="click here to create a comment" onclick="commentForm({{post.id}})">
-      <i class="fa-solid fa-comment"></i> Comment
+      <i class="fa-solid fa-comment"></i><span class="d-none d-sm-none d-md-block"> Comment</span>
     </button>
     <button class="col-4 btn share-post-btn" data-bs-toggle="modal" data-bs-target="#general-modal"
       aria-label="click here to share a post">
-      <i class="fa-solid fa-share-nodes"></i> Share
+      <i class="fa-solid fa-share-nodes"></i><span class="d-none d-sm-none d-md-block"> Share</span>
     </button>
     <div class="d-none">{{post.id}}</div>
   </div>
