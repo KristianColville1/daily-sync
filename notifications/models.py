@@ -1,3 +1,10 @@
-from django.db import models
+from swapper import swappable_setting
 
-# Create your models here.
+from .base.models import AbstractNotification, notify_handler  # noqa
+
+
+class Notification(AbstractNotification):
+
+    class Meta(AbstractNotification.Meta):
+        abstract = False
+        swappable = swappable_setting('notifications', 'Notification')
