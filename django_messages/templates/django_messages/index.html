@@ -1,0 +1,14 @@
+{% load i18n %}
+{% block content %}
+<div class="d-flex flex-row py-3">
+  <a href="{% url 'messages_inbox' %}" class="btn boxes text-decoration-none inbox-icons mx-auto"><i class="fa-solid fa-inbox"></i>
+    {% trans "Inbox" %}</a>
+<a href="{% url 'messages_outbox' %}" class="btn boxes text-decoration-none inbox-icons mx-auto"><i class="fa-solid fa-paper-plane"></i>
+    {% trans "Sent Messages" %}</a>
+<a href="{% url 'messages_compose' %}" class="btn boxes text-decoration-none inbox-icons mx-auto"><i class="fa-solid fa-reply"></i>
+    {% trans "New Message" %}</a>
+<a href="{% url 'messages_trash' %}" class="btn boxes text-decoration-none inbox-icons mx-auto"><i class="fa-solid fa-trash-can"></i>
+    {% trans "Trash" %}</a>
+  </div>
+<hr class="mx-2">
+{% endblock %}

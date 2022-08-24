@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+{% load inbox %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +25,7 @@
 <body class="d-flex flex-column min-vh-100">
   {% if user.is_authenticated %}
   <div class="nav-bg position-fixed w-100">
-    <nav class="container navbar navbar-expand-lg sticky-top py-0">
+    <nav class="container-fluid navbar navbar-expand-lg sticky-top py-0">
       <div class="container-fluid">
         <a class="navbar-brand fst-italic logo my-1 shadow-sm" href="{% url 'feed' %}"></a>
         <button id="menu-toggle" class="navbar-toggler position-relative" type="button" data-bs-toggle="collapse"
@@ -38,44 +39,38 @@
         <div class="collapse navbar-collapse" id="navbarScroll">
           <form class="d-flex search-form" role="search" method="POST" action="{% url 'search' %}">
             {% csrf_token %}
-            <input class="search-box form-control mx-1 rounded" type="search" placeholder="Search" aria-label="Search"
+            <input class="search-box form-control rounded w-75" type="search" placeholder="Search" aria-label="Search"
               name="searched" id="user_searches">
           </form>
           <ul class="navbar-nav">
             {% if user.is_authenticated %}
-            <li class="nav-item py-auto px-5">
-              <a class="nav-link d-flex flex-column text-center p-2" href="{% url 'feed' %}" data-toggle="tooltip"
-                data-placement="bottom" title="Home">
+            <li class="nav-item mx-5">
+              <a class="nav-link text-center" href="{% url 'feed' %}" data-bs-toggle="tooltip"
+                data-bs-placement="bottom" data-bs-custom-class="nav-tooltips" title="Home">
                 <i class="fa-solid fa-house"></i></a>
             </li>
-            <div class="dropdown mx-5">
-              <button class="nav-link btn dropdown-toggle mx-5 py-auto px-5" type="button" id="message-dropdown"
-                data-toggle="dropdown" aria-expanded="false" data-toggle="tooltip" data-placement="bottom"
-                title="Messages"><i class="fa-solid fa-message"></i></button>
-              <ul class="dropdown-menu message-dropdown mx-3 boxes border" aria-labelledby="message-dropdown"
-                id="message-dropdown-menu">
-                <li><a href="{% url 'messages_inbox' %} " class="dropdown-item"><i class="fa-solid fa-inbox"></i>
-                    {% trans "Inbox" %}</a></li>
-                <li><a href="{% url 'messages_outbox' %} " class="dropdown-item"><i class="fa-solid fa-paper-plane"></i>
-                    {% trans "Sent Messages" %}</a></li>
-                <li><a href="{% url 'messages_compose' %} " class="dropdown-item"><i class="fa-solid fa-reply"></i>
-                    {% trans "New Message" %}</a></li>
-                <li><a href="{% url 'messages_trash' %} " class="dropdown-item"><i class="fa-solid fa-trash-can"></i>
-                    {% trans "Trash" %}</a></li>
-              </ul>
-            </div>
-            <li class="nav-item py-auto px-5">
-              <a class="nav-link d-flex flex-column text-center p-2" href="#" data-toggle="tooltip"
-                data-placement="bottom" title="Notifications">
+            <li class="nav-item mx-5">
+              <a class="nav-link text-center position-relative" href="{% url 'messages_inbox' %}" data-bs-toggle="tooltip"
+                data-bs-placement="bottom" data-bs-custom-class="nav-tooltips" title="Messages">
+                <i class="fa-solid fa-message"></i>
+                {% inbox_count as messages_amount %}
+                {% if messages_amount > 0 %}
+                <span class="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{ messages_amount}}</span>
+                {% endif %}</a>
+            </li>
+            <li class="nav-item mx-5">
+              <a class="nav-link d-flex flex-column text-center" href="#" data-bs-toggle="tooltip"
+                data-bs-placement="bottom" data-bs-custom-class="nav-tooltips" title="Notifications">
                 <i class="fa-solid fa-bell"></i></a>
             </li>
             <div class="dropdown mx-5">
-              <button class="btn dropdown-toggle mx-5 py-auto px-5" type="button" id="dropdownMenuButton1"
-                data-toggle="dropdown" aria-expanded="false">
+              <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-toggle="dropdown"aria-expanded="false">
                 <img class="profile-image-nav rounded-circle shadow-sm" src="{{ request.user.profile.avatar_url }}"
                   alt="profile image of author">
               </button>
-              <ul class="dropdown-menu nav-dropdown mx-4 boxes border" aria-labelledby="dropdownMenuButton1" id="nav-dropdown-menu">
+              <ul class="dropdown-menu nav-dropdown boxes border" aria-labelledby="dropdownMenuButton1" id="nav-dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'profile' %}" aria-label="Go to your profile page">
                     <i class="fa-solid fa-user mx-2 "></i> Profile</a></li>
                 <li><a class="dropdown-item" href="#" aria-label="Go to your account settings">

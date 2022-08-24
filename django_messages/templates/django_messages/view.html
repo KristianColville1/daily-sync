@@ -3,7 +3,10 @@
 
 {% block content %}
 <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 my-3 boxes shadow-sm">
-    <div class="m-3">
+    <div>
+        {% include "django_messages/index.html" %}
+    </div>
+    <div class="mt-2 p-2">
         <h1 class="text-center">{% trans "View Message" %}</h1>
         <hr>
         <div class="bg-light boxes p-3 border">
@@ -17,9 +20,9 @@
         </div>
         <div class="my-1 w-100">
             {% ifequal message.recipient.pk user.pk %}
-            <a href="{% url 'messages_reply' message.id %}" class="btn general-btn rounded-pill">{% trans "Reply" %}</a>
+            <a href="{% url 'messages_reply' message.id %}" class="btn general-btn boxes">{% trans "Reply" %}</a>
             {% endifequal %}
-            <a href="{% url 'messages_delete' message.id %}" class="btn btn-danger rounded-pill">{% trans "Delete" %}</a>
+            <a href="{% url 'messages_delete' message.id %}" class="btn rounded btn-danger border">{% trans "Delete" %}</a>
         </div>
     </div>
 </div>
