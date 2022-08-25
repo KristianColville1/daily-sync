@@ -71,7 +71,7 @@ def mark_all_as_read(request):
 
     if _next:
         return redirect(_next)
-    return redirect('notifications:unread')
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @login_required
@@ -87,7 +87,7 @@ def mark_as_read(request, slug=None):
     if _next:
         return redirect(_next)
 
-    return redirect('notifications:unread')
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @login_required
