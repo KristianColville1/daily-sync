@@ -10,6 +10,17 @@ $('#settings').on('click', () => {
     }
 });
 
+/* Nav dropdown */
+let notifyDropdown = false;
+$('#notifications-dropdown').on('click', () => {
+    if (notifyDropdown == false) {
+        $('#notifications-dropdown-menu').slideDown('fast');
+        notifyDropdown = true;
+    } else {
+        $('#notifications-dropdown-menu').slideUp('fast');
+        notifyDropdown = false;
+    }
+});
 
 /* posts dropdown */
 /* because there are multiple posts the history is stored and modified
