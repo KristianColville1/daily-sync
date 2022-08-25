@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     "channels",
     "django.contrib.admin",
     "django.contrib.auth",
-    "notifications",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -66,9 +65,9 @@ INSTALLED_APPS = [
     "chats",
     "search_bar",
     "django_messages",
+    "notifications",
 ]
 
-DJANGO_NOTIFICATIONS_CONFIG = { 'USE_JSONFIELD': True}
 ASGI_APPLICATION = 'daily_sync.routing.application'
 
 
@@ -119,30 +118,23 @@ WSGI_APPLICATION = "daily_sync.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if development:
-    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-    EMAIL_FILE_PATH = BASE_DIR / 'emails_sent/'
-    CHANNEL_LAYERS = {
-        'default': {
-            'BACKEND': 'channels.layers.InMemoryChannelLayer',
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'daily_sync@example.com'
+EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN')
+EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD')
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [(os.environ.get("REDIS_URL"))],
         },
-    }
-else:
-    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-    EMAIL_HOST = os.environ.get("MAILGUN_SMTP_SERVER")
-    EMAIL_PORT = 587
-    EMAIL_HOST_USER = os.environ.get("MAILGUN_SMTP_LOGIN")
-    EMAIL_HOST_PASSWORD = os.environ.get("MAILGUN_SMTP_PASSWORD")
-    EMAIL_USE_TLS = True
-    DEFAULT_FROM_EMAIL = "daily.sync@example.com"
-    CHANNEL_LAYERS = {
-        'default': {
-            'BACKEND': 'channels_redis.core.RedisChannelLayer',
-            'CONFIG': {
-                "hosts": [(os.environ.get("REDIS_URL"))],
-            },
-        },
-    }
+    },
+}
 
 DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
