@@ -130,7 +130,7 @@ if development:
 else:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_HOST = os.environ.get("MAILGUN_SMTP_SERVER")
-    EMAIL_PORT = os.environ.get("MAILGUN_SMTP_PORT")
+    EMAIL_PORT = 587
     EMAIL_HOST_USER = os.environ.get("MAILGUN_SMTP_LOGIN")
     EMAIL_HOST_PASSWORD = os.environ.get("MAILGUN_SMTP_PASSWORD")
     EMAIL_USE_TLS = True
