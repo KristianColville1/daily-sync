@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "channels",
     "django.contrib.admin",
     "django.contrib.auth",
+    "notifications",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -65,11 +66,10 @@ INSTALLED_APPS = [
     "chats",
     "search_bar",
     "django_messages",
-    "notifications",
 ]
 
+DJANGO_NOTIFICATIONS_CONFIG = { 'USE_JSONFIELD': True}
 ASGI_APPLICATION = 'daily_sync.routing.application'
-
 
 
 SITE_ID = 1
@@ -120,12 +120,11 @@ WSGI_APPLICATION = "daily_sync.wsgi.application"
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'daily_sync@example.com'
-EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN')
-EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD')
+EMAIL_HOST_USER = os.environ.get('EMAIL_LOGIN')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 CHANNEL_LAYERS = {
     'default': {
