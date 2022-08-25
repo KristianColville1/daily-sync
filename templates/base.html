@@ -66,12 +66,14 @@
               </ul>
             </div>
         </div>
+        <div class="col-sm-12 col-md-6 offset-md-3 position-relative">
         {% if unread_count %}
         {% live_notify_list list_class="notification-list" %}
-        <ul class="notification-list py-2 dropdown-menu boxes border position-absolute top-100 start-50" aria-labelledby="notifications-list" id="notifications-dropdown-menu">
+        <ul class="position-absolute top-100 start-25 notification-list py-2 dropdown-menu boxes border " aria-labelledby="notifications-list" id="notifications-dropdown-menu">
           {% live_notify_list %}
         </ul>
         {% endif %}
+      </div>
       </div>
     </nav>
   </div>
