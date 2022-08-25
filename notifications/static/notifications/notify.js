@@ -34,8 +34,15 @@ function fill_notification_list(data) {
             if(typeof item.timestamp !== 'undefined'){
                 message = message + " " + item.timestamp;
             }
-            return '<li>' + message + '</li>';
-        }).join('')
+            return `
+                    <li class="list-unstyled my-1">
+                        <form class="list-unstyled my-1" method="post" action="/notifications/mark-as-read/${item.slug}/">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="${csrf_token}">
+                            <button type="submit" class="btn fs-6"><i class="fa-solid fa-angles-right blue-like"></i> ${message}</button>
+                        </form>
+                    </li>
+            `;
+        }).join('');
 
         for (var i = 0; i < menus.length; i++){
             menus[i].innerHTML = messages;
@@ -63,7 +70,7 @@ function fetch_api_data() {
                     consecutive_misfires++;
                 }
             }
-        })
+        });
         r.open("GET", notify_api_url+'?max='+notify_fetch_count, true);
         r.send();
     }
@@ -74,7 +81,7 @@ function fetch_api_data() {
         if (badges) {
             for (var i = 0; i < badges.length; i++){
                 badges[i].innerHTML = "!";
-                badges[i].title = "Connection lost!"
+                badges[i].title = "Connection lost!";
             }
         }
     }
