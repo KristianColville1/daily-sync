@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "channels",
     "django.contrib.admin",
     "django.contrib.auth",
+    "notifications",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -65,9 +66,9 @@ INSTALLED_APPS = [
     "chats",
     "search_bar",
     "django_messages",
-    "notifications"
 ]
 
+DJANGO_NOTIFICATIONS_CONFIG = { 'USE_JSONFIELD': True}
 ASGI_APPLICATION = 'daily_sync.routing.application'
 
 

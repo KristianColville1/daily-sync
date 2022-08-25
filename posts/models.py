@@ -41,7 +41,7 @@ class Base(models.Model):
                     if last == 'e':
                         time_string = first + char_1 + 'ins'
                     else:
-                        time_string = first + char_1 + last + 's'
+                        time_string = first + char_1 + last
         return time_string
 
 
