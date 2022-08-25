@@ -26,7 +26,7 @@
 <body class="d-flex flex-column min-vh-100">
   {% if user.is_authenticated %}
   <div class="nav-container boxes mb-5 mb-lg-3">
-    <nav class="container nav-bg  fixed-top">
+    <nav class="container nav-bg fixed-top">
       <div class="row">
         <div class="col-sm-12 col-md-3">
           <a href="{% url 'home' %}" class="text-decoration-none"><h1 class="w-100 text-center p-1"><i class="fa-solid fa-share-nodes"></i> Daily Sync</h1></a>
@@ -46,10 +46,12 @@
                 {{ messages_amount}}</span>
               {% endif %}</a>
             <div class="btn boxes m-auto position-relative p-0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notifications">
-              {% notifications_unread as unread_count %}
               <button class="btn dropdown-toggle position-relative top-50" id="notifications-dropdown" type="button" data-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-bell"></i>
+                {% notifications_unread as unread_count %}
+                {% if unread_count %}
                 <span class="position-absolute top-50 start-75 translate-middle-x p-2 bg-danger border border-light rounded-circle">
-                  </span>
+                </span>
+                {% endif %}
               </button>
             </div>
             <a class="btn boxes m-auto" role="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Games"><i class="fa-solid fa-gamepad"></i></a>
@@ -66,19 +68,26 @@
               </ul>
             </div>
         </div>
-        <div class="col-sm-12 col-md-6 offset-md-3 position-relative">
+      </div>
+    </nav>
+
+  </div>
+  <div class="container mt-3">
+    <div class="row mt-2">
+      <div class="col-sm-12 col-md-6 offset-md-3 position-relative">
+        {% notifications_unread as unread_count %}
         {% if unread_count %}
         {% live_notify_list list_class="notification-list" %}
-        <ul class="position-absolute top-100 start-25 notification-list py-2 dropdown-menu boxes border " aria-labelledby="notifications-list" id="notifications-dropdown-menu">
+        <ul class=" notification-list py-2 dropdown-menu boxes border position-absolute top-100" aria-labelledby="notifications-list" id="notifications-dropdown-menu">
           {% live_notify_list %}
         </ul>
         {% endif %}
-      </div>
-      </div>
-    </nav>
+      </div>  
+    </div>
+
   </div>
   {% endif %}
-  <div class="container g-0 mt-5">
+  <div class="container g-0 mt-3">
     <div class="row mt-1 position-relative">
       <div class="col-6 offset-3 text-center pos-absolute">
         {% for message in messages %}

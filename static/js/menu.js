@@ -14,10 +14,10 @@ $('#settings').on('click', () => {
 let notifyDropdown = false;
 $('#notifications-dropdown').on('click', () => {
     if (notifyDropdown == false) {
-        $('#notifications-dropdown-menu').slideDown('fast');
+        $('#notifications-dropdown-menu').slideDown();
         notifyDropdown = true;
     } else {
-        $('#notifications-dropdown-menu').slideUp('fast');
+        $('#notifications-dropdown-menu').slideUp();
         notifyDropdown = false;
     }
 });
