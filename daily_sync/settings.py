@@ -79,7 +79,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION = "username_email"
 ACCOUNT_USERNAME_MIN_LENGTH = 5
-
+ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = "/feed/"
 LOGOUT_REDIRECT_URL = "/"
 
@@ -122,12 +122,6 @@ WSGI_APPLICATION = "daily_sync.wsgi.application"
 if development:
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
     EMAIL_FILE_PATH = BASE_DIR / 'emails_sent/'
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
     CHANNEL_LAYERS = {
         'default': {
             'BACKEND': 'channels.layers.InMemoryChannelLayer',
