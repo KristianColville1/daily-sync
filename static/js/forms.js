@@ -13,8 +13,10 @@ var commentForm = (postID) => {
 };
 
 /**
- * Adds create post modal form to template
+ * Adds the required html code blocks depending on which modal.
+ * Generates a create post & share post modal
  */
+/* collects csrf_token */
 let csrf_token = $("input[name=csrfmiddlewaretoken]").val();
 
 /**

@@ -22,9 +22,9 @@ body {
 }
 
 body {
-  background: url('../img/background.jpeg') no-repeat center center;
+  background: url('../img/background.jpeg') repeat center center;
   background-color: var(--whitesmoke);
-  background-size: cover;
+  background-size: 100%;
   background-blend-mode: darken;
 }
 
@@ -34,19 +34,27 @@ h1 {
 }
 
 .nav-bg {
-  background-color: var(--off-white-2);
+  background-color: var(--white);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
   z-index: 2;
 }
 
-.nav-options a {
-  font-size: 20px;
+.nav-options a,
+.nav-options i {
+  font-size: 25px;
+}
+
+.nav-options span {
+  font-size: 14px;
 }
 
 .dropdown-toggle:after {
   content: none
 }
 
+.notification-list {
+  width: fit-content;
+}
 /**********************************************Footer */
 footer {
   background-color: var(--off-white-2);
