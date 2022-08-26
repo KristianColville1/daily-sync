@@ -3,110 +3,41 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
-    <div class="row  position-relative gx-0 mt-2">
-        <div class="col-sm-12 col-md-7 col-lg-9">
-            <img src="{{profile.background_url}}" alt="user profile background"
-                class="user-bg shadow-sm boxes w-100 border" height="330" width="160">
-            <div class="col-5">
-                <div>
-                    <img class="profile-img-profile my-2 rounded-circle shadow-sm border position-absolute top-0 start-0 mx-4"
-                        src="{{ profile.avatar_url }}" alt="current user profile image">
-                    {% if profile.first_name %}
-                    <h6>{{profile.first_name}}</h6>
-                    {% endif %}
-                </div>
+    <div class="row gx-0 mt-4 mt-lg-3 position-relative">
+        <img src="{{profile.background.url}}" alt="user profile background" class="user-bg shadow-sm boxes w-100 border"
+            height="330" width="160">
+            <div class="position-absolute mx-4 my-3 d-flex flex-col">
+                <img class="profile-img-profile rounded-circle shadow-sm border" width="200" height="200" src="{{profile.avatar.url}}"
+                alt="current user profile image" id="profile-img-profile">
             </div>
-            <div class="row gx-0 my-1">
-                <div class="col-sm-12 col-md-4">
-                    <div class="boxes shadow-sm border p-2 mx-2">
-                        <h4 class="text-start">Intro</h4>
-                        <p class="text-start ">{{ profile.bio }}</p>
-                    </div>
-                    <div class="boxes shadow-sm border p-2 m-2">
-                        <h4 class="text-start">Friends</h4>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-8">
-                    <div class="content-box post-box w-100 shadow-sm border p-2 boxes">
-                        <div class="row">
-                            <div class="col-2">
-                                <img class="profile-image-post rounded-circle shadow-sm border" src="{{ profile.avatar_url }}"
-                                    alt="profile image of author" height="50" width="40"></div>
-                            <div class="col-10">
-                                <button class="btn create-post-btn w-100 rounded-pill border text-start" type="button"
-                                    aria-label="Click here to create a post" data-bs-toggle="modal"
-                                    data-bs-target="#feed-create-post">Create
-                                    a
-                                    post</button></div>
-                        </div>
-                    </div>
-                    <div class="boxes my-1 p-2 shadow-sm border">
-                        <h4>Posts</h4>
-                        <hr class="g-0 m-0">
-                        <div class="w-100 d-flex flex-row">
-                            <button class="btn w-50">Newest</button>
-                            <button class="btn w-50">Popular</button>
-                        </div>
-                    </div>
-                    {% for post in posts %}
-                    {% include "posts/base.html" %}
+            <a href="{% url 'account_settings' %}" role="button" class="btn update-btn position-absolute bottom-0 end-0 shadow-sm"><i class="fa-solid fa-user-pen"></i></a>
+
+    </div>
+    <div class="row my-1">
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="boxes shadow-sm border">
+                <h1 class="text-center my-1">{{profile.first_name}} {{profile.last_name}}</h1>
+            </div>
+            <div class="boxes shadow-sm border my-1">
+                <h3 class="mx-3">Bio</h3>
+                {% if profile.bio %}
+                <h4 class="text-center my-1">{{profile.bio}}</h4>
+                {% else %}
+                <a href="{% url 'account_settings' %}" class="text-center text-black-50"><p>Write a few words about yourself <i class="fa-solid fa-user-pen"></i></p></a>
+                {% endif %}
+            </div>
+            <div class="boxes shadow-sm border my-1">
+                <h3 class="mx-3">Friends</h3>
+                {% if profile.friends.all > 0 %}
+                    {% for friend in profile.friends.all %}
+                    <h4 class="text-center my-1">{{friend}}</h4>
                     {% endfor %}
-                    <div class="pagination boxes shadow-sm border mt-2 py-2">
-                        <div class="step-links">
-                            {% if posts.has_previous %}
-                            <a href="?page=1" class="btn general-btn  py-1 px-2 mx-3 rounded">&laquo; first</a>
-                            <a href="?page={{ posts.previous_page_number }}"
-                                class="btn general-btn  py-1 px-2 mx-3 rounded">previous</a>
-                            {% endif %}
-                            {% if posts.has_next %}
-                            <a href="?page={{ posts.next_page_number }}"
-                                class="btn general-btn py-1 px-2 mx-3 rounded">next</a>
-                            <a href="?page={{ posts.paginator.num_pages }}"
-                                class="btn general-btn  py-1 px-2 mx-3 rounded">last
-                                &raquo;</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
+                {% else %}
+                <p class="text-center">Your new friends will appear here</p>
+                {% endif %}
             </div>
         </div>
-        <div class="col-md-5 col-lg-3 d-none d-md-block">
-            <div class="content-box shadow-sm border mx-3 w-100">
-                <h6 class="text-center py-2"> People you may know <i class="fa-solid fa-angle-down"></i>
-                </h6>
-                {% for persons in profiles %}
-                <div class="d-flex flex-row mx-3">
-                    <div class="mx-4 d-flex flex-row w-50">
-                        <img class="user-post-image  my-2 rounded-circle shadow-sm" src="{{ persons.avatar_url }}"
-                        alt="current user profile image" class="position-absolute">
-                    <a href="view_profile/{{persons.slug}}" aria-label="click link to go to users profile"
-                        class="my-auto"> 
-                        <p>{{persons.user}}</p>
-                    </a>
-                    </div>
-                    <div class="w-50 my-3">
-                        <form action="follow_profile/{{persons.id}}">
-                            <button class="btn btn-light mx-auto"><i class="fa-solid fa-plus"></i> Follow</button>
-                        </form>
-                    </div>
-                </div>
-                {% endfor %}
-                <div class="pagination boxes shadow-sm mt-2 py-2">
-                    <div class="step-links">
-                        {% if profiles.has_previous %}
-                        <a href="?page=1" class="py-1 px-2 mx-3 rounded">&laquo; first</a>
-                        <a href="?page={{ profiles.previous_page_number }}" class="py-1 px-2 mx-3 rounded">previous</a>
-                        {% endif %}
-                        {% if profiles.has_next %}
-                        <a href="?page={{ profiles.next_page_number }}" class="py-1 px-2 mx-3 rounded">next</a>
-                        <a href="?page={{ profiles.paginator.num_pages }}" class="py-1 px-2 mx-3 rounded">last
-                            &raquo;</a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            <div class="w-100 mx-3 shadow-sm boxes border mt-2 overflow-hidden">{% include "footer.html" %}</div>
-        </div>
+
     </div>
 </div>
 {% endblock %}
