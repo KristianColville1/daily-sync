@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     "chats",
     "search_bar",
     "django_messages",
+    "account_settings"
 ]
 
 DJANGO_NOTIFICATIONS_CONFIG = { 'USE_JSONFIELD': True}

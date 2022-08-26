@@ -30,6 +30,7 @@ urlpatterns = [
     path('search/', include('search_bar.urls')),
     path('messages/', include('django_messages.urls')),
     path('notifications/', include('notifications.urls')),
+    path('account_settings/', include('account_settings.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 handler404 = handler404
