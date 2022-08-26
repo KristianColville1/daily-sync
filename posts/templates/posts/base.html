@@ -21,7 +21,7 @@
   <div class="author-post">
     <div class="w-100 position-relative">
       <img class="profile-image-post rounded-circle shadow-sm"
-        src="{{ post.author.profile.avatar_url }}" alt="profile image of author">
+        src="{{ post.author.profile.avatar.url }}" alt="profile image of author">
       <a class="user-name position-absolute mx-3 m fs-6 text-decoration-none" href="/profiles/view_profile/{{post.author.profile.slug}}">
         {{post.author}}
         <p class="position-absolute start-0 small-and-light w-25 text-center g-0">{{post.calc_time_since}}.</p></a>
@@ -34,7 +34,7 @@
       <div class="col-12 author-post overflow-hidden mt-2 px-2">
         <div class="w-100 position-relative">
           <img class="profile-image-post rounded-circle shadow-sm"
-            src="{{ post.post_shared.author.profile.avatar_url }}" alt="profile image of author">
+            src="{{ post.post_shared.author.profile.avatar.url }}" alt="profile image of author">
           <a class="user-name position-absolute mx-3 m fs-6 text-decoration-none" href="/profiles/view_profile/{{post.post_shared.author.profile.slug}}">
             {{post.post_shared.author}}
             <p class="position-absolute start-0 small-and-light w-25 text-center g-0">{{post.post_shared.calc_time_since}}.</p></a>
