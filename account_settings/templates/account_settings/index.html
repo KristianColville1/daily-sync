@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% load inbox %}
+{% load crispy_forms_tags %}
+{% load cloudinary %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 offset-md-2 mt-3 boxes border shadow">
+      <h1 class="text-center">Settings</h1>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form | crispy}}
+        <button class="btn general-btn my-2" type="submit">Save changes</button>
+      </form>
+    </div>
+  </div>
+  {% if user.is_authenticated %}
+<li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+<li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+{% else %}
+<li><a href="{% url 'account_login' %}">Sign In</a></li>
+<li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+{% endif %}
+</div>
+
+
+{% endblock %}
