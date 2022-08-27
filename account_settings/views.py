@@ -31,3 +31,16 @@ class AccountSettingsView(View):
       return redirect(request.META.get('/feed/', '/'))
 
     return render(request, 'account_settings/index.html', context)
+  
+def privacy_policy(request):
+  """
+  Privacy policy
+  """
+  return render(request, 'account_settings/privacy.html')
+  
+  
+def terms_and_conditions(request):
+  """
+  Terms and conditions
+  """
+  return render(request, 'account_settings/terms.html')
