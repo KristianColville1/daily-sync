@@ -177,7 +177,8 @@ class Comment(Base):
     angry_likes = models.ManyToManyField(User,
                                          related_name="comment_angry_likes",
                                          blank=True)
-
+    objects = CommentManager()
+    
     class Meta:
         ordering = ['-created_on']
 
