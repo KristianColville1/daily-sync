@@ -6,9 +6,9 @@ from django.utils import timesince
 
 STATUS = ((0, "Draft"), (1, "Posted"))
 
-class PostManager(models.Manager):
+class PostQuerySet(models.QuerySet):
     def search(self, query=None):
-        qs = self.get_queryset()
+        qs = self
         if query is not None:
             or_lookup = (
                 Q(author__icontains=query) |
@@ -16,6 +16,10 @@ class PostManager(models.Manager):
                 Q(slug__icontains=query)
             )
             qs = qs.filter(or_lookup).distinct()
+
+class PostManager(models.Manager):
+    def get_queryset(self):
+        return PostQuerySet(self.model, using=self._db)
 
 class Base(models.Model):
     """
