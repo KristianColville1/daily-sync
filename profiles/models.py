@@ -1,9 +1,36 @@
 from django.db import models
+from django.db.models import Q
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from cloudinary.models import CloudinaryField
 from autoslug import AutoSlugField
+
+
+class ProfileQuerySet(models.QuerySet):
+    """
+    Profile Query Set model
+    """
+
+    def search(self, query=None):
+        qs = self
+        if query is not None:
+            or_lookup = (Q(first_name__icontains=query)
+                         | Q(last_name__icontains=query)
+                         | Q(slug__icontains=query))
+            qs = qs.filter(or_lookup).distinct()
+
+
+class ProfileManager(models.Manager):
+    """
+    Profile Manager model
+    """
+
+    def get_queryset(self):
+        return ProfileQuerySet(self.model, using=self._db)
+
+    def search(self, query=None):
+        return self.get_queryset().search(query=query)
 
 
 class Profile(models.Model):
@@ -18,8 +45,10 @@ class Profile(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,
                                 related_name='profile')
-    avatar = CloudinaryField('avatar', default='/static/img/default-profile-image.png')
-    background = CloudinaryField('background', default='/static/img/default_backgrounds/bg.webp')
+    avatar = CloudinaryField('avatar',
+                             default='/static/img/default-profile-image.png')
+    background = CloudinaryField(
+        'background', default='/static/img/default_backgrounds/bg.webp')
     friends = models.ManyToManyField('self',
                                      blank=True,
                                      symmetrical=True,
@@ -32,14 +61,18 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
-    
+
 
 class FriendRequest(models.Model):
     """
     FriendRequest model
     """
-    from_user = models.ForeignKey(User, related_name="from_user", on_delete=models.CASCADE)
-    to_user = models.ForeignKey(User, related_name="to_user", on_delete=models.CASCADE)
+    from_user = models.ForeignKey(User,
+                                  related_name="from_user",
+                                  on_delete=models.CASCADE)
+    to_user = models.ForeignKey(User,
+                                related_name="to_user",
+                                on_delete=models.CASCADE)
     not_accepted = models.BooleanField(default=False)
 
 
@@ -55,5 +88,3 @@ def create_profile(sender, instance, created, **kwargs):
         user_profile.follows.add(instance.profile)
         user_profile.email = instance.email
         user_profile.save()
-
-
