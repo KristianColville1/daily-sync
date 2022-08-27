@@ -1,10 +1,21 @@
 from autoslug import AutoSlugField
 from django.db import models
+from django.db.models import Q
 from django.contrib.auth.models import User
 from django.utils import timesince
 
 STATUS = ((0, "Draft"), (1, "Posted"))
 
+class PostManager(models.Manager):
+    def search(self, query=None):
+        qs = self.get_queryset()
+        if query is not None:
+            or_lookup = (
+                Q(author__icontains=query) |
+                Q(post_body__icontains=query) |
+                Q(slug__icontains=query)
+            )
+            qs = qs.filter(or_lookup).distinct()
 
 class Base(models.Model):
     """
@@ -80,6 +91,7 @@ class Post(Base):
                                     related_name="shared_posts",
                                     blank=True,
                                     null=True)
+    objects = PostManager()
 
     class Meta:
         ordering = ['-created_on']
