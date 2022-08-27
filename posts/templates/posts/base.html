@@ -59,19 +59,19 @@
   </div>
 
   <hr class="m-0">
-  <div class="row user-post-options m-0">
+  <div class="row user-post-options m-0 py-2">
     <div class="likes-container col-4 position-relative gx-0">
       <form class="like-btn position-absolute w-100" action="/posts/like_post/{{post.id}}/like/">
         {% csrf_token %}
         <button name="Like button" class="likes btn w-100" aria-label="Click here to leave a emoji like on a post">
           {% if user in post.thumbs_likes.all %}
-          <i class="fa-solid fa-thumbs-up blue-like fs-4"></i><span class="d-none d-sm-none d-md-block"> Like</span>
+          <i class="fa-solid fa-thumbs-up fs-5 blue-like"></i><span class="d-none d-sm-none d-md-block"> Like</span>
           {% elif user in post.heart_likes.all %}
-          <i class="fa-solid fa-heart fs-4"></i><span class="d-none d-sm-none d-md-block"> Love</span>
+          <span class="fs-5">&#10084;&#65039;</span><span class="d-none d-sm-none d-md-block"> Love</span>
           {% elif user in post.laugh_likes.all %}
-          <i class="fa-solid fa-face-laugh-squint fs-4"></i><span class="d-none d-sm-none d-md-block"> Laugh</span>
+          <span class="fs-5">&#128514</span><span class="d-none d-sm-none d-md-block"> Laugh</span>
           {% elif user in post.angry_likes.all %}
-          <i class="fa-solid fa-face-angry fs-4"></i><span class="d-none d-sm-none d-md-block"> Angry</span>
+          <span class="fs-5">&#128545</span><span class="d-none d-sm-none d-md-block"> Angry</span>
           {% else %}
           <i class="fa-solid fa-thumbs-up"></i><span class="d-none d-sm-none d-md-block"> Like</span>
           {% endif %}
@@ -80,19 +80,19 @@
       <div class="emojies boxes shadow-sm rounded d-flex flex-row p-2">
         <form action="/posts/like_post/{{post.id}}/like/">
           {% csrf_token %}
-          <button class="btn"><i class="fa-solid fa-thumbs-up blue-like"></i></button>
+          <button class="btn"><i class="fa-solid fa-thumbs-up fs-5 blue-like"></i></button>
         </form>
         <form action="/posts/like_post/{{post.id}}/love/">
           {% csrf_token %}
-          <button class="btn"><i class="fa-solid fa-heart"></i></button>
+          <button class="btn"><span class="fs-5">&#10084;&#65039;</span></button>
         </form>
         <form action="/posts/like_post/{{post.id}}/laugh/">
           {% csrf_token %}
-          <button class="btn"><i class="fa-solid fa-face-laugh-squint"></i></button>
+          <button class="btn"><span class="fs-5">&#128514</span></button>
         </form>
         <form action="/posts/like_post/{{post.id}}/angry/">
           {% csrf_token %}
-          <button class="btn"><i class="fa-solid fa-face-angry"></i></button>
+          <button class="btn"><span class="fs-5">&#128545</span></button>
         </form>
       </div>
     </div>
