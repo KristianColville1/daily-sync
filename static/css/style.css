@@ -289,19 +289,19 @@ footer a i:hover {
 }
 
 .home-img-1 {
-  height: 70vh;
+  height: 80vh;
   background: url('../img/home/home-five.png') no-repeat center center;
   background-size: contain;
 }
 
 .home-img-2 {
-  height: 70vh;
+  height: 80vh;
   background: url('../img/home/home-three.png') no-repeat center center;
   background-size: contain;
 }
 
 .home-img-3 {
-  height: 70vh;
+  height: 80vh;
   background: url('../img/home/home-four.png') no-repeat center center;
   background-size: contain;
 }
