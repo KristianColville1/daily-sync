@@ -35,7 +35,16 @@ class EditProfileForm(forms.ModelForm):
                 'rows': 3,
             }),
             'Avatar',
-                CloudinaryFileField(),
+                CloudinaryFileField(
+                    options= {
+                        'tags': "directly_uploaded",
+                        'crop': 'thumb', 'width': 6000, 'height': 4000,
+                        'eager': [{ 'crop': 'fill', 'width': 200, 'height': 200 }],
+                        'gravity': 'face'}),
             'Background',
-                CloudinaryFileField(),
+                CloudinaryFileField(
+                    options= {
+                        'tags': "directly_uploaded",
+                        'crop': 'thumb', 'width': 6000, 'height': 4000,
+                        'eager': [{ 'crop': 'fill', 'width': 600, 'height': 400 }]}),
         }
