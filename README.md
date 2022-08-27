@@ -23,9 +23,8 @@ Developer: Kristian Colville
         * [Wireframes](#wireframes)
 * [Information Architecture](#information-architecture)
     * [Database](#database)
-    * [Data Relationships](#data-relationships)
     * [Data Modeling](#data-modeling)
-    * [Flow Charts](#flow-charts)
+* [Policy Pages](#policy-pages)
 * [Features](#features)
 * [Testing](#testing)
 * [Validation](#validation)
@@ -80,7 +79,7 @@ The goal of this project was to create a social media website that takes advanta
 * Simplicity is paramount to a great social media site so any complexity should be minimized
 * Any user should expect a reputable website to have a high degree of security to protect the user's personal information
 * The website should provide ease of accessibility for visually impaired users
-* The website should provide a sufficient amount of responsivity for various devices used
+* The website should provide a sufficient amount of responsiveness for various devices used
 * It's expected that any simplicity is correctly implemented to make sure that users can easily navigate around the website
 * It's greatly expected as part of the user experience that any simplicity involved should provide multiple options that perform the same action to help users
 
@@ -132,7 +131,7 @@ For the first migrations and testing during the development phases, SQLite was t
 
 ### Data Modeling
 
-Using Trevor.io, an entity relationship diagram was created to model the relationships between the different backend data structures. With the aid of this tool, we can see the data structure relationships in a meaningful manner that is both aesthetically pleasing and useful for understanding the overall relationship between the data structures from a low-resolution perspective.
+Using [Trevor.io](https://trevor.io/), an entity relationship diagram was created to model the relationships between the different backend data structures. With the aid of this tool, we can see the data structure relationships in a meaningful manner that is both aesthetically pleasing and useful for understanding the overall relationship between the data structures from a low-resolution perspective
 
 **Entity Relationship Diagram**
 ![Entity Relationship Diagram](documentation/readme_folder/entity-relationship.png)
@@ -142,7 +141,7 @@ Using Trevor.io, an entity relationship diagram was created to model the relatio
 In no particular order, these are the following models created for the Daily Sync web app.
 
 1. Allauth User Model
-* A for all relationships that correspond to a individual user
+* A model for all relationships that correspond to a individual user
 * User model was built using [django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) library
 * When a new user is created a profile model is automatically assigned to the user
 
@@ -209,7 +208,7 @@ In no particular order, these are the following models created for the Daily Syn
 5. MessageManager Model
 
 * Purpose: Automates the handling of the message objects like a physical postal service
-* The email backend in 'daily_sync/settings.py' is configured with an addon from [Heroku](https://dashboard.heroku.com/apps) called [MailGun](https://www.mailgun.com/)
+* The email backend in 'daily_sync/settings.py' is configured with [Googles SMTP Server](https://support.google.com/a/answer/176600?hl=en)
 * When a user sends a message on the deployed website an email is also sent to the receiver's email to alert them as well as the actual website
 * Both MessageManager and Message models were acquired using the [django-messages](https://django-messages.readthedocs.io/en/latest/) module and adjusted for the needs of the project and errors in the PY version were corrected using the master branch from the source
 
@@ -235,7 +234,13 @@ In no particular order, these are the following models created for the Daily Syn
 
 [Back to Top](#table-of-contents)
 
-### Flow Charts
+## Policy Pages
+
+In account settings at the end of the page two links are shown to the terms and conditions and the privacy policy
+
+- [Terms and Conditions](terms_and_conditions.md)
+
+- [Privacy Policy](privacy_policy.md)
 
 ## Features
 ## Testing
