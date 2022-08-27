@@ -6,24 +6,20 @@ from .models import Profile
 
 class PostInlineAdmin(admin.StackedInline):
     """
-    PostInlineAdmin mixin to display posts in user inside admin panel.
-    Provides a cleaner interface to work with. Uses Summernote to provide a
-    better editor.
+    PostInlineAdmin  class
     """
     model = Post
-    list_display = ('title', 'slug', 'status', 'created_on')
-    search_fields = ['title', 'content']
+    list_display = ('author', 'post_body', 'slug', 'status', 'created_on')
+    search_fields = ['author', 'post_body', 'slug']
 
 
 class CommentInlineAdmin(admin.StackedInline):
     """
-    CommentInlineAdmin mixin to display posts in user inside admin panel.
-    Provides a cleaner interface to work with. Uses Summernote to provide a
-    better editor.
+    CommentInlineAdmin class
     """
     model = Comment
-    list_display = ('content', 'created_on')
-    search_fields = ['content']
+    list_display = ('name', 'content', 'slug', 'created_on')
+    search_fields = ['name', 'content', 'slug']
 
 
 class ProfileInlineAdmin(admin.StackedInline):
@@ -31,6 +27,8 @@ class ProfileInlineAdmin(admin.StackedInline):
     ProfileInlineAdmin class
     """
     model = Profile
+    list_display = ('first_name', 'last_name', 'email', 'slug')
+    search_fields = ['name', 'content', 'slug']
 
 
 class UserAdmin(admin.ModelAdmin):
