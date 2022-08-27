@@ -20,11 +20,21 @@ import cloudinary.api
 if os.path.exists("env.py"):
     import env
 
+SESSIONS_ENGINE='django.contrib.sessions.backends.cache'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:8000',
+    }
+}
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-development = os.environ.get("DEVELOPMENT", False)
+is_boolean = os.environ.get("DEVELOPMENT", False)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -33,7 +43,7 @@ development = os.environ.get("DEVELOPMENT", False)
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = development
+DEBUG = is_boolean
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
@@ -53,6 +63,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
     "django.contrib.staticfiles",
     "cloudinary_storage",
     "cloudinary",
@@ -69,11 +80,11 @@ INSTALLED_APPS = [
     "account_settings"
 ]
 
-DJANGO_NOTIFICATIONS_CONFIG = { 'USE_JSONFIELD': True}
-ASGI_APPLICATION = 'daily_sync.routing.application'
-
-
 SITE_ID = 1
+
+DJANGO_NOTIFICATIONS_CONFIG = { 'USE_JSONFIELD': True}
+
+ASGI_APPLICATION = 'daily_sync.routing.application'
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_REQUIRED = True
