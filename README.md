@@ -119,7 +119,25 @@ The goal of this project was to create a social media website that takes advanta
 ## Technologies & Tools
 ## Design
 ### Color Scheme
+
+These colors were used in the design of this social media web app.
+
+The colors bright blue to faded blue are among the colors used, in addition to white and white smoke. Black was also utilized to increase contrast. The fact that blue is the color most frequently used on social networking sites had an impact on the decision to select these colors. Consider Facebook or LinkedIn as examples
+
+Blue's associations with dependability, strength, and reliability were also taken into account when making this design decision
+
+![Color Palette](documentation/readme_folder/color-palette.png)
+
 ### Typography
+
+On the website, [Google Fonts](https://fonts.google.com/) were applied. Oswald and Lato were the fonts I initially used, but after receiving user input, I modified the website to utilize just one typeface because it had a greater level of aesthetic appeal.
+
+- [Roboto font, created by Christian Robertson](https://fonts.google.com/specimen/Roboto)
+
+Based on research into the types of fonts used by social media platforms, this font was selected. Google has introduced a reading-optimized robot-serif typeface, as can be seen [here](https://uk.pcmag.com/news/138808/google-introduces-reading-optimized-roboto-serif-typeface). This font needed to be neutral and welcoming while still offering the best reading experience on almost any device.
+
+User comments showed that this was a great design decision for the online application when this font type was implemented.
+
 ### Structure
 #### Wireframes
 
@@ -131,9 +149,17 @@ For the first migrations and testing during the development phases, SQLite was t
 
 ### Data Modeling
 
-Using [Trevor.io](https://trevor.io/), an entity relationship diagram was created to model the relationships between the different backend data structures. With the aid of this tool, we can see the data structure relationships in a meaningful manner that is both aesthetically pleasing and useful for understanding the overall relationship between the data structures from a low-resolution perspective
+An entity relationship diagram was made using [Trevor.io](https://trevor.io/) to model the connections between the various backend data structures
+
+With the help of this tool, we can visualize the relationships between the data structures in a way that is both aesthetically beautiful and beneficial for comprehending the overall relationship between the data structures.
+
+Through Heroku's add-ons, the technology was utilized to offer a rapid method of access.
+
+We can quickly locate practically any relationship with the help of this information architecture. This is advantageous to use and work with from the perspective of a coder.
 
 **Entity Relationship Diagram**
+<br>
+
 ![Entity Relationship Diagram](documentation/readme_folder/entity-relationship.png)
 
 #### Models
@@ -216,6 +242,12 @@ In no particular order, these are the following models created for the Daily Syn
 
 6. Message Model
 
+Django comes pre-built with a lot of security features and an encryption module was installed specifically to address the issue of private messaging other users.
+
+- Cryptography for security in Django is implemented on this data model on the relevant fields
+    - subject
+    - body
+
 | Name | Database Key | Field Type | Validation |
 |---|---|---|---|
 |Subject|**subject**|*encrypt(CharField())*|ugettext_lazy("Subject"), max_length=100)|
@@ -236,7 +268,7 @@ In no particular order, these are the following models created for the Daily Syn
 
 ## Policy Pages
 
-In account settings at the end of the page two links are shown to the terms and conditions and the privacy policy
+A policy generator was used to build these policy pages. In the account settings app at the end of the index page, two links are shown, the terms and conditions and the privacy policy
 
 - [Terms and Conditions](terms_and_conditions.md)
 
