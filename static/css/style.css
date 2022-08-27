@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
 :root {
   --black: black;
@@ -10,8 +10,8 @@
   --light-blue-2:#d9fdfc;
   --off-white-1:#eafefc;
   --off-white-2:#fafdfa;
-  --whitesmoke: whitesmoke;
-  --white: white;
+  --whitesmoke: #f5f5f5;
+  --white: #ffffff;
 }
 
 html,
@@ -19,6 +19,7 @@ body {
   max-width: 100%;
   overflow: visible;
   scroll-behavior: smooth;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -57,7 +58,7 @@ h1 {
 }
 /**********************************************Footer */
 footer {
-  background-color: var(--off-white-2);
+  background-color: var(--whitesmoke);
 }
 
 footer a {
@@ -120,31 +121,52 @@ footer a i:hover {
 
 /********************profiles */
 
+.nav-profile-img {
+  height: 40px;
+  width: 40px;
+}
+
 .profile-image-post {
   height: 40px;
+  width:40px;
 }
 
 .user-post-image {
   height: 55px;
+  width: 55px;
 }
 
 .profile-pic-md,
 .profile-image-feed {
   height: 80px;
+  width: 80px;
 }
 
 .profile-img-profile {
-  max-height: 140px;
+  height: 140px;
+  width: 140px;
 }
 
 .profile-image-nav {
-  max-height: 25px;
+  height: 25px;
+  width: 25px;
 }
 
 .user-bg {
   height: 25vh;
 }
 
+.update-btn {
+  opacity: .6;
+  background-color: var(--whitesmoke);
+  width: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--bright-blue-1);
+}
+
+.update-btn:hover {
+  opacity: 1;
+}
 /********************posts */
 
 .post-box {
@@ -208,35 +230,12 @@ footer a i:hover {
   z-index: 99;
 }
 
-.like-btn {
-  font-family: 'Lato', sans-serif;
-}
-
 .emojies .btn {
   text-shadow: 1px 1px 1px var(--black);
 }
 
 .blue-like {
   color: var(--bright-blue-1);
-}
-
-.fa-heart,
-.fa-face-angry,
-.fa-face-laugh-squint,
-.fa-thumbs-up {
-  text-shadow: 1px 1px 1px var(--black);
-}
-
-.fa-heart {
-  color: red;
-}
-
-.fa-face-laugh-squint {
-  color: yellow;
-}
-
-.fa-face-angry {
-  color: rgb(236, 162, 65);
 }
 
 .modal-label {
@@ -290,19 +289,19 @@ footer a i:hover {
 }
 
 .home-img-1 {
-  height: 80vh;
+  height: 70vh;
   background: url('../img/home/home-five.png') no-repeat center center;
   background-size: contain;
 }
 
 .home-img-2 {
-  height: 80vh;
+  height: 70vh;
   background: url('../img/home/home-three.png') no-repeat center center;
   background-size: contain;
 }
 
 .home-img-3 {
-  height: 80vh;
+  height: 70vh;
   background: url('../img/home/home-four.png') no-repeat center center;
   background-size: contain;
 }
@@ -321,13 +320,13 @@ footer a i:hover {
 }
 
 .brand-name {
-  font-size: 4.5rem;
+  font-size: 4rem;
 }
 
 .home-box {
   position: absolute;
   left: 60%;
-  top: 40%;
+  top: 25%;
   transform: translate(-20%, -20%);
 }
 
@@ -357,15 +356,6 @@ footer a i:hover {
 }
 
 /*********************************************************Media Queries*/
-@media only screen and (max-width: 768px){
-  html,
-  body {
-    background-image: none;
-  }
-  body {
-    background-image: url('../img/background-small.webp') no-repeat center center;
-  }
-}
 
 @media screen and (max-width: 576px){
   .home-box {
