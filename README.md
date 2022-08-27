@@ -297,6 +297,7 @@ A policy generator was used to build these policy pages. In the account settings
 
 ## Development & Deployment
 ### Version Control
+
 I used [Visual Studio Code](https://code.visualstudio.com/) as a local repository and IDE & [GitHub](https://github.com/) as a remote repository.
 
 1. Firstly, I needed to create a new repository on Github [daily-sync](https://github.com/KristianColville1/daily-sync).
@@ -311,6 +312,7 @@ I used [Visual Studio Code](https://code.visualstudio.com/) as a local repositor
     - git push *The final command sends the code to GitHub*
 
 ### Cloning this Repository
+
 If you would like to clone this repository please follow the bellow steps.
 
 Instructions:
@@ -326,20 +328,47 @@ Instructions:
 
 You should have a local copy of the repository to use on your machine.
 
+If you encounter problems after cloning this project please make sure you have also installed the requirements to run this project
+
+- Create a virtual environment by running the command in the terminal:
+    - **python3 -m venv .venv**
+
+- Run the command to install these requirements:
+    - **pip3 install -r requirements.txt**
+
+Please see this [page](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) for a comprehensive walk-through and explanation of how to use Git and GitHub if you are unsure how to do so or if you encounter any more problems.
+
 ### Heroku
-As a deployment solution I chose [Heroku](https://dashboard.heroku.com).
+
+I selected [Heroku] (https://dashboard.heroku.com) as a deployment option. As of the time of writing, it provides customers with a free tier, allowing them to quickly publish apps if they are just starting as developers
 
 To deploy a project using Heroku follow these steps:
 
 - Log into heroku
+
+![Heroku Login](documentation/readme_folder/heroku-login.png)
+
 - Go to the heroku dashboard
+
+![Heroku Login](documentation/readme_folder/heroku-dashboard.png)
+
 - Create a new app by selecting 'New'
+
+![Heroku Login](documentation/readme_folder/heroku-newapp.png)
+
 - Give your application a name and select a preferred location
+    - The EU region was chosen for this application as the developer is located in this region
+
+![Heroku Login](documentation/readme_folder/heroku-createapp.png)
+
 - Click the 'Create app' button
+
 - If you have config variables in your application
     - Click on settings
     - Click 'Reveal config vars'
     - Input your deployment variables
+
+![Heroku Login](documentation/readme_folder/heroku-settings.png)
 
 - If you need specific build packs
     - Click on settings
@@ -347,10 +376,14 @@ To deploy a project using Heroku follow these steps:
     - Add your packs as needed (Please be aware that the order matters)
     - No specific build packs were selected for this project as Django used.
 
+![Heroku Login](documentation/readme_folder/heroku-buildpacks.png)
+
 - Once these steps are completed
     - Go to the deploy section
     - Select your version control system
     - For Daily Sync, GitHub was selected
+
+![Heroku Login](documentation/readme_folder/heroku-deploy.png)
 
 - Connect your version control system
 - Add your repository
