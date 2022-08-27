@@ -6,20 +6,52 @@ from django.utils import timesince
 
 STATUS = ((0, "Draft"), (1, "Posted"))
 
+
 class PostQuerySet(models.QuerySet):
+    """
+    Post Query Set model
+    """
+
     def search(self, query=None):
         qs = self
         if query is not None:
-            or_lookup = (
-                Q(author__icontains=query) |
-                Q(post_body__icontains=query) |
-                Q(slug__icontains=query)
-            )
+            or_lookup = (Q(author__icontains=query)
+                         | Q(post_body__icontains=query)
+                         | Q(slug__icontains=query))
             qs = qs.filter(or_lookup).distinct()
 
+
 class PostManager(models.Manager):
+    """
+    Post Manager model
+    """
+
     def get_queryset(self):
         return PostQuerySet(self.model, using=self._db)
+
+
+class CommentQuerySet(models.QuerySet):
+    """
+    Comment Query Set model
+    """
+
+    def search(self, query=None):
+        qs = self
+        if query is not None:
+            or_lookup = (Q(post_name__icontains=query)
+                         | Q(name__icontains=query)
+                         | Q(content__icontains=query))
+            qs = qs.filter(or_lookup).distinct()
+
+
+class CommentManager(models.Manager):
+    """
+    Comment model
+    """
+
+    def get_queryset(self):
+        return PostQuerySet(self.model, using=self._db)
+
 
 class Base(models.Model):
     """
@@ -120,8 +152,8 @@ class Comment(Base):
     Comment model class
     """
     post_name = models.ForeignKey(Post,
-                             on_delete=models.CASCADE,
-                             related_name="comments")
+                                  on_delete=models.CASCADE,
+                                  related_name="comments")
     name = models.ForeignKey(User,
                              on_delete=models.CASCADE,
                              related_name="comments",
@@ -145,6 +177,7 @@ class Comment(Base):
     angry_likes = models.ManyToManyField(User,
                                          related_name="comment_angry_likes",
                                          blank=True)
+
     class Meta:
         ordering = ['-created_on']
 
