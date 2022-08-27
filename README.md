@@ -123,13 +123,19 @@ The goal of this project was to create a social media website that takes advanta
 ### Typography
 ### Structure
 #### Wireframes
-## Information Architecture
-
-### Database
-### Data Relationships
-### Data Modeling
 
 [Back to Top](#table-of-contents)
+## Information Architecture
+### Database
+
+For the first migrations and testing during the development phases, SQLite was the main database. The main database was switched over to Postgres on Heroku when the project was deployed
+
+### Data Modeling
+
+Using Trevor.io, an entity relationship diagram was created to model the relationships between the different backend data structures. With the aid of this tool, we can see the data structure relationships in a meaningful manner that is both aesthetically pleasing and useful for understanding the overall relationship between the data structures from a low-resolution perspective.
+
+**Entity Relationship Diagram**
+![Entity Relationship Diagram](documentation/readme_folder/entity-relationship.png)
 
 #### Models
 
