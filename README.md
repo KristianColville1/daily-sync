@@ -313,8 +313,8 @@ A policy generator was used to build these policy pages. In the account settings
 |[#33](https://github.com/KristianColville1/daily-sync/issues/33)| For an unknown reason, the screen has two scroll bars if the vertical layout is longer than the screen height | Upon investigation I correctly assumed this was caused by bootstrap as I had used a different method of managing page overflow. I changed the overflow of the html and body element to visible and this fixed the issue |
 |[#34](https://github.com/KristianColville1/daily-sync/issues/34)| I implemented a modal pop-up for creating posts through javascript and I can't create a post on the profile page because there's a csrf_token error | Added a csrf_token to the base template in order to catch it with javascript and use anywhere when creating posts |
 |[#36](https://github.com/KristianColville1/daily-sync/issues/34)| Images are not being loaded by Heroku when deployed, and a server returns a 404 status on those images | Changed image paths, tested multiple outputs, adjusted code with no luck. I checked the documentation and I had django-heroku installed but not added and after setting up it loads the images. Added heroku settings local at bottom of settings.py in daily_sync directory |
-||||
-|||| 
+|[#37](https://github.com/KristianColville1/daily-sync/issues/37)| The SMTP system has stopped working and users signing in from Heroku cannot get a verification email to create an account | I couldn't resolve the issue so I opted for an alternative route by using Googles SMTP and removed the Heroku add-on |
+
 
 ## Development & Deployment
 ### Version Control
