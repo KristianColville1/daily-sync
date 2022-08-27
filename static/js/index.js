@@ -1,12 +1,5 @@
 $(document).ready(() => {
 
-  /* Alerts the user to any messages */
-  setTimeout(() => {
-    let messages = document.getElementById("msg");
-    let alert = new bootstrap.Alert(messages);
-    alert.close();
-  }, 3200);
-
   /* Dark mode */
   let darkModeSwitch = false;
   $('button.enable-dark-mode').click(() => {
@@ -48,6 +41,16 @@ $(document).ready(() => {
   });
 });
 
+/* Alerts the user to any messages */
+setTimeout(() => {
+  let messages = document.getElementById("msg");
+  let alert = new bootstrap.Alert(messages);
+
+  if($('#msg').length > 0){
+    alert.close();
+  }
+}, 3200);
+
 const topBtn = $('#top-btn');
 window.onscroll = () =>{showScrollerBtn();};
 
@@ -64,4 +67,3 @@ let backToTop = () =>{
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 };
-
