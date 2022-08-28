@@ -298,7 +298,186 @@ A policy generator was used to build these policy pages. In the account settings
 - [Privacy Policy](privacy_policy.md)
 
 ## Features
+
+**Feature Preface**
+This website has eight main web pages that people can browse and 19 distinctive characteristics. I sincerely hope you like reading about the numerous aspects and can recognize the narration's point of view.
+
+### Home Page
+
+**Carousal**
+- As soon as the home page loads, a picture of a young woman clutching a phone and looking bewildered greets us
+
+- There are three images in the carousel all providing a similar meaning when viewed or providing additional information to digest
+
+- Above the carousel is where the brand logo is located
+
+- Because the backgrounds of the photographs in the carousel have been erased, it gives the impression that the actors are being put in the foreground spontaneously
+
+- We can decipher the significance of this simple design strategy
+    - The user is advised to contact friends and family in the second-largest text
+    - This web application has three login options, each of which contributes to the overall meaning
+
+**Google Login API**
+- We now have another fantastic feature with a quick and easy way to sign in using Google
+
+- The Google login service has been made available by the developer to allow quick and simple access to the application
+
+- It eliminates the work and hassle that discourages users from using current web applications
+
+- This tool has been developed to reach 67% of internet users, which is astounding given that this article [here](https://findstack.com/gmail-statistics/#:~:text=As%20of%202020%2C%20Gmail%20is,most%20popular%20personal%20email%20services&text=For%20personal%20email%2C%20Gmail%20and,accounts%20on%20a%20daily%20basis.) details the number of people who have Gmail accounts.
+
+- The benefit in this case, of course, is that by implementing such a system, a sizable chunk of web traffic can access the application more quickly.
+
+
+<details>
+<summary>view home page</summary>
+
+![Home Page](documentation/features/home-page.png)
+
+User Stories fulfilled:
+
+| Issue ID |
+|---|
+|[#1](https://github.com/KristianColville1/daily-sync/issues/1)|
+|[#2](https://github.com/KristianColville1/daily-sync/issues/2)|
+|[#5](https://github.com/KristianColville1/daily-sync/issues/5)|
+
+<br>
+</details>
+
+<br>
+
+### Sign in/ Sign up pages
+
+- From the home page, there are three ways to access the web application: through Google Sign In, Daily Sync's supplied options, and using direct URLs.
+- Despite not being the most opulent forms ever made, they are certainly attractive and straightforward to use.
+
+- Feedback is available on all web application access forms.
+
+**Forgotten Password**
+
+Both the sign up and sign in forms are linked, so if you click on the wrong one you can navigate your way back to the right form. If the need should ever arise, you may reset your password from the sign in form.
+
+**Strict Passwords**
+
+It is important to use strong passwords because there is no protection from hostile internet users.
+Strong passwords must be used to guarantee effective security and to stop malicious users from accessing sensitive information. 
+
+Although Django already offers a respectable level of security, a higher level of password validation has been implemented into the web application's plumbing, more than what's possibly necessary.
+
+If you would like to read more information about online security visit [here](https://strategynewmedia.com/why-web-security-is-important/)
+
+<details>
+<summary>view login options</summary>
+
+![Google 1](documentation/features/google-1.png)
+<br>
+
+![Google 2](documentation/features/google-2.png)
+<br>
+
+![Sign In](documentation/features/signin.png)
+<br>
+
+![Sign up](documentation/features/signup.png)
+<br>
+
+User Stories fulfilled:
+
+| Issue ID |
+|---|
+|[#1](https://github.com/KristianColville1/daily-sync/issues/1)|
+|[#2](https://github.com/KristianColville1/daily-sync/issues/2)|
+|[#5](https://github.com/KristianColville1/daily-sync/issues/5)|
+|[#20](https://github.com/KristianColville1/daily-sync/issues/20)|
+|[#24](https://github.com/KristianColville1/daily-sync/issues/20)|
+
+<br>
+</details>
+
+<br>
+
+### Feed Page
+
+**Profile Created**
+When a user creates a new account, a profile is automatically issued to them. This profile includes their avatar as their default profile image as well as a default background
+
+The user instantly recognizes that if they have a default avatar and background, they can probably edit and personalize their profile. This is intuitive design at its finest. Important information has been carefully laid out on this page
+
+**Post Modal**
+This is a case of cute trickery. The user sees "create a post" and thinks they can type into the fictitious button that tells them this is where they create posts, but that's exactly the trick; when the user clicks it, a modal pop-up is immediately brought up for them to focus in on as the backdrop dims, drawing all attention to creating posts.
+
+**Share Post Modal**
+Here on the website, the developer has pulled a quick fast one; the user has no idea that this is the identical modal pop-up. How is that possible? Well, [Charles Babbage](https://www.zdnet.com/article/charles-babbage-the-father-of-computing/) and the power of computing. Why the name drop and jargon? It's trickery at its best, I suppose. This web application's developer created a set of rules that are activated based on the button the user is currently lingering their mouse on (or thumb) to use less code.
+
+<details>
+<summary>view images</summary>
+
+![Profile Created](documentation/features/profile-created.png)
+<br>
+
+![Post Modal](documentation/features/post-modal.png)
+<br>
+
+![Share Post Modal](documentation/features/share-post.png)
+<br>
+
+User Stories fulfilled:
+
+| Issue ID |
+|---|
+|[#3](https://github.com/KristianColville1/daily-sync/issues/3)|
+|[#4](https://github.com/KristianColville1/daily-sync/issues/4)|
+|[#6](https://github.com/KristianColville1/daily-sync/issues/6)|
+|[#8](https://github.com/KristianColville1/daily-sync/issues/8)|
+|[#9](https://github.com/KristianColville1/daily-sync/issues/9)|
+
+<br>
+</details>
+
+<br>
+
+### Profile Page
+
+Once more, you can see how the website's creator kept things simple and neutral on both the feed and profile pages.
+The developer of this application did not initially intend for it to be so neutral and simple, but as time went on, it became so to appeal to a larger online audience, Facebook and LinkedIn do the same thing, after all.
+
+**Background**
+The background on the profile page serves as a canvas, a tool, a way of accomplishing an objective, and everything in between, enabling the user to have a high degree of personalization.
+
+**Avatar**
+There is some customization in this minimum viable product, as was already discussed. Users can edit their profiles by clicking the update button that is located just next to their username.
+
+The user can see that they can formally introduce themselves to users that see their profile by including a bio about themselves. As the user develops their network and makes use of the application, their friends and followers will show up on the left side.
+
+<details>
+<summary>view images</summary>
+
+![Profile Page](documentation/features/profile.png)
+<br>
+
+![Updating profile](documentation/features/update-button.png)
+<br>
+
+
+User Stories fulfilled:
+
+| Issue ID |
+|---|
+|[#3](https://github.com/KristianColville1/daily-sync/issues/3)|
+|[#4](https://github.com/KristianColville1/daily-sync/issues/4)|
+|[#6](https://github.com/KristianColville1/daily-sync/issues/6)|
+|[#8](https://github.com/KristianColville1/daily-sync/issues/8)|
+|[#9](https://github.com/KristianColville1/daily-sync/issues/9)|
+
+<br>
+</details>
+
+<br>
+
 ## Testing
+
+The testing documentation can be found [here](documentation)
 ## Validation
 
 ## Bugs
