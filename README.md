@@ -635,8 +635,10 @@ Custom error pages are available to enhance the user experience. These pages wil
 
 ## Testing
 
-The testing documentation can be found [here](documentation)
+The testing documentation can be found [here](testing.md)
 ## Validation
+
+The validation documentation can be found [here](validation.md)
 
 ## Bugs
 

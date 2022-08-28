@@ -1,23 +1,30 @@
 {% extends "base.html" %}
-{% load static %}
+{% load i18n %}
 {% block content %}
+
 <div class="container">
+    <div class='row title-row my-5'>
+        <div class='col-sm-12 col-md-6 offset-md-3'>
+            <h1 class='my-2 py-0 text-center'>You searched for</h1>
+            <form method='GET' action='.'>
+                {% csrf_token %}
+            <div class="input-group form-group-no-border mx-auto" style="margin-bottom: 0px; font-size: 32px;">
+                <input type="text" name="q" data-toggle="popover" data-placement="bottom" data-content="Press enter to search" class="form-control mt-0 py-3" placeholder="Search..." value="" style="" data-original-title="" title="" autofocus="autofocus">
+                <div class="position-absolute top-50 end-0 translate-middle-y mx-2">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-            <div class="mt-4 boxes rounded shadow-sm p-3 text-center">
-                {% if searched %}
-                <h1>You searched for ... {{searched}}</h1>
-                {% else %}
-                <h1>If you search for nothing you find nothing :) <h1>
-                {% endif %}
-                <a href="{% url 'feed' %}" class="general-btn btn rounded shadow-sm" role="button"
-                    aria-label="Click here to go back to feed page">Return to feed</a>
-            </div>
-            <div>
-                {% for result in results %}
-                {{result.search}}
-                {% endfor %}
-            </div>
+        <div class="col-sm-12 col-md-6 offset-md-3 boxes shadow-sm">
+            {% if objectList.length > 0%}
+            {% for object in objectList %}
+            <img src="{{object.avatar.url}}" alt="user profile image" class="profile-image-post">
+            <a href="{{object.slug}}">{{object.user}}</a>
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>

@@ -8,18 +8,22 @@ from posts.models import Post, Comment
 
 class SearchView(ListView):
     """
-    Search function view to view search results
+    Search View class to view querysets
     """
+    model = Profile
     template_name = 'search_bar/search.html'
-    paginate_by = 25
-    count = 0
-    
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        context['count'] = self.count or 0
-        context['query'] = self.request.GET.get('q')
+    paginate_by = 16
     
     def get_queryset(self):
+        """
+        Searches for objects from the user input
+        """
         request = self.request
         query = request.GET.get('q', None)
-        return Post.objects.none()
+        object_list = ''
+        if query is not None:
+            object_list = Profile.objects.filter(
+                Q(first_name__in=query) | Q(last_name__in=query)
+            )
+        return object_list
+        
