@@ -115,6 +115,7 @@ The goal of this project was to create a social media website that takes advanta
 |[#30](https://github.com/KristianColville1/daily-sync/issues/30)| As a registered user I can like a post but have different emoji options available so that I can better express my feelings towards a post |
 |[#31](https://github.com/KristianColville1/daily-sync/issues/31)| As a registered user I can like a comment on a post but have different emoji options available so that I can better express my feelings towards a comment I've read |
 |[#32](https://github.com/KristianColville1/daily-sync/issues/32)| As the site owner I can provide various options for users to like posts and comments in different ways so that my users can interact in a more meaningful and creative way with each other |
+|[#35](https://github.com/KristianColville1/daily-sync/issues/35)| As a registered user I can send people private messages so that I can interact with people privately knowing any sensitive information is secured |
 
 [Back to Top](#table-of-contents)
 
@@ -532,6 +533,52 @@ User Stories fulfilled:
 |[#30](https://github.com/KristianColville1/daily-sync/issues/30)|
 |[#31](https://github.com/KristianColville1/daily-sync/issues/31)|
 |[#32](https://github.com/KristianColville1/daily-sync/issues/32)|
+
+<br>
+</details>
+
+<br>
+
+### Messaging Pages
+
+Because [Django Messages](https://django-messages.readthedocs.io/en/latest/) is mostly used in the construction of this feature, the developer cannot claim exclusive credit for the work done by others. To avoid reinventing the wheel and to create within the time frame, this substantial amount of programming was adapted and built using a module.
+
+**Inbox**
+
+The user can click on there message icon in the navigation menu and it will bring them to the inbox page where they can view messages from other users
+
+**Sent Messages**
+
+If the user wishes to check messages they have sent to other users the option exists to view sent messages
+
+**New Message**
+
+The user will see a form to create a new message after clicking the link for the "new message" button. The message they send to another user will likewise be sent via the web application's email backend. To see emails from Daily Sync notifying them of fresh messages, a user must check their email.
+
+**Trash**
+
+Users can choose to erase messages from the database if they so want. Deleted messages will remain visible for a brief period after deletion, but as the saying goes, "not forever."
+
+<details>
+<summary>view images</summary>
+
+![Inbox](documentation/features/inbox.png)
+<br>
+
+![Sent Messages](documentation/features/sent-messages.png)
+<br>
+
+![New Message](documentation/features/compose-message.png)
+<br>
+
+![Trash](documentation/features/trash.png)
+<br>
+
+User Stories fulfilled:
+
+| Issue ID |
+|---|
+|[#35](https://github.com/KristianColville1/daily-sync/issues/35)|
 
 <br>
 </details>
