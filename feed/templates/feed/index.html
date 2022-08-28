@@ -7,15 +7,15 @@
 <div class="container">
   <div class="row mt-2">
     <div class="col-sm-12 col-md-3 col-lg-2 d-none d-sm-none d-md-block">
-      <div class="profile-pic-md position-relative">
-        <img src="{{profile.background_url}}" alt="profile background image"
+      <div class="profile-pic-md position-relative w-100">
+        <img src="{{profile.background.url}}" alt="profile background image"
           class="shadow-sm boxes w-100 border position-absolute">
-        <img class="profile-image-feed rounded-circle shadow-sm position-absolute top-50 start-50 translate-middle"
-          src="{{ profile.avatar_url }}" alt="current user profile image">
+        <img class="profile-image-feed rounded-circle shadow-sm mt-2 position-absolute top-50 start-50 translate-middle"
+          src="{{ profile.avatar.url }}" alt="current user profile image">
       </div>
       <div class="mt-5">
         <div class="list-group feed-profile-options boxes">
-          <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-user"></i> Profile</a>
+          <a href="{% url 'profile' %}" class="list-group-item list-group-item-action"><i class="fa-solid fa-user"></i> Profile</a>
           <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-users"></i> Friends</a>
           <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-user-group"></i>
             Followers</a>
@@ -32,18 +32,7 @@
       </div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-6 mb-2">
-      <div class="content-box post-box w-100 shadow-sm border p-2 boxes">
-        <div class="row">
-          <div class="col-2">
-            <img class="profile-image-post rounded-circle border shadow-sm" src="{{ profile.avatar_url }}"
-              alt="profile image of author"></div>
-          <div class="col-10">
-            <button class="btn create-post-btn w-100 rounded-pill border text-start" type="button"
-              aria-label="Click here to create a post" data-bs-toggle="modal" data-bs-target="#general-modal">Create
-              a
-              post</button></div>
-        </div>
-      </div>
+        {% include "posts/create_post.html" %}
       {% for post in posts %}
       {% include "posts/base.html" %}
       {% endfor %}
@@ -68,7 +57,7 @@
         {% for person in profiles %}
         <div class="d-flex flex-row mx-3">
           <div class="mx-4 d-flex flex-row w-50">
-              <img class="user-post-image  my-2 rounded-circle shadow-sm  border" src="{{ person.avatar_url }}"
+              <img class="user-post-image  my-2 rounded-circle shadow-sm  border" src="{{ person.avatar.url }}"
               alt="current user profile image" class="position-absolute">
           <a href="/profiles/view_profile/{{person.slug}}" aria-label="click link to go to users profile"
               class="my-auto"> 
