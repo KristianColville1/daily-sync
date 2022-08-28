@@ -9,7 +9,7 @@ class PostInlineAdmin(admin.StackedInline):
     PostInlineAdmin  class
     """
     model = Post
-    list_display = ('author', 'post_body', 'slug', 'status', 'created_on')
+    list_display = ('author', 'post_body', 'slug', 'status', 'created_on',)
     search_fields = ['author', 'post_body', 'slug']
 
 
@@ -18,7 +18,7 @@ class CommentInlineAdmin(admin.StackedInline):
     CommentInlineAdmin class
     """
     model = Comment
-    list_display = ('name', 'content', 'slug', 'created_on')
+    list_display = ('name', 'content', 'slug', 'created_on',)
     search_fields = ['name', 'content', 'slug']
 
 
@@ -27,8 +27,8 @@ class ProfileInlineAdmin(admin.StackedInline):
     ProfileInlineAdmin class
     """
     model = Profile
-    list_display = ('first_name', 'last_name', 'email', 'slug')
-    search_fields = ['name', 'content', 'slug']
+    list_display = ('first_name', 'last_name', 'email', 'slug',)
+    search_fields = ['first_name', 'last_name', 'content', 'slug']
 
 
 class UserAdmin(admin.ModelAdmin):

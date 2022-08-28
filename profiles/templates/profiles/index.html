@@ -4,22 +4,21 @@
 {% block content %}
 <div class="container">
     <div class="row gx-0 mt-5 mt-lg-2 position-relative">
-        <img src="{{profile.background.url}}" alt="user profile background" class="user-bg shadow-sm boxes w-100 border"
-            height="380" width="160">
+        <img src="{{profile.background.url}}" alt="user profile background" class="user-bg shadow-sm boxes w-100 border">
             <div class="w-100 position-absolute m-sm-1 m-md-4">
                 <div class="profile-img-profile"><img class="w-100 rounded-circle shadow border mx-3"
                     src="{{ profile.avatar.url }}" alt="profile image of user"></div>
-                <h1 class="position-absolute mx-3">
-                    {% if profile.first_name and profile.last_name %}
-                    {{profile.first_name}} {{profile.last_name}}
-                    {% else %}
-                    {{profile.user}}
-                    {% endif %}
-                  </h1>
               </div>
-            {% if profile.slug == request.user.profile.slug %}
-            <a href="{% url 'account_settings' %}" role="button" class="btn update-btn position-absolute bottom-0 end-0 shadow-sm" aria-label="click here to update your profile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Update profile"><i class="fa-solid fa-user-pen position-absolute top-50 start-50 translate-middle"></i></a>
-            {% endif %}
+            <h1 class="position-absolute bottom-0 mx-3 gap-0">
+                {% if profile.first_name and profile.last_name %}
+                {{profile.first_name}} {{profile.last_name}}
+                {% else %}
+                {{profile.user}}
+                {% endif %}
+                {% if profile.slug == request.user.profile.slug %}
+                <a href="{% url 'account_settings' %}" role="button" class="btn update-btn shadow-sm position-absolute" aria-label="click here to update your profile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Update profile"><i class="fa-solid fa-user-pen position-absolute top-50 start-50 translate-middle"></i></a>
+                {% endif %}
+              </h1>
     </div>
     <div class="row my-1">
         <div class="col-sm-12 col-md-6 col-lg-5">
@@ -54,7 +53,7 @@
                     {% endfor %}
                 {% else %}
                     {% if profile.slug == request.user.profile.slug %}
-                    <p class="text-center">Your new friends will appear here</p>
+                    <p class="text-center">Your new followers will appear here</p>
                     {% else %}
                     <p class="text-center"></p>
                     {% endif %}
@@ -62,6 +61,12 @@
             </div>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-7">
+            {% if profile.slug != request.user.profile.slug %}
+            <div class="my-1 d-flex flex-row">
+                <button class="btn general-btn w-50">Add Friend</button>
+                <button class="btn btn-danger border-danger w-50">Remove Friend</button>
+            </div>
+            {% endif %}
             {% if profile.slug == request.user.profile.slug %}
                 {% include "posts/create_post.html" %}
             {% endif %}

@@ -7,32 +7,6 @@ from cloudinary.models import CloudinaryField
 from autoslug import AutoSlugField
 
 
-class ProfileQuerySet(models.QuerySet):
-    """
-    Profile Query Set model
-    """
-
-    def search(self, query=None):
-        qs = self
-        if query is not None:
-            or_lookup = (Q(first_name__icontains=query)
-                         | Q(last_name__icontains=query)
-                         | Q(slug__icontains=query))
-            qs = qs.filter(or_lookup).distinct()
-
-
-class ProfileManager(models.Manager):
-    """
-    Profile Manager model
-    """
-
-    def get_queryset(self):
-        return ProfileQuerySet(self.model, using=self._db)
-
-    def search(self, query=None):
-        return self.get_queryset().search(query=query)
-
-
 class Profile(models.Model):
     """
     Profile model
@@ -58,6 +32,9 @@ class Profile(models.Model):
                                      symmetrical=False,
                                      related_name='user_followers')
     slug = AutoSlugField(populate_from="user", unique=True)
+    
+    class Meta:
+        ordering = ['first_name']
 
     def __str__(self):
         return self.user.username
