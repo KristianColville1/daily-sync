@@ -300,11 +300,13 @@ A policy generator was used to build these policy pages. In the account settings
 ## Features
 
 **Feature Preface**
+
 This website has eight main web pages that people can browse and 19 distinctive characteristics. I sincerely hope you like reading about the numerous aspects and can recognize the narration's point of view.
 
 ### Home Page
 
 **Carousal**
+
 - As soon as the home page loads, a picture of a young woman clutching a phone and looking bewildered greets us
 
 - There are three images in the carousel all providing a similar meaning when viewed or providing additional information to digest
@@ -318,6 +320,7 @@ This website has eight main web pages that people can browse and 19 distinctive 
     - This web application has three login options, each of which contributes to the overall meaning
 
 **Google Login API**
+
 - We now have another fantastic feature with a quick and easy way to sign in using Google
 
 - The Google login service has been made available by the developer to allow quick and simple access to the application
@@ -400,15 +403,22 @@ User Stories fulfilled:
 ### Feed Page
 
 **Profile Created**
+
 When a user creates a new account, a profile is automatically issued to them. This profile includes their avatar as their default profile image as well as a default background
 
 The user instantly recognizes that if they have a default avatar and background, they can probably edit and personalize their profile. This is intuitive design at its finest. Important information has been carefully laid out on this page
 
 **Post Modal**
+
 This is a case of cute trickery. The user sees "create a post" and thinks they can type into the fictitious button that tells them this is where they create posts, but that's exactly the trick; when the user clicks it, a modal pop-up is immediately brought up for them to focus in on as the backdrop dims, drawing all attention to creating posts.
 
 **Share Post Modal**
+
 Here on the website, the developer has pulled a quick fast one; the user has no idea that this is the identical modal pop-up. How is that possible? Well, [Charles Babbage](https://www.zdnet.com/article/charles-babbage-the-father-of-computing/) and the power of computing. Why the name drop and jargon? It's trickery at its best, I suppose. This web application's developer created a set of rules that are activated based on the button the user is currently lingering their mouse on (or thumb) to use less code.
+
+**Following profiles**
+
+From the feed page, it is possible to view various profiles and, if desired, follow them. This enables the user of this social media web app to grow their network and follow users they may find admirable or appealing.
 
 <details>
 <summary>view images</summary>
@@ -431,6 +441,7 @@ User Stories fulfilled:
 |[#6](https://github.com/KristianColville1/daily-sync/issues/6)|
 |[#8](https://github.com/KristianColville1/daily-sync/issues/8)|
 |[#9](https://github.com/KristianColville1/daily-sync/issues/9)|
+|[#27](https://github.com/KristianColville1/daily-sync/issues/27)|
 
 <br>
 </details>
@@ -443,9 +454,11 @@ Once more, you can see how the website's creator kept things simple and neutral 
 The developer of this application did not initially intend for it to be so neutral and simple, but as time went on, it became so to appeal to a larger online audience, Facebook and LinkedIn do the same thing, after all.
 
 **Background**
+
 The background on the profile page serves as a canvas, a tool, a way of accomplishing an objective, and everything in between, enabling the user to have a high degree of personalization.
 
 **Avatar**
+
 There is some customization in this minimum viable product, as was already discussed. Users can edit their profiles by clicking the update button that is located just next to their username.
 
 The user can see that they can formally introduce themselves to users that see their profile by including a bio about themselves. As the user develops their network and makes use of the application, their friends and followers will show up on the left side.
@@ -465,10 +478,60 @@ User Stories fulfilled:
 | Issue ID |
 |---|
 |[#3](https://github.com/KristianColville1/daily-sync/issues/3)|
-|[#4](https://github.com/KristianColville1/daily-sync/issues/4)|
-|[#6](https://github.com/KristianColville1/daily-sync/issues/6)|
-|[#8](https://github.com/KristianColville1/daily-sync/issues/8)|
 |[#9](https://github.com/KristianColville1/daily-sync/issues/9)|
+|[#17](https://github.com/KristianColville1/daily-sync/issues/17)|
+
+<br>
+</details>
+
+<br>
+
+## View Post Page
+
+**Liking**
+
+The option to like a post is available on numerous pages. The user can select several emojis to convey themselves and their feelings toward particular posts in this scenario, where customization and expression come together.
+
+On the actual post, you can see the author's name, avatar and time since posted as well as how many likes and comments there are.
+
+**Commenting**
+
+Each post provides a numerical value to indicate that there are comments there as well as a link to view them, however, they are only accessible from this page.
+
+You have the option of liking or disliking a comment, which is fantastic since you can express yourself using a variety of emojis just like you can with a regular post.
+
+Regarding what you can accomplish on this website, there is a lot of utility. These functionalities alone can satisfy a significant portion of user stories. It's intriguing to observe how some pages' functionality and user stories align, and when they do, it's possible to comprehend the significance of the user experience. No matter how little, you want to keep your audience interested.
+
+<details>
+<summary>view images</summary>
+
+![View post page](documentation/features/view-post-page.png)
+<br>
+
+![post like options](documentation/features/post-like-options.png)
+<br>
+
+![Post with comment](documentation/features/post-with-comment.png)
+<br>
+
+![Comment like options](documentation/features/comment-like-options.png)
+<br>
+
+User Stories fulfilled:
+
+| Issue ID |
+|---|
+|[#3](https://github.com/KristianColville1/daily-sync/issues/3)|
+|[#7](https://github.com/KristianColville1/daily-sync/issues/7)|
+|[#8](https://github.com/KristianColville1/daily-sync/issues/8)|
+|[#16](https://github.com/KristianColville1/daily-sync/issues/16)|
+|[#19](https://github.com/KristianColville1/daily-sync/issues/19)|
+|[#21](https://github.com/KristianColville1/daily-sync/issues/21)|
+|[#22](https://github.com/KristianColville1/daily-sync/issues/22)|
+|[#26](https://github.com/KristianColville1/daily-sync/issues/26)|
+|[#30](https://github.com/KristianColville1/daily-sync/issues/30)|
+|[#31](https://github.com/KristianColville1/daily-sync/issues/31)|
+|[#32](https://github.com/KristianColville1/daily-sync/issues/32)|
 
 <br>
 </details>
