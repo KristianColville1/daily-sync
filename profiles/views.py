@@ -43,17 +43,15 @@ class OtherProfileView(View):
     """
 
     def get(self, request, slug, *args, **kwargs):
-        user_profile = get_object_or_404(Profile, slug=slug)
-        post = Post.objects.filter(author=user_profile.user)
-        profiles = Profile.objects.exclude(follows=request.user.profile)
+        post_author = get_object_or_404(Profile, slug=slug)
+        post = Post.objects.filter(
+            author=post_author.user
+        )
         post_paginator = Paginator(post, 10)
         page_number = request.GET.get('page')
         post_obj = post_paginator.get_page(page_number)
-        profile_paginator = Paginator(profiles, 5)
-        profile_obj = profile_paginator.get_page(page_number)
         context = {
-            'profile': user_profile,
-            'profiles': profile_obj,
+            'profile': post_author,
             'posts': post_obj,
             'comment_form': CommentForm(),
             'form': PostForm()
@@ -80,7 +78,7 @@ def follow_profile(request, profile_id):
     their_profile = get_object_or_404(Profile, id=profile_id)
     request.user.profile.follows.add(their_profile)
     notify.send(sender=request.user,
-                recipient=their_profile.user, verb=f'{request.user} has added started following you')
+                recipient=their_profile.user, verb=f'has started following you')
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
@@ -90,9 +88,6 @@ def unfollow_profile(request, profile_id):
     """
     profile = get_object_or_404(Profile, id=profile_id)
     profile.follows.remove(request.user.profile)
-    notify.send(sender=request.user.profile.user,
-                recipient=get_object_or_404(
-                    Profile(id=profile_id)), verb=f'{request.user.profile.author} has added you as a friend')
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
@@ -102,9 +97,11 @@ def add_friend(request, profile_id):
     friend_request, created = FriendRequest.objects.get_or_create(
         from_user=from_user, to_user=to_user)
     if created:
+        messages.add_message(request, messages.SUCCESS,
+                         f'Friend request sent to {to_user}')
         notify.send(actor=request.user.profile.author,
                 recipient=get_object_or_404(
-                    Profile(id=profile_id)), verb=f'{request.user.profile.author} has added you as a friend')
+                    Profile(id=profile_id)), verb=f'has added you as a friend')
         return redirect(request.META.get('HTTP_REFERER', '/'))
     messages.add_message(request, messages.SUCCESS,
                          'Oops! something went wrong please try again')

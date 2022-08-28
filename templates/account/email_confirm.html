@@ -22,7 +22,7 @@
 
                 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn w-100">{% trans 'Confirm' %}</button>
+                    <button type="submit" class="btn general-btn w-100" aria-label="click here to confirm your email address">{% trans 'Confirm' %}</button>
                 </form>
     
                 {% else %}
