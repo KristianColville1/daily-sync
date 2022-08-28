@@ -585,6 +585,54 @@ User Stories fulfilled:
 
 <br>
 
+### Chats Pages
+
+**Chat Rooms**
+
+Chat rooms allow for asynchronous user communication.
+
+Although it might not seem important, this functionality enables real-time communication. There are countless uses for this kind of use. This method of communication would have been used to establish the messaging system had the developer had more time to research and expand upon these ideas.
+
+The ability to talk and send private messages to other users is the main feature of social networking web applications. I'll save something for the section on upcoming features.
+
+By selecting the chat room button on the feed page, individuals can start their chat rooms. This function was developed using the Redis add-on for Heroku.
+
+All a user needs to do is pass their url to another user so they can access that chatroom
+
+<details>
+<summary>view images</summary>
+
+
+![Creating chatroom](documentation/features/create-chatroom.png)
+<br>
+
+![Active chatroom](documentation/features/chatroom-active.png)
+<br>
+
+<br>
+</details>
+
+<br>
+
+### Handler Pages
+
+Custom error pages are available to enhance the user experience. These pages will be activated in the event of a 404 or 500 error, and a link back to the home page is provided.
+
+<details>
+<summary>view images</summary>
+
+
+![404](documentation/features/404.png)
+<br>
+
+![500](documentation/features/500.png)
+<br>
+
+<br>
+</details>
+
+<br>
+
 ## Testing
 
 The testing documentation can be found [here](documentation)
