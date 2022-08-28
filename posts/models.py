@@ -6,53 +6,6 @@ from django.utils import timesince
 
 STATUS = ((0, "Draft"), (1, "Posted"))
 
-
-class PostQuerySet(models.QuerySet):
-    """
-    Post Query Set model
-    """
-
-    def search(self, query=None):
-        qs = self
-        if query is not None:
-            or_lookup = (Q(author__icontains=query)
-                         | Q(post_body__icontains=query)
-                         | Q(slug__icontains=query))
-            qs = qs.filter(or_lookup).distinct()
-
-
-class PostManager(models.Manager):
-    """
-    Post Manager model
-    """
-
-    def get_queryset(self):
-        return PostQuerySet(self.model, using=self._db)
-
-
-class CommentQuerySet(models.QuerySet):
-    """
-    Comment Query Set model
-    """
-
-    def search(self, query=None):
-        qs = self
-        if query is not None:
-            or_lookup = (Q(post_name__icontains=query)
-                         | Q(name__icontains=query)
-                         | Q(content__icontains=query))
-            qs = qs.filter(or_lookup).distinct()
-
-
-class CommentManager(models.Manager):
-    """
-    Comment model
-    """
-
-    def get_queryset(self):
-        return PostQuerySet(self.model, using=self._db)
-
-
 class Base(models.Model):
     """
     Base Model for content writing.
@@ -127,7 +80,6 @@ class Post(Base):
                                     related_name="shared_posts",
                                     blank=True,
                                     null=True)
-    objects = PostManager()
 
     class Meta:
         ordering = ['-created_on']
@@ -158,6 +110,7 @@ class Comment(Base):
                              on_delete=models.CASCADE,
                              related_name="comments",
                              null=True)
+    slug = AutoSlugField(populate_from="post_name", unique_with="name")
     email = models.EmailField()
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
@@ -177,8 +130,7 @@ class Comment(Base):
     angry_likes = models.ManyToManyField(User,
                                          related_name="comment_angry_likes",
                                          blank=True)
-    objects = CommentManager()
-    
+
     class Meta:
         ordering = ['-created_on']
 
