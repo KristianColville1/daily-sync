@@ -121,7 +121,6 @@ The goal of this project was to create a social media website that takes advanta
 ## Technologies & Tools
 
 - [Am I Responsive](http://ami.responsivedesign.is/) was used to generate an image showcasing the website's ability to adapt to different screen sizes at the start of this README.md file
-- [Balsamiq](https://balsamiq.com/) was used to create wireframes for use during project development
 - [Coolors](https://coolors.co/4e5340-697268-95a3a4-b7d1da-e2e8dd) to generate color palettes and root Hex codes
 - [Chrome Developer Tools](https://developer.chrome.com/docs/devtools/) for making the site responsive and debugging the site in a browser
 - [Favicon](https://favicon.io/) for the favicon in the website
@@ -136,6 +135,7 @@ The goal of this project was to create a social media website that takes advanta
 - [VSCode](https://code.visualstudio.com/) as a local repository
 - [Wave Validator](https://wave.webaim.org/) for accessibility validation
 - [WC3 Validator](https://validator.w3.org/) for validating HTML code
+- [Wireframe](https://wireframe.cc/) was used to create wireframes for use during project development
 
 
 ## Design
