@@ -44,6 +44,31 @@ Django Framework used for the project.
 
 PEP8 validator used, I have it enabled within VSCode and no errors in workspace
 
-Pylint was also used as a linter within VSCode and enabled globally and there are no errors in any of the files within the workspace
+Pylint was also used as a linter within VSCode and enabled globally and there are no errors in any of the files within the workspace.
+
+I also have it configured to automatically format pages to compliance when I close VSCode
 
 ![workspace](documentation/validation/workspace.png)
+
+## Responsiveness 
+
+Devices tested were used with Chrome Developer Tools.
+Generous amount of responsiveness for devices of all sizes.
+
+- Moto G4
+- IPhone SE
+- IPhone XR
+- IPhone 12 Pro
+- Pixal 5
+- Samsung Galaxy S8+
+- Samsung Galaxy s20 Ultra
+- IPad Air
+- IPad Mini
+- Surface Pro 7
+- Surface Duo
+- Galaxy Fold
+- Samsung Galaxy A51/71
+- Nest Hub
+- Nest Hub Max
+- Asus monitor (developers monitor)
+- AOC monitor (developers monitor)
