@@ -162,6 +162,8 @@ User comments showed that this was a great design decision for the online applic
 ### Structure
 #### Wireframes
 
+[Wireframes can be viewed here](documentation/readme_folder/wireframes.pdf)
+
 [Back to Top](#table-of-contents)
 ## Information Architecture
 ### Database
